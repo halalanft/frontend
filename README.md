@@ -1,1 +1,1 @@
-# Halal NFT - NFT for Muslim DeFi Society
+# Halalan NFT - NFT for Muslim DeFi Society

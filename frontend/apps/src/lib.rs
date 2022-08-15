@@ -1,18 +1,26 @@
-mod routing;
-mod app;
+mod router;
+mod home;
+mod docs;
+mod common;
+mod dashboard;
+mod utils;
 
+use utils::wallet::{init, connect};
 use wasm_bindgen::prelude::*;
-use crate::app::App;
+use router::Router;
 
-// use std::sync::Arc;
+use std::sync::Arc;
 use cfg_if::cfg_if;
 
 #[wasm_bindgen(start)]
-pub async fn main_js() -> Result<(), JsValue>{
+pub async fn main_js() {
     setup_logger();
-    dominator::append_dom(&dominator::get_id("app"), App::render(App::deserialize().await));
+    init();
 
-    Ok(())
+    let router = Arc::new(Router::new());
+    dominator::append_dom(&dominator::get_id("app"), Router::render(Router::new()));
+
+    std::mem::forget(Box::new(router));
 }
 
 cfg_if! {

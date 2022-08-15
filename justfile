@@ -12,3 +12,6 @@ frontend_dev:
   
 frontend_release:
   just frontend/apps/release
+  
+update_ethers:
+  just frontend/apps/ethers

@@ -24,18 +24,47 @@ serde_json = "1.0.81"
 wasm-bindgen = { version = "0.2.81", features = [ "serde-serialize" ] }
 wasm-bindgen-futures = "0.4.31"
 wasm-logger = { version = "0.2.0", optional = true }
+serde-wasm-bindgen = "0.4.3"
+uuid = { version = "1.1.2", features = ["serde"] }
+chrono = { version = "0.4.19", features = ["wasmbind"] }
+discard = "1.0.4"
+strum = "0.24.1"
+strum_macros = "0.24.2"
 
 [dependencies.web-sys]
 version = "0.3.58"
 features = [
-    "Storage",
-    "Url",
-    "XmlHttpRequest",
-    "Headers",
-    "Response",
-    "RequestInit",
-    "RequestMode",
-    "Window"
+    'Storage',
+    'Url',
+    'XmlHttpRequest',
+    'Request',
+    'RequestInit',
+    'RequestCredentials',
+    'Response',
+    'RequestMode',
+    'Headers',
+    'Document', 
+    'DocumentFragment',
+    'Window',
+    'Storage',
+    'Location',
+    'Element',
+    'CssStyleDeclaration',
+    'DomTokenList',
+    'HtmlTemplateElement',
+    'HtmlCollection',
+    'HtmlInputElement',
+    'HtmlSelectElement',
+    'HtmlDocument',
+    'ImageData',
+    'DomRect',
+    'KeyboardEvent',
+    'MouseEvent',
+    'HtmlFormElement',
+    'Blob',
+    'BlobPropertyBag',
+    'Worker',
+    'PointerEvent',
 ]
 
 [features]

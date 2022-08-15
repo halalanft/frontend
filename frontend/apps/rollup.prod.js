@@ -17,5 +17,7 @@ export default {
             debug: false,
             verbose: true
         }),
+        
+        injectProcessEnv(getEnv()),
     ],
 };

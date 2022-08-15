@@ -1,0 +1,11 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "frontend/apps/Cargo.toml",
+    ],
+    "rust-analyzer.rustfmt.extraArgs": [
+        "--config-path=frontend/apps",
+    ],
+    "solidity.packageDefaultDependenciesContractsDirectory": "contracts/src",
+    "solidity.packageDefaultDependenciesDirectory": "contracts/lib",
+    "solidity.compileUsingRemoteVersion": "v0.8.15"
+}

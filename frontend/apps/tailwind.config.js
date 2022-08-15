@@ -1,6 +1,7 @@
 module.exports = {
     content: [
-      "./devhtml/**/*.{html,js,ts,jsx,tsx}",
+        "./devhtml/**/*.{html,js,ts,jsx,tsx}",
+        "./src/**/*.rs"
     ],
     theme: {
       extend: {},
