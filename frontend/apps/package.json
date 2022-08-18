@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "NODE_OPTIONS=--max_old_space_size=8192 run-p watch:tailwind watch:rollup",
+    "watch": "NODE_OPTIONS=--max_old_space_size=4096 run-p watch:tailwind watch:rollup",
     "build": "run-p build:tailwind build:rollup",
     "watch:tailwind": "NODE_ENV=development postcss styles/globals.css -o devhtml/css/main.css -w",
     "build:tailwind": "NODE_ENV=production postcss styles/globals.css -o dist/css/main.css",

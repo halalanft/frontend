@@ -1,7 +1,7 @@
 #[derive(Debug, Clone)]
 pub enum LightningMode {
     Dark,
-    Light
+    Light,
 }
 
 impl From<&LightningMode> for String {

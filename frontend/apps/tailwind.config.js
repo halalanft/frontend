@@ -4,7 +4,11 @@ module.exports = {
         "./src/**/*.rs"
     ],
     theme: {
-      extend: {},
+        extend: {
+            colors: {
+              'halalanft-green': '#7ed957'
+          }
+      },
     },
     plugins: [
       require('@tailwindcss/forms'),

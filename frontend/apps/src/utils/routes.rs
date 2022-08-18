@@ -2,9 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use std::{
     fmt::{Debug, Display},
-    str::FromStr,
 };
-use uuid::Uuid;
 use wasm_bindgen::prelude::*;
 use web_sys::Url;
 
@@ -12,6 +10,7 @@ use web_sys::Url;
 pub enum Route {
     NotFound,
     Home(HomeRoute),
+    About(AboutRoute),
     Dashboard(DashboardRoute),
     Docs(DocsRoute),
     Admin(AdminRoute),
@@ -20,6 +19,11 @@ pub enum Route {
 #[derive(Debug, Clone)]
 pub enum HomeRoute {
     Home,
+}
+
+#[derive(Debug, Clone)]
+pub enum AboutRoute {
+    About,
 }
 
 #[derive(Debug, Clone)]
@@ -56,7 +60,7 @@ impl Route {
         let url: String = self.into();
         let _ = history.push_state_with_url(&JsValue::NULL, "", Some(&url));
     }
-    
+
     pub fn from_url(url: &str) -> Self {
         let url = Url::new(url).unwrap();
         let paths = url.pathname();
@@ -64,6 +68,7 @@ impl Route {
         let paths = paths.as_slice();
         match paths {
             [""] => Self::Home(HomeRoute::Home),
+            ["#about"] => Self::About(AboutRoute::About),
             ["dashboard"] => Self::Dashboard(DashboardRoute::Dashboard),
             ["docs"] => Self::Docs(DocsRoute::Docs),
             ["admin"] => Self::Admin(AdminRoute::Admin),
@@ -83,6 +88,9 @@ impl From<&Route> for String {
         match route {
             Route::Home(route) => match route {
                 HomeRoute::Home => "/".to_string(),
+            },
+            Route::About(route) => match route {
+                AboutRoute::About => "/#about".to_string(),
             },
             Route::Dashboard(route) => match route {
                 DashboardRoute::Dashboard => "/dashboard".to_string(),

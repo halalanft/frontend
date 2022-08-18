@@ -1,6 +1,6 @@
+use crate::utils::storage;
 use wasm_bindgen::prelude::*;
 use web_sys::{window, Storage};
-use crate::utils::storage;
 
 pub const WALLET_STORAGE_NAME: &str = "X-WALLET";
 

@@ -1,16 +1,8 @@
 use std::sync::Arc;
 
-use dominator::{clone, html, Dom, class};
-use futures_signals::signal::{Signal, SignalExt};
-use strum::IntoEnumIterator;
-use crate::utils::routes::{AdminRoute, Route};
-use crate::utils::wallet::{WalletStatus, connect, init};
-use crate::home::Home;
 use crate::common::header::state::Header;
-use crate::common::button::{Button, ButtonStyle, ButtonStyleIcon};
-
-use wasm_bindgen::JsValue;
-use web_sys::HtmlElement;
+use dominator::{html, Dom};
+use strum::IntoEnumIterator;
 
 use crate::common::header::state::PageLinks;
 
@@ -18,11 +10,9 @@ const STR_HOME: &str = "Sign up";
 const STR_DASHBOARD: &str = "Dashboard";
 const STR_DOCS: &str = "Docs";
 
-pub fn render(
-    state: Arc<Header>
-) -> Dom {
+pub fn render(state: Arc<Header>) -> Dom {
     html!("header", {
-        .class(["bg-gray-100"])
+        .class(["bg-gradient-to-r", "from-stone-100", "to-stone-200", "sticky", "top-0", "z-100"])
         .child(
             html!("div", {
                 .class(["max-w-screen-xl", "px-4", "mx-auto", "sm:px-6", "lg:px-8"])
@@ -35,10 +25,9 @@ pub fn render(
                                 .class(["md:flex", "md:items-center", "md:gap-12"])
                                 .children(&mut [
                                     render_navbar(),
-                                    render_button(state.clone()),
                                 ])
                             }),
-                            
+
                         ])
                     })
                 )
@@ -52,10 +41,10 @@ fn render_logo() -> Dom {
         .class(["flex-l", "md:flex", "md:items-center", "md:gap-12"])
         .child(
             html!("a", {
-                .prop("href", PageLinks::Home.route())
+                .prop("href", PageLinks::About.route())
                 .child(
                     html!("img", {
-                        .class(["h-16"])
+                        .class(["h-24"])
                         .prop("src", "/public/svg/1.svg")
                     })
                 )
@@ -73,10 +62,10 @@ fn render_navbar() -> Dom {
                 .text("Header navigation")
             }),
             html!("ul", {
-                .class(["flex", "items-center", "gap-6", "text-sm"])
+                .class(["flex", "items-center", "gap-6", "text-md"])
                 .children(PageLinks::iter().map(|page_link| {
                     html!("a", {
-                        .class(["text-gray-500", "transition", "hover:text-gray-500/75"])
+                        .class(["text-zinc-800", "transition", "hover:text-emerald-500"])
                         .prop("kind", page_link.kind_str())
                         .prop("href", &page_link.route())
                         .prop("icon", "icon")
@@ -85,32 +74,5 @@ fn render_navbar() -> Dom {
                 }))
             }),
         ])
-    })
-}
-
-fn render_button(state: Arc<Header>) -> Dom {
-    html!("div", {
-        .class(["flex", "items-center", "gap-4"])
-        .child(
-            html!("div", {
-                .class(["sm:gap-4", "sm:flex"])
-                .child_signal(state.app.storage.wallet.connection.signal_ref(clone!(state => move |connection| {
-                    Some(if connection == &WalletStatus::Disconnected {
-                        let style = ButtonStyle::Icon(ButtonStyleIcon::Metamask);
-                        let button = Button::new_label(style, String::from("connect"), clone!(state => move || {
-                            connect();
-                            
-                        }));
-                        Button::render(button, ["px-5","py-2.5","text-sm","font-medium","text-white","bg-teal-600","rounded-md","shadow"])
-                    } else {
-                        let style = ButtonStyle::Icon(ButtonStyleIcon::Metamask);
-                        let button = Button::new_label(style, String::from("disconnect"), clone!(state => move || {
-                            
-                        }));
-                        Button::render(button, ["px-5","py-2.5","text-sm","font-medium","text-white","bg-teal-600","rounded-md","shadow"])
-                    })
-                })))
-            })
-        )
     })
 }

@@ -1,16 +1,14 @@
-mod router;
-mod home;
-mod docs;
 mod common;
-mod dashboard;
+mod home;
+mod router;
 mod utils;
 
-use utils::wallet::{init, connect};
-use wasm_bindgen::prelude::*;
 use router::Router;
+use utils::wallet::{init};
+use wasm_bindgen::prelude::*;
 
-use std::sync::Arc;
 use cfg_if::cfg_if;
+use std::sync::Arc;
 
 #[wasm_bindgen(start)]
 pub async fn main_js() {

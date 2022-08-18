@@ -1,4 +1,3 @@
-use lazy_static::lazy_static;
 
 #[derive(Clone, Debug)]
 pub struct Language(pub LanguageCode, pub LanguageName);

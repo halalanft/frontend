@@ -1,10 +1,13 @@
 use std::sync::Arc;
 
-use crate::{utils::routes::{HomeRoute, DashboardRoute, DocsRoute, AdminRoute, Route}, router::Router};
-use strum_macros::{Display, EnumIter};
+use crate::{
+    router::Router,
+    utils::routes::{AboutRoute, Route},
+};
+use strum_macros::{EnumIter};
 
 pub struct Header {
-    pub app: Arc<Router>
+    pub app: Arc<Router>,
 }
 
 impl Default for Header {
@@ -21,27 +24,24 @@ impl Header {
 
 #[derive(Clone, Debug, PartialEq, EnumIter)]
 pub enum PageLinks {
-    Home,
-    Dashboard,
-    Docs,
-    // Admin,
+    About,
+    Why,
+    Team,
 }
 
 impl PageLinks {
     pub fn kind_str(&self) -> &'static str {
         match self {
-            Self::Home => "about",
-            Self::Dashboard => "dashboard",
-            Self::Docs => "docs",
-            // Self::Admin => "community",
+            Self::About => "about",
+            Self::Why => "why us",
+            Self::Team => "team",
         }
     }
     pub fn route(&self) -> String {
         match self {
-            Self::Home => Route::Home(HomeRoute::Home).to_string(),
-            Self::Dashboard => Route::Dashboard(DashboardRoute::Dashboard).to_string(),
-            Self::Docs => Route::Docs(DocsRoute::Docs).to_string(),
-            // Self::Admin => "javascript:alert(\"Coming soon\")".to_string(),
+            Self::About => Route::About(AboutRoute::About).to_string(),
+            Self::Why => String::from("/#whyus"),
+            Self::Team => String::from("/#team"),
         }
     }
 }

@@ -8,14 +8,14 @@ extern "C" {
     fn _connect();
     fn _disconnect();
     fn _myAddress() -> String;
-    
+
 }
 
 pub fn init() {
     _init();
 }
 
-pub fn connect(){
+pub fn connect() {
     _connect();
 }
 
@@ -26,5 +26,5 @@ pub fn disconnect() {
 pub fn my_address() -> String {
     let address = _myAddress();
     log::info!("walletConnected: {}", address);
-    return address
+    return address;
 }

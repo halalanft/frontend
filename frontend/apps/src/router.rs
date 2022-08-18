@@ -1,18 +1,15 @@
+use crate::common::{footer, header};
 use crate::home::Home;
-use crate::dashboard::Dashboard;
-use crate::docs::Docs;
-use crate::utils::storage::AppStorage;
 use crate::utils::futures::AsyncLoader;
-use crate::common::{header, footer};
+use crate::utils::storage::AppStorage;
 
-
-use dominator::{html, Dom};
-use futures_signals::signal::Signal;
-use web_sys::console::log;
-use crate::utils::routes::{HomeRoute, DashboardRoute, DocsRoute, AdminRoute, Route};
 use crate::utils::language::{Language, LanguageCode, LanguageName};
 use crate::utils::lightning::LightningMode;
+use crate::utils::routes::{AdminRoute, DashboardRoute, DocsRoute, HomeRoute, Route};
+use dominator::{html, Dom};
+use futures_signals::signal::Signal;
 use std::sync::Arc;
+use web_sys::console::log;
 
 pub struct Router {
     pub loader: AsyncLoader,
@@ -35,11 +32,13 @@ impl Router {
         html!("div", {
             .children(&mut [
                 html!("div", {
+                    .class(["block", "top-0", "sticky", "z-50"])
                     .child(
                         header::render(Arc::new(header::Header::new(state.clone())))
                     )
                 }),
                 html!("main", {
+                    .class(["relative"])
                     .child_signal(Self::dom_signal(state))
                 }),
                 html!("div", {
@@ -57,12 +56,6 @@ impl Router {
             match route {
                 Route::Home(route) => match route {
                     HomeRoute::Home => Some(Arc::new(Home::new(state.clone())).render()),
-                },
-                Route::Dashboard(route) => match route {
-                    DashboardRoute::Dashboard => Some(Arc::new(Dashboard::new(state.clone())).render()),
-                },
-                Route::Docs(route) => match route {
-                    DocsRoute::Docs => Some(Arc::new(Docs::new(state.clone())).render()),
                 },
                 _ => None,
             }

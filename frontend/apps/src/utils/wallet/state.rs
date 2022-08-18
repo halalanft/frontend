@@ -1,10 +1,9 @@
 use futures_signals::signal::Mutable;
 
-use super::{init, connect};
-
+use super::{connect, init};
 
 pub struct AppWallet {
-    pub connection: Mutable<WalletStatus>, 
+    pub connection: Mutable<WalletStatus>,
     pub wallet: Mutable<String>,
 }
 
@@ -23,5 +22,5 @@ impl AppWallet {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum WalletStatus {
     Connected,
-    Disconnected
+    Disconnected,
 }
