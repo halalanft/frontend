@@ -11,7 +11,7 @@ export default {
         index: "./Cargo.toml",
     },
     output: {
-        dir: "dist/js",
+        dir: "devhtml/js",
         format: "es",
         sourcemap: true,
         chunkFileNames: "[name]-[hash].js",
