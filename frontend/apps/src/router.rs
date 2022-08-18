@@ -5,11 +5,10 @@ use crate::utils::storage::AppStorage;
 
 use crate::utils::language::{Language, LanguageCode, LanguageName};
 use crate::utils::lightning::LightningMode;
-use crate::utils::routes::{AdminRoute, DashboardRoute, DocsRoute, HomeRoute, Route};
+use crate::utils::routes::{HomeRoute, Route};
 use dominator::{html, Dom};
 use futures_signals::signal::Signal;
 use std::sync::Arc;
-use web_sys::console::log;
 
 pub struct Router {
     pub loader: AsyncLoader,
