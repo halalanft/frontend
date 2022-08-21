@@ -5,3 +5,5 @@ frontend/apps/devhtml/css
 **/target
 **/dist
 **/.env
+**/out
+**/cache
