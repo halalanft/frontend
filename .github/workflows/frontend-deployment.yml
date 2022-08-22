@@ -3,7 +3,7 @@ name: Develop - Halalanft
 on:
   workflow_dispatch:
   push:
-    branches: [ develop ]
+    branches: [ develop, master ]
     paths:
     - 'frontend/apps/**'
 
@@ -43,20 +43,31 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - name: Install Vercel CLI
+        run: npm install --location=global vercel@26.0.0
       - name: install npm deps
         run: npm ci
         working-directory: "./frontend/apps"
       - name: build frontend
         run: npm run build
         working-directory: "./frontend/apps"
-      - name: Vercel Action
-        uses: amondnet/vercel-action@v19
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-          github-token: ${{ secrets.PROJECT_GITHUB_TOKEN }} #Optional 
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}  #Required
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}} #Required
-          working-directory: ./frontend/apps/devhtml
+      
+      - name: Deploy static content to Vercel
+        run: |
+          productionFlag=""
+          if [[ ${GITHUB_REF} == "refs/heads/master" ]]; then
+            export VERCEL_PROJECT_ID=${PRODUCTION_PROJECT_ID} 
+            productionFlag="--prod"
+          fi
+          if [[ ${GITHUB_REF} == "refs/heads/develop" ]]; then
+            export VERCEL_PROJECT_ID=${DEVELOP_PROJECT_ID} 
+          fi
+          vercel output --token ${VERCEL_TOKEN} ${productionFlag}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          PRODUCTION_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          DEVELOP_PROJECT_ID: ${{ secrets.DEVELOP_VERCEL_PROJECT_ID }}
         
         
         
