@@ -7,3 +7,4 @@ frontend/apps/devhtml/css
 **/.env
 **/out
 **/cache
+.vercel
