@@ -11,6 +11,7 @@ impl Home {
                 self.render_hero(),
                 self.render_about(),
                 self.render_why(),
+                self.render_conceptart(),
                 self.render_team(),
                 self.render_roadmap(),
                 self.render_community(),
