@@ -1,0 +1,5 @@
+{
+    "builds": [
+      { "src": "./frontend/apps/devhtml", "use": "@vercel/static" }
+    ]
+  }
