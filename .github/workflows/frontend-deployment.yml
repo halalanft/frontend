@@ -47,10 +47,10 @@ jobs:
         run: npm install --location=global vercel@28.0.0
       - name: install npm deps
         run: npm ci
-        working-directory: "./frontend/apps"
+        working-directory: "frontend/apps"
       - name: build frontend
         run: npm run build
-        working-directory: "./frontend/apps"
+        working-directory: "frontend/apps"
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -71,7 +71,7 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           PRODUCTION_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           DEVELOP_PROJECT_ID: ${{ secrets.DEVELOP_VERCEL_PROJECT_ID }}
-        working-directory: "./frontend/apps"
+        working-directory: "frontend/apps"
         
         
         
