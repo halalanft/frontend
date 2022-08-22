@@ -1,9 +1,15 @@
 name: Develop - Halalanft
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ develop, master ]
+    branches:
+      - develop
+      - master
+    tags:
+      - '*'
+  pull_request:
+  
+  workflow_dispatch:
 
 jobs:
   check:
@@ -13,19 +19,16 @@ jobs:
       RUSTFLAGS: -D warnings
     steps:
       - uses: actions/checkout@v2
-
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: nightly
           override: true
           components: rustfmt
-
       - uses: actions-rs/cargo@v1
         with:
           command: check
           args: --all --manifest-path frontend/apps/Cargo.toml
-
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
@@ -85,6 +88,3 @@ jobs:
           PRODUCTION_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           DEVELOP_PROJECT_ID: ${{ secrets.DEVELOP_VERCEL_PROJECT_ID }}
         working-directory: "frontend/apps"
-        
-        
-        
