@@ -124,7 +124,7 @@ impl Home {
     fn render_whitepaper(self: &Arc<Self>) -> Dom {
         html!("a", {
             .class(["block", "w-full", "px-12", "py-3", "text-sm", "font-medium", "text-white", "bg-teal-600", "rounded", "shadow", "sm:w-auto", "active:bg-teal-500", "hover:bg-teal-700", "focus:outline-none", "focus:ring"])
-            .prop("href", "/public/docs/english_wp_v0_6.pdf")
+            .prop("href", "/public/docs/english_wp_v0_7.pdf")
             .prop("target", "_blank")
             .prop("rel", "noopener noreferrer")
             .text("Download Whitepaper")
