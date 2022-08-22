@@ -51,9 +51,22 @@ jobs:
       - name: build frontend
         run: npm run build
         working-directory: "frontend/apps"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: devhtml
+          path: devhtml
+        working-directory: "frontend/apps"
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: devhtml
+          path: devhtml
       - name: Deploy static content to Vercel
         run: |
           productionFlag=""
