@@ -46,7 +46,7 @@ jobs:
         with:
           node-version: '16'
       - name: Install Vercel CLI
-        run: npm install --location=global vercel@26.0.0
+        run: npm install --location=global vercel@28.0.0
       - name: install npm deps
         run: npm ci
         working-directory: "./frontend/apps"
@@ -66,7 +66,8 @@ jobs:
           if [[ ${GITHUB_REF} == "refs/heads/develop" ]]; then
             export VERCEL_PROJECT_ID=${DEVELOP_PROJECT_ID} 
           fi
-          vercel devhtml --token ${VERCEL_TOKEN} ${productionFlag}
+          ls
+          vercel ./frontend/apps/devhtml --token ${VERCEL_TOKEN} ${productionFlag}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
