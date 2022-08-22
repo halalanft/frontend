@@ -4,8 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [ develop, master ]
-    paths:
-    - 'frontend/apps/**'
 
 jobs:
   check:
