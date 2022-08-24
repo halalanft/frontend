@@ -80,6 +80,7 @@ jobs:
           if [[ ${GITHUB_REF} == "refs/heads/develop" ]]; then
             export VERCEL_PROJECT_ID=${DEVELOP_PROJECT_ID} 
           fi
+          ls devhtml/js
           vercel devhtml --token ${VERCEL_TOKEN} ${productionFlag}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

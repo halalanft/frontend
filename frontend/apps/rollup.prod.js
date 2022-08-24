@@ -3,7 +3,6 @@ import json from "@rollup/plugin-json";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import rust from "@wasm-tool/rollup-plugin-rust";
 import injectProcessEnv from "rollup-plugin-inject-process-env";
-// import external from 'rollup-plugin-peer-deps-external';
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 import { getEnv } from "./rollup.common.js";
 export default {

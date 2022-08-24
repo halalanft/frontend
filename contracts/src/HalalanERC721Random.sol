@@ -35,7 +35,6 @@ contract HalalanERC721Random is
 
     // events
     event HiddenUpdated(string previous, string updated);
-    event PackUpdated(address previous, address updated);
     event RevealableUpdated(bool previous, bool updated);
     event TokenReveal(
         address indexed user,
@@ -53,7 +52,6 @@ contract HalalanERC721Random is
     mapping(uint256 => uint256) public shuffle;
     bytes32 public immutable vrfKeyHash;
     uint256 public immutable vrfFee;
-    address public pack;
     uint256 public pending;
     uint256 public randomness;
     bool public revealable;
@@ -95,7 +93,7 @@ contract HalalanERC721Random is
     {
         require(
             msg.sender == owner(),
-            "HalalanERC721Random: caller is not the owner or pack contract"
+            "HalalanERC721Random: caller is not the owner contract"
         );
         require(
             amount <= batch,
@@ -251,15 +249,6 @@ contract HalalanERC721Random is
     {
         emit HiddenUpdated(hidden, hidden_);
         hidden = hidden_;
-    }
-
-    /**
-     * @notice set privileged pack contract
-     * @param pack_ new pack address
-     */
-    function setPack(address pack_) external onlyOwner {
-        emit PackUpdated(pack, pack_);
-        pack = pack_;
     }
 
     /**
