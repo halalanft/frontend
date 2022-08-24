@@ -32,7 +32,7 @@ impl Home {
                                     .class(["p-12", "bg-gradient-to-r", "from-slate-600", "to-slate-700", "rounded-lg"])
                                     .children([
                                         html!("img", {
-                                            .attr("src", "/public/img/fida.jpeg")
+                                            .attr("src", "/static/img/fida.jpeg")
                                             .attr("alt", "")
                                             .class(["object-cover","w-24","h-24","mx-auto","rounded-full","shadow-xl"])
                                         }),
@@ -59,7 +59,7 @@ impl Home {
                                     .class(["p-12", "bg-gradient-to-r", "from-slate-600", "to-slate-700", "rounded-lg"])
                                     .children([
                                         html!("img", {
-                                            .attr("src", "/public/img/iwan.jpeg")
+                                            .attr("src", "/static/img/iwan.jpeg")
                                             .attr("alt", "")
                                             .class(["object-cover","w-24","h-24","mx-auto","rounded-full","shadow-xl"])
                                         }),
@@ -86,7 +86,7 @@ impl Home {
                                     .class(["p-12", "bg-gradient-to-r", "from-slate-600", "to-slate-700", "rounded-lg"])
                                     .children([
                                         html!("img", {
-                                            .attr("src", "/public/img/rama.jpeg")
+                                            .attr("src", "/static/img/rama.jpeg")
                                             .attr("alt", "")
                                             .class(["object-cover","w-24","h-24","mx-auto","rounded-full","shadow-xl"])
                                         }),
@@ -113,7 +113,7 @@ impl Home {
                                     .class(["p-12", "bg-gradient-to-r", "from-slate-600", "to-slate-700", "rounded-lg"])
                                     .children([
                                         html!("img", {
-                                            .attr("src", "/public/img/andika.jpeg")
+                                            .attr("src", "/static/img/andika.jpeg")
                                             .attr("alt", "")
                                             .class(["object-cover","w-24","h-24","mx-auto","rounded-full","shadow-xl"])
                                         }),

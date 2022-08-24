@@ -36,12 +36,12 @@ impl Home {
                                     .children([
                                         html!("img", {
                                             .attr("alt", "concept art")
-                                            .attr("src", "/public/img/concept_art_1.jpg")
+                                            .attr("src", "/static/img/concept_art_1.jpg")
                                             .class(["object-cover","w-full","h-40","sm:h-56","md:h-full"])
                                         }),
                                         html!("img", {
                                             .attr("alt", "coloring art")
-                                            .attr("src", "/public/img/concept_art_2.jpg")
+                                            .attr("src", "/static/img/concept_art_2.jpg")
                                             .class(["object-cover","w-full","h-40","sm:h-56","md:h-full"])
                                         }),
                                     ])

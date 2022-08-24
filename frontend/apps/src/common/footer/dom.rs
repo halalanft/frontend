@@ -15,7 +15,7 @@ pub fn render() -> Dom {
                                 .child(
                                     html!("img", {
                                         .class(["w-48", "object-fit"])
-                                        .prop("src", "/public/svg/4.svg")
+                                        .prop("src", "/static/svg/4.svg")
                                         .prop("alt", "HalalaNFT: Ethics Society | Leap Beyond")
                                     })
                                 )

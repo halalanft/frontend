@@ -45,7 +45,7 @@ fn render_logo() -> Dom {
                 .child(
                     html!("img", {
                         .class(["h-24"])
-                        .prop("src", "/public/svg/1.svg")
+                        .prop("src", "/static/svg/1.svg")
                     })
                 )
             })

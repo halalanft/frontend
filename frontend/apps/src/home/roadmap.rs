@@ -46,7 +46,7 @@ impl Home {
                                     .class(["order-3","bg-gradient-to-r", "from-stone-100", "to-stone-200","rounded-lg","shadow-xl","w-full","sm:w-5/12","p-8"])
                                     .children([
                                         html!("img", {
-                                            .attr("src", "/public/icons/roadmap-1.png")
+                                            .attr("src", "/static/icons/roadmap-1.png")
                                             .attr("alt", "Roadmap Q2 2022")
                                             .class(["w-6","h-6","mb-3","aspect-square"])
                                         }),
@@ -115,7 +115,7 @@ impl Home {
                                     .class(["order-3","bg-gradient-to-br","from-stone-100", "to-stone-200","rounded-lg","shadow-xl","w-full","sm:w-5/12","p-8"])
                                     .children([
                                         html!("img", {
-                                            .attr("src", "/public/icons/roadmap-2.png")
+                                            .attr("src", "/static/icons/roadmap-2.png")
                                             .attr("alt", "Road Map 02")
                                             .class(["w-6","h-6","mb-3","aspect-square"])
                                         }),
@@ -185,7 +185,7 @@ impl Home {
                                     .class(["order-3","bg-gradient-to-r","from-stone-100", "to-stone-200","rounded-lg","shadow-xl","w-full","sm:w-5/12","p-8"])
                                     .children([
                                         html!("img", {
-                                            .attr("src", "/public/icons/roadmap-3.png")
+                                            .attr("src", "/static/icons/roadmap-3.png")
                                             .attr("alt", "Road Map 03")
                                             .class(["w-6","h-6","mb-3","aspect-square"])
                                         }),

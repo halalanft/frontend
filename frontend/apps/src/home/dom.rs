@@ -23,7 +23,7 @@ impl Home {
         html!("section", {
             .children(&mut [
                 html!("div", {
-                    .class(["absolute", "w-full", "h-full", "lg:h-screen", "lg:items-center", "lg:flex", "bg-gray-50", "overflow-hidden", "bg-[url(/public/img/hero-bg.jpg)]", "bg-center", "bg-no-repeat", "bg-cover", "blur-sm", "relative", "z-0"])
+                    .class(["absolute", "w-full", "h-full", "lg:h-screen", "lg:items-center", "lg:flex", "bg-gray-50", "overflow-hidden", "bg-[url(/static/img/hero-bg.jpg)]", "bg-center", "bg-no-repeat", "bg-cover", "blur-sm", "relative", "z-0"])
                 }),
                 html!("div", {
                     .class(["absolute", "inset-0", "py-32", "mx-auto", "lg:h-screen", "lg:items-center", "lg:flex", "z-10"])
@@ -85,7 +85,7 @@ impl Home {
                                     .child(
                                         html!("img", {
                                             .class(["absolute", "inset-0", "object-fit", "w-full", "h-full"])
-                                            .prop("src", "/public/svg/4.svg")
+                                            .prop("src", "/static/svg/4.svg")
                                             .prop("alt", "HalalaNFT: Ethics Society | Leap Beyond")
                                         })
                                     )
@@ -124,7 +124,7 @@ impl Home {
     fn render_whitepaper(self: &Arc<Self>) -> Dom {
         html!("a", {
             .class(["block", "w-full", "px-12", "py-3", "text-sm", "font-medium", "text-white", "bg-teal-600", "rounded", "shadow", "sm:w-auto", "active:bg-teal-500", "hover:bg-teal-700", "focus:outline-none", "focus:ring"])
-            .prop("href", "/public/docs/english_wp_v0_7.pdf")
+            .prop("href", "/static/docs/english_wp_v0_7.pdf")
             .prop("target", "_blank")
             .prop("rel", "noopener noreferrer")
             .text("Download Whitepaper")

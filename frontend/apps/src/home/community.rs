@@ -36,7 +36,7 @@ impl Home {
                                                     .text("Discord")
                                                 }),
                                                 html!("img", {
-                                                    .attr("src", "/public/icons/discord.png")
+                                                    .attr("src", "/static/icons/discord.png")
                                                     .attr("alt", "Discord")
                                                 }),
                                             ])
@@ -52,7 +52,7 @@ impl Home {
                                                     .text("Twitter")
                                                 }),
                                                 html!("img", {
-                                                    .attr("src", "/public/icons/twitter.png")
+                                                    .attr("src", "/static/icons/twitter.png")
                                                     .attr("alt", "Twitter")
                                                 }),
                                             ])
@@ -68,7 +68,7 @@ impl Home {
                                                     .text("Medium")
                                                 }),
                                                 html!("img", {
-                                                    .attr("src", "/public/icons/medium.png")
+                                                    .attr("src", "/static/icons/medium.png")
                                                     .attr("alt", "Medium")
                                                 }),
                                             ])
