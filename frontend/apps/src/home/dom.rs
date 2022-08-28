@@ -23,7 +23,7 @@ impl Home {
         html!("section", {
             .children(&mut [
                 html!("div", {
-                    .class(["absolute", "w-full", "h-full", "lg:h-screen", "lg:items-center", "lg:flex", "bg-gray-50", "overflow-hidden", "bg-[url(/static/img/hero-bg.jpg)]", "bg-center", "bg-no-repeat", "bg-cover", "blur-sm", "relative", "z-0"])
+                    .class(["absolute", "w-full", "h-full", "lg:h-screen", "lg:items-center", "lg:flex", "bg-gray-50", "overflow-hidden", "bg-[url(/static/img/hero-bg.png)]", "bg-center", "bg-no-repeat", "bg-cover", "blur-sm", "relative", "z-0"])
                 }),
                 html!("div", {
                     .class(["absolute", "inset-0", "py-32", "mx-auto", "lg:h-screen", "lg:items-center", "lg:flex", "z-10"])
