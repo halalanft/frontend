@@ -72,10 +72,9 @@ jobs:
           path: frontend/apps/devhtml
       - name: Deploy static content to Vercel
         run: |
-          productionFlag=""
+          productionFlag="--prod"
           if [[ ${GITHUB_REF} == "refs/heads/master" ]]; then
             export VERCEL_PROJECT_ID=${PRODUCTION_PROJECT_ID} 
-            productionFlag="--prod"
           fi
           if [[ ${GITHUB_REF} == "refs/heads/develop" ]]; then
             export VERCEL_PROJECT_ID=${DEVELOP_PROJECT_ID} 
