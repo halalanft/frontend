@@ -6,6 +6,7 @@ use std::sync::Arc;
 impl Home {
     pub fn render_conceptart(self: &Arc<Self>) -> Dom {
         html!("section", {
+            .prop("id", "art")
             .child(
                 html!("div", {
                     .class(["bg-gradient-to-r", "from-stone-100", "to-stone-200", "px-4","py-8","mx-auto","max-w-screen-2xl","sm:px-6","lg:px-8"])

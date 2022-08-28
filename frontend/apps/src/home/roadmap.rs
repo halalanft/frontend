@@ -7,6 +7,7 @@ impl Home {
     pub fn render_roadmap(self: &Arc<Self>) -> Dom {
         html!("div", {
             .class(["bg-gradient-to-r", "from-slate-600", "to-slate-700"])
+            .prop("id", "roadmap")
             .child(
                 html!("div", {
                     .class(["relative","wrap","overflow-hidden","p-14","h-full","max-w-7xl","m-auto"])

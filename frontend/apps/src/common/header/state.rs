@@ -26,7 +26,10 @@ impl Header {
 pub enum PageLinks {
     About,
     Why,
+    Art,
     Team,
+    Roadmap,
+    Community,
 }
 
 impl PageLinks {
@@ -34,14 +37,20 @@ impl PageLinks {
         match self {
             Self::About => "about",
             Self::Why => "why us",
+            Self::Art => "concept art",
             Self::Team => "team",
+            Self::Roadmap => "roadmap",
+            Self::Community => "community",
         }
     }
     pub fn route(&self) -> String {
         match self {
             Self::About => Route::About(AboutRoute::About).to_string(),
             Self::Why => String::from("/#whyus"),
+            Self::Art => String::from("/#art"),
             Self::Team => String::from("/#team"),
+            Self::Roadmap => String::from("/#roadmap"),
+            Self::Community => String::from("/#community"),
         }
     }
 }

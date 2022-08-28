@@ -6,6 +6,7 @@ use std::sync::Arc;
 impl Home {
     pub fn render_community(self: &Arc<Self>) -> Dom {
         html!("section", {
+            .prop("id", "community")
             .class(["bg-gradient-to-r", "from-stone-100", "to-stone-200"])
             .child(
                 html!("div", {
