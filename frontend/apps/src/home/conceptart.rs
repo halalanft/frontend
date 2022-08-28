@@ -15,7 +15,7 @@ impl Home {
                             .class(["grid","grid-cols-1","gap-4","md:grid-cols-2"])
                             .children([
                                 html!("div", {
-                                    .class(["p-8","bg-gradient-to-r", "from-slate-600", "to-slate-700","md:p-12","lg:px-16","lg:py-24","md:order-last"])
+                                    .class(["p-8","bg-gradient-to-r", "from-sky-600", "to-sky-800","md:p-12","lg:px-16","lg:py-24","md:order-last"])
                                     .child(
                                         html!("div", {
                                             .class(["max-w-xl","mx-auto","text-center"])

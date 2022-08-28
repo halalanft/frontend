@@ -6,7 +6,7 @@ use std::sync::Arc;
 impl Home {
     pub fn render_why(self: &Arc<Self>) -> Dom {
         html!("section", {
-            .class(["text-white","bg-gradient-to-r", "from-slate-600", "to-slate-700"])
+            .class(["text-zinc-800","bg-gradient-to-r", "from-stone-100", "to-stone-200"])
             .prop("id", "whyus")
             .child(
                 html!("div", {
@@ -33,7 +33,7 @@ impl Home {
                                     ])
                                 }),
                                 html!("p", {
-                                    .class(["mt-4","text-gray-300"])
+                                    .class(["mt-4","text-zinc-800"])
                                     .text("We focus on 6 things that will be long-term fundamentals of this project, and we call it: House of HalalaNFT Strategy. HalalaNFT will build a halal ecosystem that focuses on providing ultimate NFTs use cases or utilities so that it has real benefits for holders.")
                                 }),
                             ])
@@ -45,12 +45,12 @@ impl Home {
                                     .class(["flex","items-start"])
                                     .children([
                                         html!("span", {
-                                            .class(["flex-shrink-0","p-4","bg-gray-800","rounded-lg"])
+                                            .class(["flex-shrink-0","p-4","bg-gradient-to-r", "from-sky-600", "to-sky-800","rounded-lg"])
                                             .child(
                                                 svg!("svg", {
                                                     .class(["w-5","h-5"])
                                                     .attr("fill", "none")
-                                                    .attr("stroke", "currentColor")
+                                                    .attr("stroke", "white")
                                                     .attr("viewBox", "0 0 24 24")
                                                     .attr("xmlns", "http://www.w3.org/2000/svg")
                                                     .children([
@@ -78,7 +78,7 @@ impl Home {
                                                     .text("Halal")
                                                 }),
                                                 html!("p", {
-                                                    .class(["mt-1","text-sm","text-gray-300"])
+                                                    .class(["mt-1","text-sm","text-zinc-800"])
                                                     .text("We aimed for every halal aspect in developing and delivering our product. We seek for halal guidance and certification for Islamic scholars to ensure our NFT holder be comfortable with every protocol project and revenue streams that we develop.")
                                                 }),
                                             ])
@@ -89,12 +89,12 @@ impl Home {
                                     .class(["flex","items-start"])
                                     .children([
                                         html!("span", {
-                                            .class(["flex-shrink-0","p-4","bg-gray-800","rounded-lg"])
+                                            .class(["flex-shrink-0","p-4","bg-gradient-to-r", "from-sky-600", "to-sky-800","rounded-lg"])
                                             .child(
                                                 svg!("svg", {
                                                     .class(["w-5","h-5"])
                                                     .attr("fill", "none")
-                                                    .attr("stroke", "currentColor")
+                                                    .attr("stroke", "white")
                                                     .attr("viewBox", "0 0 24 24")
                                                     .attr("xmlns", "http://www.w3.org/2000/svg")
                                                     .children([
@@ -122,7 +122,7 @@ impl Home {
                                                     .text("Security")
                                                 }),
                                                 html!("p", {
-                                                    .class(["mt-1","text-sm","text-gray-300"])
+                                                    .class(["mt-1","text-sm","text-zinc-800"])
                                                     .text("Security is our top priority for develop and deliver HalalaNFT Web3 product. We aimed to seek every security certification as possible to ensure our code is well-written and meet high standards in the Web3 spaces.")
                                                 }),
                                             ])
@@ -133,12 +133,12 @@ impl Home {
                                     .class(["flex","items-start"])
                                     .children([
                                         html!("span", {
-                                            .class(["flex-shrink-0","p-4","bg-gray-800","rounded-lg"])
+                                            .class(["flex-shrink-0","p-4","bg-gradient-to-r", "from-sky-600", "to-sky-800","rounded-lg"])
                                             .child(
                                                 svg!("svg", {
                                                     .class(["w-5","h-5"])
                                                     .attr("fill", "none")
-                                                    .attr("stroke", "currentColor")
+                                                    .attr("stroke", "white")
                                                     .attr("viewBox", "0 0 24 24")
                                                     .attr("xmlns", "http://www.w3.org/2000/svg")
                                                     .children([
@@ -166,7 +166,7 @@ impl Home {
                                                     .text("Philanthropy")
                                                 }),
                                                 html!("p", {
-                                                    .class(["mt-1","text-sm","text-gray-300"])
+                                                    .class(["mt-1","text-sm","text-zinc-800"])
                                                     .text("This is something that other Web3 project is missing. HalalaNFT, as one of the halal project will have philanthropy activities to support wide community (e.g. scholarship for islamic boarding school, web3 project to support muslim community, etc).")
                                                 }),
                                             ])
@@ -177,12 +177,12 @@ impl Home {
                                     .class(["flex","items-start"])
                                     .children([
                                         html!("span", {
-                                            .class(["flex-shrink-0","p-4","bg-gray-800","rounded-lg"])
+                                            .class(["flex-shrink-0","p-4","bg-gradient-to-r", "from-sky-600", "to-sky-800", "rounded-lg"])
                                             .child(
                                                 svg!("svg", {
                                                     .class(["w-5","h-5"])
                                                     .attr("fill", "none")
-                                                    .attr("stroke", "currentColor")
+                                                    .attr("stroke", "white")
                                                     .attr("viewBox", "0 0 24 24")
                                                     .attr("xmlns", "http://www.w3.org/2000/svg")
                                                     .children([
@@ -210,7 +210,7 @@ impl Home {
                                                     .text("Revenue Stream")
                                                 }),
                                                 html!("p", {
-                                                    .class(["mt-1","text-sm","text-gray-300"])
+                                                    .class(["mt-1","text-sm","text-zinc-800"])
                                                     .text("Unlike many NFTs projects that are present in the market today, Halalanft will become an ecosystem that has its own revenue stream for products or services to be provided. Halalanft will manage on chain & off chain & off chain revenue stream.")
                                                 }),
                                             ])
@@ -221,12 +221,12 @@ impl Home {
                                     .class(["flex","items-start"])
                                     .children([
                                         html!("span", {
-                                            .class(["flex-shrink-0","p-4","bg-gray-800","rounded-lg"])
+                                            .class(["flex-shrink-0","p-4","bg-gradient-to-r", "from-sky-600", "to-sky-800","rounded-lg"])
                                             .child(
                                                 svg!("svg", {
                                                     .class(["w-5","h-5"])
                                                     .attr("fill", "none")
-                                                    .attr("stroke", "currentColor")
+                                                    .attr("stroke", "white")
                                                     .attr("viewBox", "0 0 24 24")
                                                     .attr("xmlns", "http://www.w3.org/2000/svg")
                                                     .children([
@@ -254,7 +254,7 @@ impl Home {
                                                     .text("Decentralized Autonomous Organization (DAO)")
                                                 }),
                                                 html!("p", {
-                                                    .class(["mt-1","text-sm","text-gray-300"])
+                                                    .class(["mt-1","text-sm","text-zinc-800"])
                                                     .text("HalalaNFT is about community as any other Web3 project and depend on the loyalty and dedication from the community. Therefore, we will have DAO to support every proposal made by community and prioritize it as per vote decision.")
                                                 }),
                                             ])

@@ -29,7 +29,7 @@ impl Home {
                             .class(["grid","grid-cols-1","gap-8","mt-16","sm:grid-cols-2","lg:grid-cols-2","sm:gap-16"])
                             .children([
                                 html!("div", {
-                                    .class(["p-12", "bg-gradient-to-r", "from-slate-600", "to-slate-700", "rounded-lg"])
+                                    .class(["p-12", "bg-gradient-to-r", "from-sky-600", "to-sky-800", "rounded-lg"])
                                     .children([
                                         html!("img", {
                                             .attr("src", "/static/img/fida.jpeg")
@@ -56,7 +56,7 @@ impl Home {
                                     ])
                                 }),
                                 html!("div", {
-                                    .class(["p-12", "bg-gradient-to-r", "from-slate-600", "to-slate-700", "rounded-lg"])
+                                    .class(["p-12", "bg-gradient-to-r", "from-sky-600", "to-sky-800", "rounded-lg"])
                                     .children([
                                         html!("img", {
                                             .attr("src", "/static/img/iwan.jpeg")
@@ -83,7 +83,7 @@ impl Home {
                                     ])
                                 }),
                                 html!("div", {
-                                    .class(["p-12", "bg-gradient-to-r", "from-slate-600", "to-slate-700", "rounded-lg"])
+                                    .class(["p-12", "bg-gradient-to-r", "from-sky-600", "to-sky-800", "rounded-lg"])
                                     .children([
                                         html!("img", {
                                             .attr("src", "/static/img/rama.jpeg")
@@ -110,7 +110,7 @@ impl Home {
                                     ])
                                 }),
                                 html!("div", {
-                                    .class(["p-12", "bg-gradient-to-r", "from-slate-600", "to-slate-700", "rounded-lg"])
+                                    .class(["p-12", "bg-gradient-to-r", "from-sky-600", "to-sky-800", "rounded-lg"])
                                     .children([
                                         html!("img", {
                                             .attr("src", "/static/img/andika.jpeg")

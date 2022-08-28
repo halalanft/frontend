@@ -6,7 +6,7 @@ use std::sync::Arc;
 impl Home {
     pub fn render_roadmap(self: &Arc<Self>) -> Dom {
         html!("div", {
-            .class(["bg-gradient-to-r", "from-slate-600", "to-slate-700"])
+            .class(["bg-gradient-to-r", "from-sky-600", "to-sky-800"])
             .prop("id", "roadmap")
             .child(
                 html!("div", {
@@ -52,7 +52,7 @@ impl Home {
                                             .class(["w-6","h-6","mb-3","aspect-square"])
                                         }),
                                         html!("h3", {
-                                            .class(["mb-3","font-bold","text-amber-400","text-3xl"])
+                                            .class(["mb-3","font-bold","text-sky-800","text-3xl"])
                                             .text("Q3 2022")
                                         }),
                                         html!("p", {
@@ -121,7 +121,7 @@ impl Home {
                                             .class(["w-6","h-6","mb-3","aspect-square"])
                                         }),
                                         html!("h3", {
-                                            .class(["mb-3","font-bold","text-amber-400","text-3xl"])
+                                            .class(["mb-3","font-bold","text-sky-800","text-3xl"])
                                             .text("Q4 2022")
                                         }),
                                         html!("p", {
@@ -191,7 +191,7 @@ impl Home {
                                             .class(["w-6","h-6","mb-3","aspect-square"])
                                         }),
                                         html!("h3", {
-                                            .class(["mb-3","font-bold","text-amber-400","text-3xl"])
+                                            .class(["mb-3","font-bold","text-sky-800","text-3xl"])
                                             .text("2023")
                                         }),
                                         html!("p", {

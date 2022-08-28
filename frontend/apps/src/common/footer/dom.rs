@@ -2,7 +2,7 @@ use dominator::{html, Dom};
 
 pub fn render() -> Dom {
     html!("footer", {
-        .class(["bg-gradient-to-r", "from-slate-600", "to-slate-700"])
+        .class(["bg-gradient-to-r", "from-sky-600", "to-sky-800"])
         .child(
             html!("div", {
                 .class(["max-w-screen-xl", "px-4", "py-8", "mx-auto", "sm:px-6", "lg:px-8"])
@@ -15,7 +15,7 @@ pub fn render() -> Dom {
                                 .child(
                                     html!("img", {
                                         .class(["w-48", "object-fit"])
-                                        .prop("src", "/static/svg/4.svg")
+                                        .prop("src", "/static/svg/logo.svg")
                                         .prop("alt", "HalalaNFT: Ethics Society | Leap Beyond")
                                     })
                                 )

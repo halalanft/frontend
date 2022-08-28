@@ -13,7 +13,7 @@ impl Home {
                     .class(["p-6","py-10","sm:py-20"])
                     .child(
                         html!("div", {
-                            .class(["rounded-lg","overflow-hidden","max-w-5xl","m-auto","p-12","sm:p-16","text-center", "bg-gradient-to-l", "from-stone-200", "to-stone-300"])
+                            .class(["rounded-lg","overflow-hidden","max-w-5xl","m-auto","p-12","sm:p-16","text-center", "bg-gradient-to-l", "from-stone-200", "to-sky-300"])
                             .children([
                                 html!("h2", {
                                     .class(["text-2xl","font-bold","sm:text-3xl","md:text-5xl","text-primary-main","mb-8"])
@@ -27,7 +27,7 @@ impl Home {
                                     .class(["grid","grid-cols-1","sm:grid-cols-3","gap-4","max-w-xl","mx-auto"])
                                     .children([
                                         html!("a", {
-                                            .class(["primary-button","inline-flex","items-center","justify-center","px-8","py-3","text-black","border","border-transparent","shadow-","rounded-2xl","undefined", "bg-gradient-to-r", "from-teal-500", "to-teal-600", "text-stone-50", "hover:bg-gradient-to-r", "hover:from-teal-400", "hover:to-teal-500"])
+                                            .class(["primary-button","inline-flex","items-center","justify-center","px-8","py-3","text-black","border","border-transparent","shadow-","rounded-2xl","undefined", "bg-gradient-to-r", "from-sky-600", "to-sky-800", "text-stone-50", "hover:bg-gradient-to-r", "hover:from-sky-500", "hover:to-sky-700"])
                                             .prop("href", "https://discord.gg/be5fnEqrZQ")
                                             .prop("target", "_blank")
                                             .prop("rel", "noopener noreferrer")
@@ -43,7 +43,7 @@ impl Home {
                                             ])
                                         }),
                                         html!("a", {
-                                            .class(["primary-button","inline-flex","items-center","justify-center","px-8","py-3","text-black","border","border-transparent","shadow-","rounded-2xl","undefined", "bg-gradient-to-r", "from-teal-500", "to-teal-600", "text-stone-50", "hover:bg-gradient-to-r", "hover:from-teal-400", "hover:to-teal-500"])
+                                            .class(["primary-button","inline-flex","items-center","justify-center","px-8","py-3","text-black","border","border-transparent","shadow-","rounded-2xl","undefined", "bg-gradient-to-r", "from-sky-600", "to-sky-800", "text-stone-50", "hover:bg-gradient-to-r", "hover:from-sky-500", "hover:to-sky-700"])
                                             .prop("href", "https://twitter.com/halalanft")
                                             .prop("target", "_blank")
                                             .prop("rel", "noopener noreferrer")
@@ -59,7 +59,7 @@ impl Home {
                                             ])
                                         }),
                                         html!("button", {
-                                            .class(["primary-button","inline-flex","items-center","justify-center","px-8","py-3","text-black","border","border-transparent","shadow-","rounded-2xl","undefined","bg-gradient-to-r", "from-teal-500", "to-teal-600", "text-stone-50", "hover:bg-gradient-to-r", "hover:from-teal-400", "hover:to-teal-500"])
+                                            .class(["primary-button","inline-flex","items-center","justify-center","px-8","py-3","text-black","border","border-transparent","shadow-","rounded-2xl","undefined","bg-gradient-to-r", "from-sky-600", "to-sky-800", "text-stone-50", "hover:bg-gradient-to-r", "hover:from-sky-500", "hover:to-sky-700"])
                                             .prop("href", "https://medium.com/@halalanft.ecos")
                                             .prop("target", "_blank")
                                             .prop("rel", "noopener noreferrer")

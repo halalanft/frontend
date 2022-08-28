@@ -12,7 +12,7 @@ const STR_DOCS: &str = "Docs";
 
 pub fn render(state: Arc<Header>) -> Dom {
     html!("header", {
-        .class(["bg-gradient-to-r", "from-stone-100", "to-stone-200", "sticky", "top-0", "z-100"])
+        .class(["bg-gradient-to-r", "from-sky-600", "to-sky-900", "sticky", "top-0", "z-100"])
         .child(
             html!("div", {
                 .class(["max-w-screen-xl", "px-4", "mx-auto", "sm:px-6", "lg:px-8"])
@@ -45,7 +45,7 @@ fn render_logo() -> Dom {
                 .child(
                     html!("img", {
                         .class(["h-24"])
-                        .prop("src", "/static/svg/1.svg")
+                        .prop("src", "/static/svg/header_logo.svg")
                     })
                 )
             })
@@ -65,7 +65,7 @@ fn render_navbar() -> Dom {
                 .class(["flex", "items-center", "gap-6", "text-md"])
                 .children(PageLinks::iter().map(|page_link| {
                     html!("a", {
-                        .class(["text-zinc-800", "transition", "hover:text-emerald-500"])
+                        .class(["text-zinc-300", "transition", "hover:text-amber-500"])
                         .prop("kind", page_link.kind_str())
                         .prop("href", &page_link.route())
                         .prop("icon", "icon")

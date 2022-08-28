@@ -21,9 +21,13 @@ impl Home {
 
     fn render_hero(self: &Arc<Self>) -> Dom {
         html!("section", {
+            .class(["bg-gradient-to-r", "from-sky-600", "to-sky-800"])
             .children(&mut [
-                html!("div", {
-                    .class(["absolute", "w-full", "h-full", "lg:h-screen", "lg:items-center", "lg:flex", "bg-gray-50", "overflow-hidden", "bg-[url(/static/img/hero-bg.png)]", "bg-center", "bg-no-repeat", "bg-cover", "blur-sm", "relative", "z-0"])
+                html!("img", {
+                    .class(["absolute", "w-full", "h-full", "lg:h-screen", "lg:items-center", "lg:flex", "bg-gray-50", "overflow-hidden", "bg-center", "bg-no-repeat", "bg-cover", "blur-sm", "relative", "z-0"])
+                    .attr("src", "/static/img/hero-bg.png")
+                    .attr("alt", "Medium")
+                    
                 }),
                 html!("div", {
                     .class(["absolute", "inset-0", "py-32", "mx-auto", "lg:h-screen", "lg:items-center", "lg:flex", "z-10"])
@@ -72,7 +76,7 @@ impl Home {
     fn render_about(self: &Arc<Self>) -> Dom {
         html!("section", {
             .prop("id","about")
-            .class(["bg-gradient-to-r", "from-stone-100", "to-stone-200"])
+            .class(["bg-gradient-to-r", "from-sky-600", "to-sky-800"])
             .child(
                 html!("div", {
                     .class(["max-w-screen-xl", "px-4", "py-16", "mx-auto", "sm:px-6", "lg:px-8"])
@@ -85,7 +89,7 @@ impl Home {
                                     .child(
                                         html!("img", {
                                             .class(["absolute", "inset-0", "object-fit", "w-full", "h-full"])
-                                            .prop("src", "/static/svg/4.svg")
+                                            .prop("src", "/static/svg/logo.svg")
                                             .prop("alt", "HalalaNFT: Ethics Society | Leap Beyond")
                                         })
                                     )
@@ -94,7 +98,7 @@ impl Home {
                                     .class(["lg:py-24"])
                                     .children(&mut [
                                         html!("h2", {
-                                            .class(["text-3xl", "font-bold", "sm:text-4xl"])
+                                            .class(["text-3xl", "font-bold", "sm:text-4xl", "text-zinc-300"])
                                             .text("About ")
                                             .children(&mut [
                                                 html!("span", {
@@ -108,7 +112,7 @@ impl Home {
                                             ])
                                         }),
                                         html!("p", {
-                                            .class(["mt-4", "text-gray-600"])
+                                            .class(["mt-4", "text-zinc-300"])
                                             .text("HalalaNFT is an ecosystem that will brings halal perspective as foundation toward the NFTs collection and Decentralized Finance (DeFi) protocol built inside its ecosystem. HalalaNFT is not just a collection of NFTs that we may see in the market at the moment, which most of them have no utility and only take advantage of the temporary hype. Otherwise, HalalaNFT is a long-term NFT project that will benefit the holder beyond enjeying the art of NFT they have purchased")
                                         })
                                     ])
