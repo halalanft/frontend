@@ -63,31 +63,35 @@ impl Home {
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("2. Publish Whitepaper")
+                                                    .text("2. Whitepaper")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("3. Setup media social")
+                                                    .text("3. Social media setup: Discord, Twitter, Medium")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("4. Project launch")
+                                                    .text("4. NFTs Concept & Design")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("5. NFTs Concept & Design")
+                                                    .text("5. Pre-launch Project")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("6. Pre-launch")
+                                                    .text("6. Pre-launch Campaign")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("7. Pre-launch")
+                                                    .text("7. Whitelisting")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("8. Pre-launch")
+                                                    .text("8. VCs package offering")
+                                                }),
+                                                html!("br",{}),
+                                                html!("p", {
+                                                    .text("9. 1st AMA")
                                                 }),
                                             ])
                                         }),
@@ -128,7 +132,7 @@ impl Home {
                                             .class(["leading-snug","tracking-wide","text-primary-main","text-opacity-100","text-base"])
                                             .children(&mut [
                                                 html!("p", {
-                                                    .text("1. Project Launch: NFTs minting phase 1")
+                                                    .text("1. Project Launch: NFTs minting phase 1: Whitelist & VC minting, public minting.")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
@@ -136,19 +140,19 @@ impl Home {
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("3. Yield Farming")
+                                                    .text("3. Yield Farming (onchain investment)")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("4. Halal Audit")
+                                                    .text("4. Halal Audit (certification)")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("5. Smart Contract Audit")
+                                                    .text("5. Marketplace Audit")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("6. Philanthrophy 1st initial action")
+                                                    .text("6. Philanthrophy 1st action")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
@@ -198,11 +202,11 @@ impl Home {
                                             .class(["leading-snug","tracking-wide","text-primary-main","text-opacity-100","text-base"])
                                             .children(&mut [
                                                 html!("p", {
-                                                    .text("1. Strengthen security of Halalanft projects")
+                                                    .text("1. Strengthen security of Halala NFT Marketplace & Halalan Finance")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("2. Delegate and/or validator")
+                                                    .text("2. Delegate and/or Run Validator")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
@@ -210,7 +214,7 @@ impl Home {
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("4. offchain business partnership")
+                                                    .text("4. Offchain Business Partnership")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
@@ -218,15 +222,19 @@ impl Home {
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("6.Issuing collaterized stablecoin lain")
+                                                    .text("6.Halalan Collaterized Stablecoin")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("7. Halalanft chain")
+                                                    .text("7. Halalan chain")
                                                 }),
                                                 html!("br",{}),
                                                 html!("p", {
-                                                    .text("8. halalan token")
+                                                    .text("8. Real-world use case for Halalan chain")
+                                                }),
+                                                html!("br",{}),
+                                                html!("p", {
+                                                    .text("9. Halalan token")
                                                 }),
                                                 
                                             ])

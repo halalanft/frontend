@@ -76,7 +76,7 @@ impl Home {
                                                 }),
                                                 html!("p", {
                                                     .class(["mt-4","text-sm","text-stone-100"])
-                                                    .text("Iwan loves blockchain and cryptocurrencies, especially NFT. He has broad experience in business development in the Web3 spaces")
+                                                    .text("Iwan is a Halal Web3 enthusiast, he has broad experience in business management and supply chain. Recently, he's interested in exploring crypto space especially in DeFi, NFT, and Tokenomics. Halalanft is his first project in the web3 space, and he believe Halalanft will be the first Halal NFT project that will bring long term benefit for Web3 communities globally")
                                                 }),
                                             ])
                                         }),
@@ -103,7 +103,7 @@ impl Home {
                                                 }),
                                                 html!("p", {
                                                     .class(["mt-4","text-sm","text-stone-100"])
-                                                    .text("Rama's project management skill is a top-notch. He is able to manage several project at once and build a high level quality result. Rama will help the project to achieve all feature listed in the Halalanft roadmap. He is also fluent in Arabic and English.")
+                                                    .text("More than 10 years of experience in diverse organizations and communities, both in national and international level, engaging and connecting people from various background, supported his knowledge of project management, surely help him to manage several projects related to Halalanft")
                                                 }),
                                             ])
                                         }),

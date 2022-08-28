@@ -113,7 +113,7 @@ impl Home {
                                         }),
                                         html!("p", {
                                             .class(["mt-4", "text-zinc-300"])
-                                            .text("HalalaNFT is an ecosystem that will brings halal perspective as foundation toward the NFTs collection and Decentralized Finance (DeFi) protocol built inside its ecosystem. HalalaNFT is not just a collection of NFTs that we may see in the market at the moment, which most of them have no utility and only take advantage of the temporary hype. Otherwise, HalalaNFT is a long-term NFT project that will benefit the holder beyond enjeying the art of NFT they have purchased")
+                                            .text("Halalanft is an ecosystem that will brings halal perspective as foundation toward the NFTs collection and DeFi protocol that will build in the ecosystem. Halalanft is not just a collection of NFTs that we may see in the market at the moment, which most of them have no utility and only take advantage of the temporary hype. Otherwise, Halalanft is a long-term NFT project that will give benefit to the holder beyond enjoying the art of NFT they have purchased")
                                         })
                                     ])
                                 })

@@ -13,25 +13,29 @@ const STR_DOCS: &str = "Docs";
 pub fn render(state: Arc<Header>) -> Dom {
     html!("header", {
         .class(["bg-gradient-to-r", "from-sky-600", "to-sky-900", "sticky", "top-0", "z-100"])
-        .child(
-            html!("div", {
-                .class(["max-w-screen-xl", "px-4", "mx-auto", "sm:px-6", "lg:px-8"])
-                .child(
-                    html!("div", {
-                        .class(["flex", "items-center", "justify-between", "h-16"])
-                        .children(&mut [
-                            render_logo(),
-                            html!("div", {
-                                .class(["md:flex", "md:items-center", "md:gap-12"])
-                                .children(&mut [
-                                    render_navbar(),
-                                ])
-                            }),
+        .children(&mut [
+                html!("div", {
+                    .class(["max-w-screen-xl", "px-4", "mx-auto", "sm:px-6", "lg:px-8"])
+                    .child(
+                        html!("div", {
+                            .class(["flex", "items-center", "justify-between", "h-16"])
+                            .children(&mut [
+                                render_logo(),
+                                html!("div", {
+                                    .class(["md:flex", "md:items-center", "md:gap-12"])
+                                    .children(&mut [
+                                        render_navbar(),
+                                    ])
+                                }),
 
-                        ])
-                    })
-                )
-            })
+                            ])
+                        })
+                    )
+                }),
+                html!("div", {
+                    .class(["h-1", "w-screen", "bg-gradient-to-r", "from-amber-400", "to-emerald-600",])
+                })
+            ]
         )
     })
 }
