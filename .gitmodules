@@ -16,3 +16,6 @@
 [submodule "lib/chainlink"]
 	path = lib/chainlink
 	url = https://github.com/smartcontractkit/chainlink
+[submodule "contracts/lib/chainlink.git"]
+	path = contracts/lib/chainlink.git
+	url = https://github.com/smartcontractkit/chainlink.git
