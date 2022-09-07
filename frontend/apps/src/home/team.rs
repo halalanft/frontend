@@ -72,7 +72,7 @@ impl Home {
                                                 }),
                                                 html!("p", {
                                                     .class(["mt-1","text-xs","font-medium","text-amber-400"])
-                                                    .text("Co Founder & Business Development")
+                                                    .text("Co-Founder & Business Development")
                                                 }),
                                                 html!("p", {
                                                     .class(["mt-4","text-sm","text-stone-100"])
@@ -122,11 +122,11 @@ impl Home {
                                             .children([
                                                 html!("p", {
                                                     .class(["text-lg","font-bold","text-stone-100"])
-                                                    .text("Riyan")
+                                                    .text("Andika")
                                                 }),
                                                 html!("p", {
                                                     .class(["mt-1","text-xs","font-medium","text-amber-400"])
-                                                    .text("Lead Developer")
+                                                    .text("Co-Founder & Lead Developer")
                                                 }),
                                                 html!("p", {
                                                     .class(["mt-4","text-sm","text-stone-100"])
