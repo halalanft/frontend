@@ -8,7 +8,7 @@ const Hero = () => {
 				<div>
 					<h1 className="text-5xl font-impact">The First Halal NFTs Collection</h1>
 					<p className="py-6 font-semibold">That Brings Sharia Based DeFi Ecosystem.</p>
-					<button className="btn btn-primary">Downloads Whitepaper</button>
+					<button className="btn btn-success">Downloads Whitepaper</button>
 				</div>
 			</div>
 		</div>
