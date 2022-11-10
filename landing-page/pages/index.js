@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import WhatMakes from "../components/WhatMakes";
+import { specialCard } from "../datas/whatMake";
+import Moto from "../components/Moto";
 
 export default function Home() {
 	return (
@@ -15,7 +17,8 @@ export default function Home() {
 			<Navbar />
 			<Hero />
 			<About />
-			<WhatMakes />
+			<WhatMakes data={specialCard} />
+			<Moto />
 		</div>
 	);
 }
