@@ -5,6 +5,9 @@ import About from "../components/About";
 import WhatMakes from "../components/WhatMakes";
 import { specialCard } from "../datas/whatMake";
 import Moto from "../components/Moto";
+import OurTeam from "../components/OurTeam";
+import { ourTeam } from "../datas/ourTeam";
+import RoadMap from "../components/RoadMap";
 
 export default function Home() {
 	return (
@@ -19,6 +22,8 @@ export default function Home() {
 			<About />
 			<WhatMakes data={specialCard} />
 			<Moto />
+			<OurTeam data={ourTeam} />
+			<RoadMap />
 		</div>
 	);
 }
