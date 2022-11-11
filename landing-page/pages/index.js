@@ -8,6 +8,8 @@ import Moto from "../components/Moto";
 import OurTeam from "../components/OurTeam";
 import { ourTeam } from "../datas/ourTeam";
 import RoadMap from "../components/RoadMap";
+import JoinCommunity from "../components/JoinCommunity";
+import Footer from "../components/Footer";
 
 export default function Home() {
 	return (
@@ -24,6 +26,8 @@ export default function Home() {
 			<Moto />
 			<OurTeam data={ourTeam} />
 			<RoadMap />
+			<JoinCommunity />
+			<Footer />
 		</div>
 	);
 }
