@@ -4,7 +4,7 @@ import logo from "../assets/fix.png";
 
 const About = () => {
 	return (
-		<div className="px-8 py-16 flex flex-row justify-between">
+		<div className="px-8 py-16 flex flex-row justify-between w-full">
 			<div className="lg:w-[40rem] w-96">
 				<h1 className="text-4xl font-impact mb-8">
 					About <span className="text-[#FAD02C]">Halalanft</span>

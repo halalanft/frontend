@@ -4,7 +4,7 @@ import logo from "../assets/black.png";
 
 const Footer = () => {
 	return (
-		<footer className="footer items-center px-8 py-14 bg-[#FAD02C] justify-between">
+		<footer className="footer items-center px-8 py-14 bg-[#FAD02C] justify-between w-full">
 			<div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
 				<Image src={logo} width={280} alt="Logo" />
 			</div>
