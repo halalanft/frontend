@@ -2,7 +2,7 @@ import React from "react";
 
 const RoadMap = () => {
 	return (
-		<div className="px-8 py-16 min-h-screen">
+		<div className="px-8 py-16 min-h-screen w-screen">
 			<h1 className="text-4xl font-impact mb-8 text-center">Roadmap to Halalan Ecosystem</h1>
 			<p className="mb-16 text-center lg:w-1/2 mx-auto">Our commitment to build Halal ecosystem around DeFi is really strong. We are aiming to have the following roadmap get realized in timely manner</p>
 			<div>

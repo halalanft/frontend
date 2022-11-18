@@ -3,7 +3,7 @@ import CardSpecial from "./CardSpecial";
 
 const WhatMakes = ({ data }) => {
 	return (
-		<div className="px-8 py-16 bg-[#F2F2F2] min-h-screen">
+		<div className="px-8 py-16 bg-[#F2F2F2] min-h-full w-screen">
 			<h1 className="text-4xl font-impact mb-8">
 				What makes <span className="text-[#FAD02C]">Halalanft</span> special
 			</h1>
@@ -12,8 +12,8 @@ const WhatMakes = ({ data }) => {
 				has real benefits for holders.
 			</p>
 			<div className="gap-5 grid grid-flow-row auto-rows-max grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center">
-				{data.map((special) => (
-					<CardSpecial key={special.id} id={special.id} icon={special.icon} title={special.title} description={special.description} />
+				{data.map((special, index) => (
+					<CardSpecial key={index} icon={special.icon} title={special.title} description={special.description} />
 				))}
 			</div>
 		</div>
