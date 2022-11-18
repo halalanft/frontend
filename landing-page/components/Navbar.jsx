@@ -4,9 +4,9 @@ import logo from "../assets/fix.png";
 
 const Navbar = () => {
 	return (
-		<nav className="flex justify-between px-8 py-6 mx-auto items-center">
+		<nav className="flex justify-between px-8  py-6  items-center w-screen">
 			<div>
-				<Image src={logo} width={194} alt="Logo" />
+				<Image src={logo} alt="Logo" width={150} className="lg:w-[194px]" />
 			</div>
 			<div className="hidden space-x-8 lg:flex">
 				<a href="#">About</a>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ name }) => {
+const ButtonHome = ({ name }) => {
 	return (
 		<div className="dropdown dropdown-bottom">
 			<label tabIndex={0} className="btn bg-[#374C8C] m-1">
@@ -17,5 +17,14 @@ const Button = ({ name }) => {
 		</div>
 	);
 };
+const Button = ({ name }) => {
+	return (
+		<div className="dropdown dropdown-bottom">
+			<label tabIndex={0} className="btn bg-[#374C8C] m-1">
+				{name}
+			</label>
+		</div>
+	);
+};
 
-export default Button;
+export { ButtonHome, Button };
