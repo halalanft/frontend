@@ -5,7 +5,7 @@ import { ButtonHome } from "./Button";
 
 const Hero = () => {
 	return (
-		<div className="px-8 py-16 min-h-screen w-screen layer bg-gradient-to-t from-[rgba(250,208,44,0.92)] to-[rgba(250,208,44,0)]  ">
+		<div className="px-8 py-16  w-screen layer bg-gradient-to-t from-[rgba(250,208,44,0.92)] to-[rgba(250,208,44,0)]  ">
 			<div className="flex flex-col lg:flex-row justify-between items-center">
 				<div className="text-center lg:text-left mb-12 lg:mb-0">
 					<h1 className="text-5xl lg:text-7xl font-impact mt-4 lg:mt-0 ">

@@ -1,11 +1,18 @@
 import React from "react";
+import Image from "next/image";
+import motto from "../assets/motto.png";
 
 const Moto = () => {
 	return (
 		<div>
-			<div className="px-8 py-16 bg-[#FAD02C] max-h-screen w-screen">
-				<h1 className="text-4xl font-impact mb-8 lg:w-[30rem]">We bring a very high quality NFTs to your collection</h1>
-				<p className="mb-16 lg:w-[30rem]">Our NFTs are painted with high-quality design in mind for maximum satisfaction to our holders.</p>
+			<div className="z-50 px-8 py-16 bg-[rgba(250,208,44,0.43)] max-h-screen w-screen lg:flex lg:flex-row items-center">
+				<div>
+					<h1 className="text-4xl font-impact mb-8 lg:w-[30rem]">We bring a very high quality NFTs to your collection</h1>
+					<p className="mb-16 lg:w-[30rem]">Our NFTs are painted with high-quality design in mind for maximum satisfaction to our holders.</p>
+				</div>
+				<div className="-z-10 max-sm:hidden">
+					<Image src={motto} alt="Motto" width={800} className="lg:w-[600px]" />
+				</div>
 			</div>
 		</div>
 	);
