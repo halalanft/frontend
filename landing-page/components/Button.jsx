@@ -8,7 +8,7 @@ const ButtonHome = ({ name }) => {
 			</label>
 			<ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
 				<li>
-					<a>Whitepaper in english</a>
+					<a href="https://www.halalanft.com/static/docs/english_wp.pdf">Whitepaper in english</a>
 				</li>
 				<li>
 					<a>Whitepaper in bahasa</a>

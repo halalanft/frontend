@@ -3,7 +3,7 @@ import CardSpecial from "./CardSpecial";
 
 const WhatMakes = ({ data }) => {
 	return (
-		<div className="px-8 py-16 bg-[#F2F2F2] min-h-full w-screen">
+		<div id="why us" className="px-8 py-16 bg-[#F2F2F2] min-h-full w-screen">
 			<h1 className="text-4xl font-impact mb-8">
 				What makes <span className="text-[#FAD02C]">Halalanft</span> special
 			</h1>
