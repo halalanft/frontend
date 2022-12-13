@@ -3,7 +3,7 @@ import { Button } from "../../../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
 
-const Connect = () => {
+const Checkout = () => {
 	return (
 		<>
 			<div className="px-8">
@@ -13,10 +13,10 @@ const Connect = () => {
 
 				<div className="h-[560px] bg-white rounded-lg shadow-lg mx-auto ">
 					<section className="flex justify-between">
-						<div className="py-8 px-14 flex justify-items-center  space-x-4">
+						<div className="py-8 px-14 flex justify-items-center space-x-4">
 							<div className="shrink-0">
 								<div className="bg-[#374C8C] w-10 h-10 rounded-md shadow-lg inline-flex items-center justify-center p-2">
-									<p className="self-center items-center text-white">1</p>
+									<p className="self-center items-center text-white ">1</p>
 								</div>
 							</div>
 							<div>
@@ -48,19 +48,48 @@ const Connect = () => {
 						</div>
 					</section>
 					<div className="h-[2px] bg-[#171717] opacity-30"></div>
-					<section id="connect" className="py-10">
-						<div className="text-center">
-							<h3 className="text-[#FAD02C] text-xl">HALALANFT MINTING</h3>
-							<h1 className="font-bold text-[2.5rem]">Are you ready?</h1>
-							<p className="w-3/4 px-32 mx-auto py-6 ">Connect your MetaMask wallet and add the Optimism Network to start.</p>
-							<Button name="Connect" />
-							<p className="w-3/4 px-32 mx-auto py-6  leading-loose">
-								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
-							</p>
+
+					<section id="checkout" className="py-10">
+						<div className="flex flex-row justify-between px-14">
+							<div className="flex flex-col space-y-2">
+								<h3 className="text-[#FAD02C] text-xl">SELECT QUANTITY</h3>
+								<h1 className="font-bold text-[2.5rem]">How many?</h1>
+								<div className="flex flex-row space-x-4 items-center">
+									<p className="text-[1.4rem]">Quantity (max: 10 per transaction)</p>
+									<button className="w-10 h-10 bg-[#374C8C] rounded-md shadow-lg text-white font-bold">-</button>
+									<p className="font-extrabold text-[1.8rem]">0</p>
+									<button className="w-10 h-10 bg-[#374C8C] rounded-md shadow-lg text-white font-bold">+</button>
+								</div>
+								<hr />
+								<div className="flex flex-row justify-between">
+									<p className="text-[1.4rem]">Cost per Token:</p>
+									<p className="text-[1.4rem]">0.025</p>
+								</div>
+								<hr />
+								<div className="flex flex-row justify-between">
+									<p className="text-[1.4rem]">Total Base Price:</p>
+									<p className="text-[1.4rem]">0.000</p>
+								</div>
+								<hr />
+								<div className="flex justify-end">
+									<Button name="purchase" />
+								</div>
+							</div>
+
+							<div className="flex flex-col space-y-4 mt-8">
+								<p className="italic text-[1.4rem]">0 Optimistic Bunnies</p>
+								<hr />
+								<p className="italic text-[1.4rem]">0 Pixelated Bunnies</p>
+								<hr />
+								<p className="italic text-[1.4rem]">Specialized content in Discord server</p>
+								<hr />
+								<p className="italic text-[1.4rem]">Access to future airdrops</p>
+							</div>
 						</div>
 					</section>
 				</div>
 			</div>
+
 			<section id="footer" className="py-14">
 				<div className="justify-center flex md:flex-row flex-col gap-5 text-center ">
 					<a className="self-center" href="https://discord.com/invite/be5fnEqrZQ">
@@ -91,4 +120,4 @@ const Connect = () => {
 	);
 };
 
-export default Connect;
+export default Checkout;

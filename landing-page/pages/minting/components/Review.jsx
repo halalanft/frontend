@@ -3,7 +3,7 @@ import { Button } from "../../../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
 
-const Connect = () => {
+const Review = () => {
 	return (
 		<>
 			<div className="px-8">
@@ -16,7 +16,7 @@ const Connect = () => {
 						<div className="py-8 px-14 flex justify-items-center  space-x-4">
 							<div className="shrink-0">
 								<div className="bg-[#374C8C] w-10 h-10 rounded-md shadow-lg inline-flex items-center justify-center p-2">
-									<p className="self-center items-center text-white">1</p>
+									<p className="self-center items-center text-white ">1</p>
 								</div>
 							</div>
 							<div>
@@ -50,7 +50,7 @@ const Connect = () => {
 					<div className="h-[2px] bg-[#171717] opacity-30"></div>
 					<section id="connect" className="py-10">
 						<div className="text-center">
-							<h3 className="text-[#FAD02C] text-xl">HALALANFT MINTING</h3>
+							<h3 className="text-[#FAD02C]">HALALANFT MINTING</h3>
 							<h1 className="font-bold text-[2.5rem]">Are you ready?</h1>
 							<p className="w-3/4 px-32 mx-auto py-6 ">Connect your MetaMask wallet and add the Optimism Network to start.</p>
 							<Button name="Connect" />
@@ -91,4 +91,4 @@ const Connect = () => {
 	);
 };
 
-export default Connect;
+export default Review;
