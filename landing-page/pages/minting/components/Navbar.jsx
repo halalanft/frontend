@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import logo from "../../../assets/fix.png";
-import { Link } from "react-scroll";
+import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
@@ -19,12 +19,12 @@ const Navbar = () => {
 
 			<ul className="hidden md:flex space-x-8">
 				<li>
-					<Link to="about" smooth={true} duration={500} className="hover:text-[#FAD02C] cursor-pointer">
+					<Link href="/" className="hover:text-[#FAD02C] cursor-pointer">
 						Home
 					</Link>
 				</li>
 				<li>
-					<Link to="why us" smooth={true} duration={500} className="hover:text-[#FAD02C] cursor-pointer">
+					<Link href="/minting" className="hover:text-[#FAD02C] cursor-pointer">
 						Mint
 					</Link>
 				</li>
@@ -38,12 +38,12 @@ const Navbar = () => {
 
 			<ul className={!nav ? "hidden" : "absolute top-0 left-0 w-full h-screen  flex flex-col justify-center items-center bg-[#374C8C] z-20"}>
 				<li className="py-6 text-2xl text-white">
-					<Link to="about" smooth={true} duration={500} className="hover:text-[#374C8C] cursor-pointer">
+					<Link href="/" className="hover:text-[#374C8C] cursor-pointer">
 						Home
 					</Link>
 				</li>
 				<li className="py-6 text-2xl text-white">
-					<Link to="why us" smooth={true} duration={500} className="hover:text-[#374C8C] cursor-pointer">
+					<Link href="/minting" className="hover:text-[#374C8C] cursor-pointer">
 						Mint
 					</Link>
 				</li>

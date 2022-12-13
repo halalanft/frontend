@@ -1,11 +1,14 @@
 import React from "react";
-import { Button } from "../../../components/Button";
+import Image from "next/image";
+import hero from "../../../../assets/concept_art_2.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
+import Navbar from "../../components/Navbar";
 
 const Review = () => {
 	return (
-		<>
+		<div className="bg overflow-hidden">
+			<Navbar />
 			<div className="px-8">
 				<div className="flex justify-center my-6">
 					<h1 className="font-impact text-[3rem]">Mint</h1>
@@ -48,15 +51,23 @@ const Review = () => {
 						</div>
 					</section>
 					<div className="h-[2px] bg-[#171717] opacity-30"></div>
-					<section id="connect" className="py-10">
-						<div className="text-center">
-							<h3 className="text-[#FAD02C]">HALALANFT MINTING</h3>
-							<h1 className="font-bold text-[2.5rem]">Are you ready?</h1>
-							<p className="w-3/4 px-32 mx-auto py-6 ">Connect your MetaMask wallet and add the Optimism Network to start.</p>
-							<Button name="Connect" />
-							<p className="w-3/4 px-32 mx-auto py-6  leading-loose">
-								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
-							</p>
+
+					<section id="review" className="py-10">
+						<div className="flex flex-row px-14 justify-around">
+							<div className="flex flex-col ">
+								<Image src={hero} alt="Hero" className="lg:max-w-sm rounded-lg w-56 lg:w-80 border" />
+							</div>
+
+							<div className="flex flex-col space-y-4">
+								<p className="font-bold text-[1.4rem] mb-8">Hala#3442</p>
+								<p className="italic text-[1.4rem]">0 Optimistic Bunnies</p>
+								<hr />
+								<p className="italic text-[1.4rem]">0 Pixelated Bunnies</p>
+								<hr />
+								<p className="italic text-[1.4rem]">Specialized content in Discord server</p>
+								<hr />
+								<p className="italic text-[1.4rem]">Access to future airdrops</p>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -87,7 +98,7 @@ const Review = () => {
 					<p className="font-semibold">Copyright © 2022 - All right reserved</p>
 				</div>
 			</section>
-		</>
+		</div>
 	);
 };
 

@@ -2,8 +2,11 @@ import React from "react";
 import { Button } from "../../../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Connect = () => {
+	const router = useRouter();
 	return (
 		<>
 			<div className="px-8">
@@ -53,7 +56,10 @@ const Connect = () => {
 							<h3 className="text-[#FAD02C] text-xl">HALALANFT MINTING</h3>
 							<h1 className="font-bold text-[2.5rem]">Are you ready?</h1>
 							<p className="w-3/4 px-32 mx-auto py-6 ">Connect your MetaMask wallet and add the Optimism Network to start.</p>
-							<Button name="Connect" />
+							<Link href="/minting/pages/checkout">
+								<Button name="Connect" />
+							</Link>
+
 							<p className="w-3/4 px-32 mx-auto py-6  leading-loose">
 								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
 							</p>

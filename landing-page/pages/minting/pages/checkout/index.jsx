@@ -1,12 +1,15 @@
 import React from "react";
-import { Button } from "../../../components/Button";
+import Navbar from "../../components/Navbar";
+import { Button } from "../../../../components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
+import Link from "next/link";
 
 const Checkout = () => {
 	return (
-		<>
-			<div className="px-8">
+		<div className="bg overflow-hidden">
+			<Navbar />
+			<div className="px-8 ">
 				<div className="flex justify-center my-6">
 					<h1 className="font-impact text-[3rem]">Mint</h1>
 				</div>
@@ -72,7 +75,9 @@ const Checkout = () => {
 								</div>
 								<hr />
 								<div className="flex justify-end">
-									<Button name="purchase" />
+									<Link href="/minting/pages/review">
+										<Button name="purchase" />
+									</Link>
 								</div>
 							</div>
 
@@ -116,7 +121,7 @@ const Checkout = () => {
 					<p className="font-semibold">Copyright © 2022 - All right reserved</p>
 				</div>
 			</section>
-		</>
+		</div>
 	);
 };
 
