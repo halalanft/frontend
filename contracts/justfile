@@ -1,0 +1,21 @@
+set dotenv-load
+
+local:
+    #!/usr/bin/env bash
+    forge create --rpc-url $LOCALHOST_URL --private-key $LOCALHOST_PRIVATE_KEY -c src/Halalanft.sol Halalanft --constructor-args 0xE097d6B3100777DC31B34dC2c58fB524C2e76921
+
+## usdc
+fuji:
+    #!/usr/bin/env bash
+    forge create --rpc-url $AVAX_FUJI_URL --private-key $AVAX_FUJI_PRIVATE_KEY -c src/Halalanft.sol Halalanft --constructor-args 0x5425890298aed601595a70AB815c96711a31Bc65
+
+build-test:
+    forge build --contracts src/Halalanft.sol
+
+## usdc.e
+mainnet:
+    #!/usr/bin/env bash
+    forge create --rpc-url $AVAX_MAINNET_URL --private-key $AVAX_MAINNET_PRIVATE_KEY -c src/Halalanft.sol Halalanft --constructor-args 0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664
+
+build-mainnet:
+    forge build --contracts src/Halalanft.sol
