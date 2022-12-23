@@ -9,7 +9,7 @@ const Footer = () => {
 				<Image src={logo} width={280} alt="Logo" />
 			</div>
 			<div className="items-center grid-flow-col">
-				<p className="font-semibold">Copyright © 2022 - All right reserved</p>
+				<p className="font-semibold text-[#171717] opacity-[0.68]">Copyright © 2022 - All right reserved</p>
 			</div>
 		</footer>
 	);

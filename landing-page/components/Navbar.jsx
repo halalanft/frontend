@@ -11,39 +11,39 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="sticky top-0 left-0 bg-white opacity-70 flex justify-between px-8  py-6  items-center w-screen ">
+		<nav className="sticky top-0 left-0 bg-white  flex justify-between px-8 py-6 items-center w-screen ">
 			<div>
 				<Image src={logo} alt="Logo" width={150} className="lg:w-[194px]" />
 			</div>
 			{/* menu */}
 
 			<ul className="hidden md:flex space-x-8">
-				<li>
+				<li className="text-[#171717] opacity-[0.68]">
 					<Link to="about" smooth={true} duration={500} className="hover:text-[#FAD02C] cursor-pointer">
 						About
 					</Link>
 				</li>
-				<li>
+				<li className="text-[#171717] opacity-[0.68]">
 					<Link to="why us" smooth={true} duration={500} className="hover:text-[#FAD02C] cursor-pointer">
 						Why Us
 					</Link>
 				</li>
-				<li>
+				<li className="text-[#171717] opacity-[0.68]">
 					<Link to="concept art" smooth={true} duration={500} className="hover:text-[#FAD02C] cursor-pointer">
 						Concept Art
 					</Link>
 				</li>
-				<li>
+				<li className="text-[#171717] opacity-[0.68]">
 					<Link to="team" smooth={true} duration={500} className="hover:text-[#FAD02C] cursor-pointer">
 						Team
 					</Link>
 				</li>
-				<li>
+				<li className="text-[#171717] opacity-[0.68]">
 					<Link to="roadmap" smooth={true} duration={500} className="hover:text-[#FAD02C] cursor-pointer">
 						Roadmap
 					</Link>
 				</li>
-				<li>
+				<li className="text-[#171717] opacity-[0.68]">
 					<Link to="community" smooth={true} duration={500} className="hover:text-[#FAD02C] cursor-pointer">
 						Community
 					</Link>
