@@ -4,12 +4,12 @@ import logo from "../assets/fix.png";
 
 const About = () => {
 	return (
-		<div id="about" className="px-8 py-16 lg:flex flex-row lg:justify-between w-screen">
+		<div id="about" className="px-8 py-16 lg:flex flex-row lg:justify-between w-screen bg-white">
 			<div className="lg:w-[40rem] ">
-				<h1 className="text-4xl font-impact mb-8">
+				<h1 className="text-4xl font-impact mb-8 text-[#171717] opacity-[0.68]">
 					About <span className="text-[#FAD02C]">Halalanft</span>
 				</h1>
-				<p>
+				<p className="text-[#171717] opacity-[0.68]">
 					Halalanft is an ecosystem that will brings halal perspective as foundation toward the NFTs collection and DeFi protocol that will build in the ecosystem. Halalanft is not just a collection of NFTs that we may see in the market at
 					the moment, which most of them have no utility and only take advantage of the temporary hype. Otherwise, Halalanft is a long-term NFT project that will give benefit to the holder beyond enjoying the art of NFT they have purchased.
 				</p>

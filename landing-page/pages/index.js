@@ -3,10 +3,8 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import WhatMakes from "../components/WhatMakes";
-import { specialCard } from "../datas/whatMake";
 import Moto from "../components/Moto";
 import OurTeam from "../components/OurTeam";
-import { ourTeam } from "../datas/ourTeam";
 import RoadMap from "../components/RoadMap";
 import JoinCommunity from "../components/JoinCommunity";
 import Footer from "../components/Footer";
@@ -22,9 +20,9 @@ export default function Home() {
 			<Navbar />
 			<Hero />
 			<About />
-			<WhatMakes data={specialCard} />
+			<WhatMakes />
 			<Moto />
-			<OurTeam data={ourTeam} />
+			<OurTeam />
 			<RoadMap />
 			<JoinCommunity />
 			<Footer />
