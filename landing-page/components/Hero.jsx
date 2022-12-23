@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import hero from "../assets/concept_art_2.jpg";
 import { ButtonHome } from "./Button";
+import Link from "next/link";
 
 const Hero = () => {
 	return (
@@ -15,7 +16,9 @@ const Hero = () => {
 					<p className="py-6 font-semibold text-[#171717] opacity-[0.68]">That Brings Sharia Based DeFi Ecosystem.</p>
 					<div className="flex flex-row">
 						<ButtonHome name="Download Whitepaper" />
-						<ButtonHome name="Minting Page" />
+						<Link href="/minting">
+							<Button name="Minting Page" />
+						</Link>
 					</div>
 				</div>
 				<Image src={hero} alt="Hero" className="lg:max-w-sm rounded-lg w-80 lg:w-96 -z-10 " />

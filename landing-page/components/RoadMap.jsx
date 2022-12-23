@@ -36,10 +36,10 @@ const RoadMap = () => {
 						<li>Whitepaper</li>
 						<li>Media Social set up : Discord, Twitter, Medium</li>
 						<li>NFTs Concept & Design</li>
-						<li>Marketplace Audit</li>
-						<li>Philanthrophy 1st action</li>
-						<li>Halalanft clothing brand</li>
-						<li>Halalanft Finance (yield optimizer)</li>
+						<li>1st AMA</li>
+						<li>Pre Launch Project</li>
+						<li>Pre Launch Campaign</li>
+						<li>Project Launch : NFTs Minting Phase 1 : Public minting.</li>
 					</ol>
 				</div>
 				<div className="justify-self-center">
