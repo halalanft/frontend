@@ -23,7 +23,7 @@ const Checkout = () => {
 								</div>
 							</div>
 							<div>
-								<div className="text-xl font-semibold ">CONNECT</div>
+								<h1 className="text-xl font-semibold text-[#171717] opacity-[0.68] ">CONNECT</h1>
 								<p className="text-slate-500">wallet and check network</p>
 							</div>
 						</div>
@@ -34,8 +34,8 @@ const Checkout = () => {
 								</div>
 							</div>
 							<div>
-								<div className="text-xl font-semibold ">CHECKOUT</div>
-								<p className="text-slate-500">quality and mint</p>
+								<h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">CHECKOUT</h1>
+								<p className="text-slate-500">quantity and mint</p>
 							</div>
 						</div>
 						<div className="py-8 px-14 flex justify-items-center space-x-4">
@@ -45,7 +45,7 @@ const Checkout = () => {
 								</div>
 							</div>
 							<div>
-								<div className="text-xl font-semibold ">REVIEW</div>
+								<h1 className="text-xl font-semibold text-[#171717] opacity-[0.68] ">REVIEW</h1>
 								<p className="text-slate-500">reciept</p>
 							</div>
 						</div>
@@ -56,22 +56,22 @@ const Checkout = () => {
 						<div className="flex flex-row justify-between px-14">
 							<div className="flex flex-col space-y-2">
 								<h3 className="text-[#FAD02C] text-xl">SELECT QUANTITY</h3>
-								<h1 className="font-bold text-[2.5rem]">How many?</h1>
+								<h1 className="font-bold text-[2.5rem] text-[#171717] opacity-[0.68]">How many?</h1>
 								<div className="flex flex-row space-x-4 items-center">
-									<p className="text-[1.4rem]">Quantity (max: 10 per transaction)</p>
+									<p className="text-[1.4rem] text-[#171717] opacity-[0.68]">Quantity (max: 10 per transaction)</p>
 									<button className="w-10 h-10 bg-[#374C8C] rounded-md shadow-lg text-white font-bold">-</button>
-									<p className="font-extrabold text-[1.8rem]">0</p>
+									<p className="font-extrabold text-[1.8rem] text-[#171717] opacity-[0.68]">0</p>
 									<button className="w-10 h-10 bg-[#374C8C] rounded-md shadow-lg text-white font-bold">+</button>
 								</div>
 								<hr />
 								<div className="flex flex-row justify-between">
-									<p className="text-[1.4rem]">Cost per Token:</p>
-									<p className="text-[1.4rem]">0.025</p>
+									<p className="text-[1.4rem] text-[#171717] opacity-[0.68]">Cost per Token:</p>
+									<p className="text-[1.4rem] text-[#171717] opacity-[0.68]">0.025</p>
 								</div>
 								<hr />
 								<div className="flex flex-row justify-between">
-									<p className="text-[1.4rem]">Total Base Price:</p>
-									<p className="text-[1.4rem]">0.000</p>
+									<p className="text-[1.4rem] text-[#171717] opacity-[0.68]">Total Base Price:</p>
+									<p className="text-[1.4rem] text-[#171717] opacity-[0.68]">0.000</p>
 								</div>
 								<hr />
 								<div className="flex justify-end">
@@ -82,13 +82,13 @@ const Checkout = () => {
 							</div>
 
 							<div className="flex flex-col space-y-4 mt-8">
-								<p className="italic text-[1.4rem]">0 Optimistic Bunnies</p>
+								<p className="italic text-[1.4rem] text-[#171717] opacity-[0.68]">0 Optimistic Bunnies</p>
 								<hr />
-								<p className="italic text-[1.4rem]">0 Pixelated Bunnies</p>
+								<p className="italic text-[1.4rem] text-[#171717] opacity-[0.68]">0 Pixelated Bunnies</p>
 								<hr />
-								<p className="italic text-[1.4rem]">Specialized content in Discord server</p>
+								<p className="italic text-[1.4rem] text-[#171717] opacity-[0.68]">Specialized content in Discord server</p>
 								<hr />
-								<p className="italic text-[1.4rem]">Access to future airdrops</p>
+								<p className="italic text-[1.4rem] text-[#171717] opacity-[0.68]">Access to future airdrops</p>
 							</div>
 						</div>
 					</section>
@@ -118,7 +118,7 @@ const Checkout = () => {
 					</a>
 				</div>
 				<div className="text-center pt-6">
-					<p className="font-semibold">Copyright © 2022 - All right reserved</p>
+					<p className="font-semibold text-[#171717] opacity-[0.68]">Copyright © 2022 - All right reserved</p>
 				</div>
 			</section>
 		</div>

@@ -1,17 +1,26 @@
-import React from "react";
-import { Button } from "../../../components/Button";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
 import { useRouter } from "next/router";
-import Link from "next/link";
+// import Link from "next/link";
+import { useAccount, useConnect } from "wagmi";
 
 const Connect = () => {
+	const { connectors, connect } = useConnect();
+
+	const { isconnected } = useAccount();
 	const router = useRouter();
+
+	useEffect(() => {
+		if (isconnected) {
+			router.replace("/pages/checkout");
+		}
+	}, [isconnected]);
 	return (
 		<>
 			<div className="px-8">
 				<div className="flex justify-center my-6">
-					<h1 className="font-impact text-[3rem]">Mint</h1>
+					<h1 className="font-impact text-[3rem] text-[#171717] opacity-[0.68]">Mint</h1>
 				</div>
 
 				<div className="h-[560px] bg-white rounded-lg shadow-lg mx-auto ">
@@ -23,7 +32,7 @@ const Connect = () => {
 								</div>
 							</div>
 							<div>
-								<div className="text-xl font-semibold ">CONNECT</div>
+								<h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">CONNECT</h1>
 								<p className="text-slate-500">wallet and check network</p>
 							</div>
 						</div>
@@ -34,8 +43,8 @@ const Connect = () => {
 								</div>
 							</div>
 							<div>
-								<div className="text-xl font-semibold ">CHECKOUT</div>
-								<p className="text-slate-500">quality and mint</p>
+								<h1 className="text-xl font-semibold text-[#171717] opacity-[0.68] ">CHECKOUT</h1>
+								<p className="text-slate-500">quantity and mint</p>
 							</div>
 						</div>
 						<div className="py-8 px-14 flex justify-items-center space-x-4">
@@ -45,7 +54,7 @@ const Connect = () => {
 								</div>
 							</div>
 							<div>
-								<div className="text-xl font-semibold ">REVIEW</div>
+								<h1 className="text-xl font-semibold text-[#171717] opacity-[0.68] ">REVIEW</h1>
 								<p className="text-slate-500">reciept</p>
 							</div>
 						</div>
@@ -54,13 +63,19 @@ const Connect = () => {
 					<section id="connect" className="py-10">
 						<div className="text-center">
 							<h3 className="text-[#FAD02C] text-xl">HALALANFT MINTING</h3>
-							<h1 className="font-bold text-[2.5rem]">Are you ready?</h1>
-							<p className="w-3/4 px-32 mx-auto py-6 ">Connect your MetaMask wallet and add the Optimism Network to start.</p>
-							<Link href="/minting/pages/checkout">
-								<Button name="Connect" />
-							</Link>
+							<h1 className="font-bold text-[2.5rem] text-[#171717] opacity-[0.68]">Are you ready?</h1>
+							<p className="w-3/4 px-32 mx-auto py-6  text-[#171717] opacity-[0.68]">Connect your MetaMask wallet and add the Optimism Network to start.</p>
 
-							<p className="w-3/4 px-32 mx-auto py-6  leading-loose">
+							{connectors.map((connector) => (
+								<button className="btn bg-[#374C8C] m-1 text-white" key={connector.id} onClick={() => connect({ connector })}>
+									{connector.name}
+								</button>
+							))}
+							{/* <Link href="/minting/pages/checkout">
+								<Button name="Connect" />
+							</Link> */}
+
+							<p className="w-3/4 px-32 mx-auto py-6 leading-loose text-[#171717] opacity-[0.68]">
 								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
 							</p>
 						</div>
@@ -90,7 +105,7 @@ const Connect = () => {
 					</a>
 				</div>
 				<div className="text-center pt-6">
-					<p className="font-semibold">Copyright © 2022 - All right reserved</p>
+					<p className="font-semibold text-[#171717] opacity-[0.68]">Copyright © 2022 - All right reserved</p>
 				</div>
 			</section>
 		</>

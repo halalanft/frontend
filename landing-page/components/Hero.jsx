@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import hero from "../assets/concept_art_2.jpg";
-import { ButtonHome } from "./Button";
+import { ButtonHome, Button } from "./Button";
 import Link from "next/link";
 
 const Hero = () => {
