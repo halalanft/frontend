@@ -10,8 +10,9 @@ const About = () => {
 					About <span className="text-[#FAD02C]">Halalanft</span>
 				</h1>
 				<p className="text-[#171717] opacity-[0.68]">
-					Halalanft is an ecosystem that will brings halal perspective as foundation toward the NFTs collection and DeFi protocol that will build in the ecosystem. Halalanft is not just a collection of NFTs that we may see in the market at
-					the moment, which most of them have no utility and only take advantage of the temporary hype. Otherwise, Halalanft is a long-term NFT project that will give benefit to the holder beyond enjoying the art of NFT they have purchased.
+					Halalanft is a <strong>community NFT collection</strong> of halal Web3 enthusiasts, which will bring halal perspective as the main foundation for NFT and DeFi protocols to be built in the ecosystem. Halalanft is not just a
+					collection of NFTs that we may see in the market at the moment, most of them have no utility and only take advantage of the temporary hype. Halalanft is a long-term NFT project that will give benefits to the holder beyond enjoying
+					the art of NFT they have purchased.
 				</p>
 			</div>
 			<div className="lg:self-end mt-8">
