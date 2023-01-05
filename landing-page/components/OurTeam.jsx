@@ -38,7 +38,7 @@ const OurTeam = () => {
 		},
 	];
 	return (
-		<div id="team" className="px-8 py-16 min-h-screen w-screen lg:bg-white bg-[url('../assets/ellipse1.png')]">
+		<div id="team" className="px-8 py-16 min-h-screen w-screen bg-white bg-[url('../assets/ellipse1.png')]">
 			<h1 className="text-4xl font-impact mb-8 text-center text-[#171717] opacity-[0.68]">Our Team</h1>
 			<p className="mb-16 text-center lg:w-1/2 mx-auto text-[#171717] opacity-[0.68] ">
 				Our team consist of professionals with broad knowledge in both Web2 and Web3 spaces. We are doxxed ourself as a proof of our commitment for this project.

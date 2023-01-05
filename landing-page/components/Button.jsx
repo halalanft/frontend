@@ -11,7 +11,7 @@ const ButtonHome = ({ name }) => {
 					<a href="https://drive.google.com/file/d/1IFQS6WDDJk0--Smi2SOknkprZ9IkR5bZ/view?usp=sharing">Whitepaper in english</a>
 				</li>
 				<li className="text-[#171717] opacity-[0.68]">
-					<a href="https://drive.google.com/file/d/177PwCBsXzZsDv2M2Rr1o4KMH4EByveY5/view?usp=sharing">Whitepaper in bahasa</a>
+					<a href="https://drive.google.com/file/d/177PwCBsXzZsDv2M2Rr1o4KMH4EByveY5/view?usp=sharing">Whitepaper in indonesian</a>
 				</li>
 			</ul>
 		</div>

@@ -18,14 +18,14 @@ const Navbar = () => {
 			{/* menu */}
 
 			<ul className="hidden md:flex space-x-8">
-				<li>
-					<Link href="/" className="hover:text-[#FAD02C] cursor-pointer">
+				<li className="text-[#171717] opacity-[0.68]">
+					<Link href="/Home" className="hover:text-[#FAD02C] cursor-pointer">
 						Home
 					</Link>
 				</li>
-				<li>
-					<Link href="/minting" className="hover:text-[#FAD02C] cursor-pointer">
-						Mint
+				<li className="text-[#171717] opacity-[0.68]">
+					<Link href="/minting/pages/dashboard" className="hover:text-[#FAD02C] cursor-pointer">
+						Dashboard
 					</Link>
 				</li>
 			</ul>
