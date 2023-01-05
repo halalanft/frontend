@@ -11,7 +11,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="sticky top-0 left-0 bg-white  flex justify-between px-8 py-6 items-center w-screen ">
+		<nav className="z-50 max-sm:sticky max-sm:top-0  bg-white  flex justify-between px-8 py-6 items-center w-screen ">
 			<div>
 				<Image src={logo} alt="Logo" width={150} className="lg:w-[194px]" />
 			</div>
@@ -52,7 +52,7 @@ const Navbar = () => {
 
 			{/* hamburger */}
 			<div className={nav ? "md:hidden z-50 text-white" : "md:hidden z-50"} onClick={handleClick}>
-				{!nav ? <FaBars /> : <FaTimes />}
+				{!nav ? <FaBars className="text-[#171717] opacity-[0.68]" /> : <FaTimes />}
 			</div>
 			{/* mobile menu */}
 
