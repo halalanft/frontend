@@ -10,8 +10,8 @@ const Moto = () => {
 					<h1 className="text-4xl font-impact mb-8 lg:w-[30rem] text-[#171717] opacity-[0.68]">We bring very high-quality NFTs to your collection</h1>
 					<p className="mb-16 lg:w-[30rem] text-[#171717] opacity-[0.68]">Our NFTs are painted with a high-quality design in mind to ensure that our holders are completely satisfied.</p>
 				</div>
-				<div className="-z-10 max-sm:hidden md:hidden lg:block absolute left-[36rem]">
-					<Image src={motto} alt="Motto" width={800} className="lg:w-[600px] opacity-40 " />
+				<div className="-z-10 max-sm:hidden md:hidden lg:block absolute left-[42rem]">
+					<Image src={motto} alt="Motto" className="lg:w-[500px] opacity-40 " />
 				</div>
 			</div>
 		</div>
