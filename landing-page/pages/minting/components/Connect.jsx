@@ -1,21 +1,8 @@
-import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
-import { useRouter } from "next/router";
-// import Link from "next/link";
-import { useAccount, useConnect } from "wagmi";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Connect = () => {
-	const { connectors, connect } = useConnect();
-
-	const { isconnected } = useAccount();
-	const router = useRouter();
-
-	useEffect(() => {
-		if (isconnected) {
-			router.replace("/pages/checkout");
-		}
-	}, [isconnected]);
 	return (
 		<>
 			<div className="px-8">
@@ -65,16 +52,9 @@ const Connect = () => {
 							<h3 className="text-[#FAD02C] text-xl">HALALANFT MINTING</h3>
 							<h1 className="font-bold text-[2.5rem] text-[#171717] opacity-[0.68]">Are you ready?</h1>
 							<p className="w-3/4 px-32 mx-auto py-6  text-[#171717] opacity-[0.68]">Connect your MetaMask wallet and add the Optimism Network to start.</p>
-
-							{connectors.map((connector) => (
-								<button className="btn bg-[#374C8C] m-1 text-white" key={connector.id} onClick={() => connect({ connector })}>
-									{connector.name}
-								</button>
-							))}
-							{/* <Link href="/minting/pages/checkout">
-								<Button name="Connect" />
-							</Link> */}
-
+							<div className="flex justify-center">
+								<ConnectButton />
+							</div>
 							<p className="w-3/4 px-32 mx-auto py-6 leading-loose text-[#171717] opacity-[0.68]">
 								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
 							</p>
