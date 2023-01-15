@@ -1,14 +1,14 @@
 import "@rainbow-me/rainbowkit/styles.css";
 import "../styles/globals.css";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { mainnet, goerli } from "wagmi/chains";
+import { mainnet, avalanche, avalancheFuji } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 
-const { chains, provider } = configureChains([mainnet, goerli], [publicProvider()]);
+const { chains, provider } = configureChains([mainnet, avalanche, avalancheFuji], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
-	appName: "RainbowKit Tutorial",
+	appName: "Halalanft",
 	chains,
 });
 

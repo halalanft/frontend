@@ -1,8 +1,21 @@
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount, useContractEvent, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
+import { useIsMounted } from "../hooks/useIsMounted";
+import { BigNumber } from "ethers";
+import { getAddress } from "ethers/lib/utils.js";
+import { Field, Form, Formik } from "formik";
 
 const Connect = () => {
+	const { address } = useAccount();
+	const mounted = useIsMounted();
+
+	const nftPrice = 1000000000;
+	const { address: accAddress, connector, isConnected } = useAccount();
+	const { chain: networkChain } = useNetwork();
+
 	return (
 		<>
 			<div className="px-8">
@@ -52,9 +65,10 @@ const Connect = () => {
 							<h3 className="text-[#FAD02C] text-xl">HALALANFT MINTING</h3>
 							<h1 className="font-bold text-[2.5rem] text-[#171717] opacity-[0.68]">Are you ready?</h1>
 							<p className="w-3/4 px-32 mx-auto py-6  text-[#171717] opacity-[0.68]">Connect your MetaMask wallet and add the Optimism Network to start.</p>
-							<div className="flex justify-center">
+							<div className="flex justify-center mb-4">
 								<ConnectButton />
 							</div>
+							{mounted ? address && <p className="text-[#171717] opacity-[0.68]">My address is {address}</p> : null}
 							<p className="w-3/4 px-32 mx-auto py-6 leading-loose text-[#171717] opacity-[0.68]">
 								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
 							</p>

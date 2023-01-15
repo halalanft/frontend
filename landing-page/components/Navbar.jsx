@@ -48,6 +48,11 @@ const Navbar = () => {
 						Community
 					</Link>
 				</li>
+				<li className="text-[#171717] opacity-[0.68]">
+					<a className="hover:text-[#FAD02C] cursor-pointer" href="https://halalanft-ecosystem.gitbook.io/">
+						Gitbook
+					</a>
+				</li>
 			</ul>
 
 			{/* hamburger */}
@@ -86,6 +91,11 @@ const Navbar = () => {
 					<Link to="community" smooth={true} duration={500} className="hover:text-[#374C8C] cursor-pointer">
 						Community
 					</Link>
+				</li>
+				<li className="py-6 text-2xl text-white">
+					<a className="hover:text-[#374C8C] cursor-pointer" href="https://halalanft-ecosystem.gitbook.io/">
+						Gitbook
+					</a>
 				</li>
 			</ul>
 		</nav>
