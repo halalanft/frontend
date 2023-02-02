@@ -1,21 +1,115 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
-import { useRouter } from "next/router";
-// import Link from "next/link";
-import { useAccount, useConnect } from "wagmi";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount, useContractEvent, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
+import { useIsMounted } from "../hooks/useIsMounted";
+import { BigNumber } from "ethers";
+import { getAddress } from "ethers/lib/utils.js";
+import { Field, Form, Formik } from "formik";
+import contractAddress from "../../../contracts/Halalanft.json";
+
+import { erc20ABI } from "wagmi";
 
 const Connect = () => {
-	const { connectors, connect } = useConnect();
+	const { address } = useAccount();
+	const mounted = useIsMounted();
 
-	const { isconnected } = useAccount();
-	const router = useRouter();
+	const nftPrice = 1000000000;
+	const { address: accAddress, connector, isConnected } = useAccount();
+	const { chain: networkChain } = useNetwork();
+
+	const { data: mintingEnabled } = useContractRead({
+		address: "0x16Dde40EE5B11c5478C16a708a020ceb8CE5bD3d",
+		abi: erc20ABI,
+		enabled: !!isConnected,
+		functionName: "mintingEnabled",
+	});
+
+	const { data: balanceOfUSDC } = useContractRead({
+		address: "0x16Dde40EE5B11c5478C16a708a020ceb8CE5bD3d",
+		abi: erc20ABI,
+		functionName: balanceOfUSDC,
+		enabled: !!isConnected,
+		args: [accAddress],
+		onError(error) {
+			console.log("Error Balance USD", error);
+		},
+	});
+
+	const { data: balanceOf } = useContractRead({
+		address: "0x16Dde40EE5B11c5478C16a708a020ceb8CE5bD3d",
+		abi: erc20ABI,
+		functionName: balanceOf,
+		enabled: !!isConnected,
+		args: [accAddress],
+		onError(error) {
+			console.log("Error Balance Halalanft", error);
+		},
+	});
+
+	const {
+		config: configUSDC,
+		error: prepareUSDCError,
+		isError: isPrepareUSDCError,
+	} = usePrepareContractWrite({
+		address: contractAddress.abi,
+		abi: erc20ABI,
+		functionName: "approve",
+		args: [getAddress("0x16Dde40EE5B11c5478C16a708a020ceb8CE5bD3d"), BigNumber.from(nftPrice)],
+		enabled: !!isConnected,
+		onError(error) {
+			console.log("Error Prepare USDC", error);
+		},
+	});
+
+	const { data: dataUSDC, error: errorUSDC, isError: isUSDCError, write: writeUSDC } = useContractWrite(configUSDC);
+
+	const { isLoading: isLoadingTransactionUSDC, isSuccessTransactionUSDC } = useWaitForTransaction({
+		hash: dataUSDC?.hash,
+	});
+
+	const [approval, setApproval] = useState("");
 
 	useEffect(() => {
-		if (isconnected) {
-			router.replace("/pages/checkout");
+		if (window) {
+			setApproval(sessionStorage.getItem(accAddress));
 		}
-	}, [isconnected]);
+	}, []);
+
+	const event = useContractEvent({
+		address: contractAddress.abi,
+		abi: erc20ABI,
+		eventName: "Approval",
+		listener: (owner, spender, value) => {
+			setApproval(value);
+			if (window) {
+				window.sessionStorage.setItem(owner, value);
+			}
+		},
+	});
+
+	const [mintAmount, setMintAmount] = useState("");
+	const debouncedMintAmount = useDebounce(mintAmount, 500);
+
+	const {
+		config: configHalalanft,
+		error: prepareHalalanftError,
+		isError: isPrepareHalalanftError,
+	} = usePrepareContractWrite({
+		address: contractAddress.ast.exportedSymbols.Halalanft,
+		functionName: "mint",
+		abi: Halalanft.abi,
+		args: [parseInt(debouncedMintAmount)],
+		enabled: mintingEnabled && Boolean(debouncedMintAmount),
+		onError(error) {
+			console.log("Error Minting Halalanft", error);
+		},
+	});
+	const { data: dataHalalanft, error: errorHalalanft, isError: isHalalanftError, write: writeHalalanft } = useContractWrite(configHalalanft);
+	const { isLoading: isLoadingTransactionHalalanft, isSuccessTransactionHalalanft } = useWaitForTransaction({
+		hash: dataHalalanft?.hash,
+	});
 	return (
 		<>
 			<div className="px-8">
@@ -65,16 +159,10 @@ const Connect = () => {
 							<h3 className="text-[#FAD02C] text-xl">HALALANFT MINTING</h3>
 							<h1 className="font-bold text-[2.5rem] text-[#171717] opacity-[0.68]">Are you ready?</h1>
 							<p className="w-3/4 px-32 mx-auto py-6  text-[#171717] opacity-[0.68]">Connect your MetaMask wallet and add the Optimism Network to start.</p>
-
-							{connectors.map((connector) => (
-								<button className="btn bg-[#374C8C] m-1 text-white" key={connector.id} onClick={() => connect({ connector })}>
-									{connector.name}
-								</button>
-							))}
-							{/* <Link href="/minting/pages/checkout">
-								<Button name="Connect" />
-							</Link> */}
-
+							<div className="flex justify-center mb-4">
+								<ConnectButton />
+							</div>
+							{mounted ? address && <p className="text-[#171717] opacity-[0.68]">My address is {address}</p> : null}
 							<p className="w-3/4 px-32 mx-auto py-6 leading-loose text-[#171717] opacity-[0.68]">
 								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
 							</p>
