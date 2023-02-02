@@ -7,6 +7,9 @@ import { useIsMounted } from "../hooks/useIsMounted";
 import { BigNumber } from "ethers";
 import { getAddress } from "ethers/lib/utils.js";
 import { Field, Form, Formik } from "formik";
+import contractAddress from "../../../contracts/Halalanft.json";
+
+import { erc20ABI } from "wagmi";
 
 const Connect = () => {
 	const { address } = useAccount();
@@ -16,6 +19,97 @@ const Connect = () => {
 	const { address: accAddress, connector, isConnected } = useAccount();
 	const { chain: networkChain } = useNetwork();
 
+	const { data: mintingEnabled } = useContractRead({
+		address: "0x16Dde40EE5B11c5478C16a708a020ceb8CE5bD3d",
+		abi: erc20ABI,
+		enabled: !!isConnected,
+		functionName: "mintingEnabled",
+	});
+
+	const { data: balanceOfUSDC } = useContractRead({
+		address: "0x16Dde40EE5B11c5478C16a708a020ceb8CE5bD3d",
+		abi: erc20ABI,
+		functionName: balanceOfUSDC,
+		enabled: !!isConnected,
+		args: [accAddress],
+		onError(error) {
+			console.log("Error Balance USD", error);
+		},
+	});
+
+	const { data: balanceOf } = useContractRead({
+		address: "0x16Dde40EE5B11c5478C16a708a020ceb8CE5bD3d",
+		abi: erc20ABI,
+		functionName: balanceOf,
+		enabled: !!isConnected,
+		args: [accAddress],
+		onError(error) {
+			console.log("Error Balance Halalanft", error);
+		},
+	});
+
+	const {
+		config: configUSDC,
+		error: prepareUSDCError,
+		isError: isPrepareUSDCError,
+	} = usePrepareContractWrite({
+		address: contractAddress.abi,
+		abi: erc20ABI,
+		functionName: "approve",
+		args: [getAddress("0x16Dde40EE5B11c5478C16a708a020ceb8CE5bD3d"), BigNumber.from(nftPrice)],
+		enabled: !!isConnected,
+		onError(error) {
+			console.log("Error Prepare USDC", error);
+		},
+	});
+
+	const { data: dataUSDC, error: errorUSDC, isError: isUSDCError, write: writeUSDC } = useContractWrite(configUSDC);
+
+	const { isLoading: isLoadingTransactionUSDC, isSuccessTransactionUSDC } = useWaitForTransaction({
+		hash: dataUSDC?.hash,
+	});
+
+	const [approval, setApproval] = useState("");
+
+	useEffect(() => {
+		if (window) {
+			setApproval(sessionStorage.getItem(accAddress));
+		}
+	}, []);
+
+	const event = useContractEvent({
+		address: contractAddress.abi,
+		abi: erc20ABI,
+		eventName: "Approval",
+		listener: (owner, spender, value) => {
+			setApproval(value);
+			if (window) {
+				window.sessionStorage.setItem(owner, value);
+			}
+		},
+	});
+
+	const [mintAmount, setMintAmount] = useState("");
+	const debouncedMintAmount = useDebounce(mintAmount, 500);
+
+	const {
+		config: configHalalanft,
+		error: prepareHalalanftError,
+		isError: isPrepareHalalanftError,
+	} = usePrepareContractWrite({
+		address: contractAddress.ast.exportedSymbols.Halalanft,
+		functionName: "mint",
+		abi: Halalanft.abi,
+		args: [parseInt(debouncedMintAmount)],
+		enabled: mintingEnabled && Boolean(debouncedMintAmount),
+		onError(error) {
+			console.log("Error Minting Halalanft", error);
+		},
+	});
+	const { data: dataHalalanft, error: errorHalalanft, isError: isHalalanftError, write: writeHalalanft } = useContractWrite(configHalalanft);
+	const { isLoading: isLoadingTransactionHalalanft, isSuccessTransactionHalalanft } = useWaitForTransaction({
+		hash: dataHalalanft?.hash,
+	});
 	return (
 		<>
 			<div className="px-8">
