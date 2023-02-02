@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useContractEvent, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
-import { useIsMounted } from "../hooks/useIsMounted";
+// import { UseIsMounted } from "../hooks/useIsMounted";
 import { BigNumber } from "ethers";
 import { getAddress } from "ethers/lib/utils.js";
 import { Field, Form, Formik } from "formik";
@@ -13,7 +13,7 @@ import { erc20ABI } from "wagmi";
 
 const Connect = () => {
 	const { address } = useAccount();
-	const mounted = useIsMounted();
+	// const mounted = UseIsMounted();
 
 	const nftPrice = 1000000000;
 	const { address: accAddress, connector, isConnected } = useAccount();
