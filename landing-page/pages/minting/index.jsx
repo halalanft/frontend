@@ -1,12 +1,12 @@
 import React from "react";
 import Navbar from "../minting/components/Navbar";
-import Connect from "./components/Connect";
+import Minting from "./components/Minting";
 
 const MintingPage = () => {
 	return (
 		<div className="bg overflow-hidden">
 			<Navbar />
-			<Connect />
+			<Minting />
 		</div>
 	);
 };

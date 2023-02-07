@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Box, Button, FormControl, FormLabel, HStack, Input, Menu, MenuButton, MenuItem, MenuList, Stack, Text, useNumberInput, VStack } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -11,13 +12,21 @@ import contractAddress from "../../../contracts/address.json";
 import erc20ABI from "../../../contracts/erc20ABI.json";
 import halalanftABI from "../../../contracts/Halalanft.json";
 
-const Connect = () => {
-	const { address } = useAccount();
+export default function Minting() {
 	const mounted = useIsMounted;
 
 	const nftPrice = 1000000000;
 	const { address: accAddress, connector, isConnected } = useAccount();
+	// const { getInputProps, getIncrementButtonProps, getDecrementButtonProps } = useNumberInput({
+	// 	step: 1,
+	// 	defaultValue: 1,
+	// 	max: 10,
+	// });
 	const { chain: networkChain } = useNetwork();
+
+	// const inc = getIncrementButtonProps();
+	// const dec = getDecrementButtonProps();
+	// const input = getInputProps();
 
 	const { data: mintingEnabled } = useContractRead({
 		address: contractAddress.Halalanft,
@@ -26,27 +35,27 @@ const Connect = () => {
 		functionName: "mintingEnabled",
 	});
 
-	// const { data: balanceOfUSDC } = useContractRead({
-	// 	address: "contractAddress.USDC",
-	// 	abi: erc20ABI,
-	// 	functionName: balanceOfUSDC,
-	// 	enabled: !!isConnected,
-	// 	args: [accAddress],
-	// 	onError(error) {
-	// 		console.log("Error Balance USD", error);
-	// 	},
-	// });
+	const { data: balanceOfUSDC } = useContractRead({
+		address: "contractAddress.USDC",
+		abi: erc20ABI,
+		// functionName: balanceOfUSDC,
+		enabled: !!isConnected,
+		args: [accAddress],
+		onError(error) {
+			console.log("Error Balance USD", error);
+		},
+	});
 
-	// const { data: balanceOf } = useContractRead({
-	// 	address: contractAddress.Halalanft,
-	// 	abi: halalanftABI.abi,
-	// 	functionName: balanceOf,
-	// 	enabled: !!isConnected,
-	// 	args: [accAddress],
-	// 	onError(error) {
-	// 		console.log("Error Balance Halalanft", error);
-	// 	},
-	// });
+	const { data: balanceOf } = useContractRead({
+		address: contractAddress.Halalanft,
+		abi: halalanftABI.abi,
+		// functionName: balanceOf,
+		enabled: !!isConnected,
+		args: [accAddress],
+		onError(error) {
+			console.log("Error Balance Halalanft", error);
+		},
+	});
 
 	const {
 		config: configUSDC,
@@ -90,7 +99,7 @@ const Connect = () => {
 	});
 
 	const [mintAmount, setMintAmount] = useState("");
-	// const debouncedMintAmount = useDebounce(mintAmount, 500);
+	const debouncedMintAmount = useDebounce(mintAmount, 500);
 
 	const {
 		config: configHalalanft,
@@ -100,7 +109,7 @@ const Connect = () => {
 		address: contractAddress.Halalanft,
 		functionName: "mint",
 		abi: halalanftABI.abi,
-		// args: [parseInt(debouncedMintAmount)],
+		args: [parseInt(debouncedMintAmount)],
 		enabled: mintingEnabled && Boolean(debouncedMintAmount),
 		onError(error) {
 			console.log("Error Minting Halalanft", error);
@@ -162,7 +171,92 @@ const Connect = () => {
 							<div className="flex justify-center mb-4">
 								<ConnectButton />
 							</div>
-							{mounted ? address && <p className="text-[#171717] opacity-[0.68]">My address is {address}</p> : null}
+							{/* Test */}
+							<>
+								<Stack direction="row">
+									<Box align="center">
+										{mounted && networkChain.id != connector.chains[0].id ? (
+											<Menu>
+												<MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+													Wrong Network!
+												</MenuButton>
+												<MenuList>
+													<MenuItem onClick={() => connector.connect({ chainId: connector.chains[0].id })}>{connector.chains[0].name}</MenuItem>
+												</MenuList>
+											</Menu>
+										) : (
+											<>
+												<Box color="blackAlpha.700" fontWeight="semibold" letterSpacing="wide" fontSize="2xl" textTransform="uppercase">
+													Phase 1
+												</Box>
+												<Box>
+													{!isSuccessTransactionUSDC & (balanceOf < 1) ? (
+														<Box color="blackAlpha.700" align="center" flexDirection="column" fontWeight="semibold" letterSpacing="wide" fontSize="lg" textTransform="uppercase" pb="5px">
+															<Text>You need to approve USDC token first.</Text>
+
+															<Button
+																my="16px"
+																variant="outline"
+																outlineColor="#FFCC15"
+																key={connector.id}
+																disabled={!connector.ready}
+																onClick={() => {
+																	const result = writeUSDC?.();
+																	setApproval(nftPrice);
+																}}
+																w="fit-content"
+															>
+																{isLoadingTransactionUSDC ? "Waiting for Approval" : "Approve USDC"}
+															</Button>
+														</Box>
+													) : (
+														<Formik
+															initialValues={{ mintingNumber: 0 }}
+															onSubmit={(values, { setSubmitting }) => {
+																setMintAmount(Input.value);
+																writePC?.();
+																setSubmitting(false);
+															}}
+														>
+															{() => (
+																<Form>
+																	<VStack>
+																		<Field as="input" type="number" name="mintingNumber" onChange={Formik.onChange}>
+																			{() => (
+																				<FormControl>
+																					<FormLabel>Select Amount</FormLabel>
+																					<HStack maxW="150px">
+																						<Button>-</Button>
+																						<Input textAlign="right" type="number" placeholder="put amount to mint" />
+																						<Button>+</Button>
+																					</HStack>
+																				</FormControl>
+																			)}
+																		</Field>
+
+																		<Button mt={4} disabled={!mintingEnabled} colorScheme="teal" type="submit">
+																			{mintingEnabled ? "Mint" : "Minting Disabled"}
+																		</Button>
+																	</VStack>
+																</Form>
+															)}
+														</Formik>
+													)}
+												</Box>
+											</>
+										)}
+										{isConnected ? (
+											<Box align="center" mt="2px">
+												<Text>{"You own: " + balanceOf?.toString()}</Text>
+												<Text>{"Your USDC: " + balanceOfUSDC?.toString().substring(0, balanceOfUSDC.toString().length - 6)}</Text>
+											</Box>
+										) : (
+											<></>
+										)}
+									</Box>
+								</Stack>
+							</>
+							{/* akhir */}
 							<p className="w-3/4 px-32 mx-auto py-6 leading-loose text-[#171717] opacity-[0.68]">
 								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
 							</p>
@@ -198,6 +292,18 @@ const Connect = () => {
 			</section>
 		</>
 	);
-};
+}
 
-export default Connect;
+function useDebounce(value, delay) {
+	const [debouncedValue, setDebouncedValue] = useState(value);
+
+	useEffect(() => {
+		const timer = setTimeout(() => setDebouncedValue(value), delay || 500);
+
+		return () => {
+			clearTimeout(timer);
+		};
+	}, [value, delay]);
+
+	return debouncedValue;
+}
