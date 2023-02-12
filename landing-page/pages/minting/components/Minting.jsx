@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useContractEvent, useContractRead, useContractWrite, useNetwork, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
-import { useIsMounted } from "../hooks/useIsMounted";
+// import { useIsMounted } from "../hooks/useIsMounted";
 import { BigNumber } from "ethers";
 import { getAddress } from "ethers/lib/utils.js";
 import { Field, Form, Formik } from "formik";
@@ -172,7 +172,7 @@ export default function Minting() {
 								<ConnectButton />
 							</div>
 							{/* Test */}
-							<>
+							<div className="flex justify-center text-center">
 								<Stack direction="row">
 									<Box align="center">
 										{mounted && networkChain.id != connector.chains[0].id ? (
@@ -255,7 +255,8 @@ export default function Minting() {
 										)}
 									</Box>
 								</Stack>
-							</>
+							</div>
+
 							{/* akhir */}
 							<p className="w-3/4 px-32 mx-auto py-6 leading-loose text-[#171717] opacity-[0.68]">
 								You will need to have Ether on the Optimism network to mint the NFT. Please go to the official Optimism GatewayorHop exchange to move some Ether to the Optimism network before you begin.
