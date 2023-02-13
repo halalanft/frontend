@@ -13,7 +13,7 @@ import erc20ABI from "../../../contracts/erc20ABI.json";
 import halalanftABI from "../../../contracts/Halalanft.json";
 
 export default function Minting() {
-	const mounted = useIsMounted;
+	// const mounted = useIsMounted;
 
 	const nftPrice = 1000000000;
 	const { address: accAddress, connector, isConnected } = useAccount();
