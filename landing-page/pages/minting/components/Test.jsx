@@ -1,7 +1,7 @@
 import React from "react";
 import { useConnect, useDisconnect, useAccount, useEnsAvatar, useEnsName } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useIsMounted } from "../hooks/useIsMounted";
+import useIsMounted from "../hooks/useIsMounted";
 import SendTransaction from "./SendTransaction";
 import MintNFT from "./MintNFT";
 
