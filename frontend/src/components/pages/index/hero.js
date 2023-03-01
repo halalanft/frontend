@@ -1,7 +1,6 @@
-import React from 'react'
-import Image from 'next/image'
 import hero from '@/assets/images/concept_art_2.png'
 import { Button, ButtonHome } from '@/components/button'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const Hero = () => {
@@ -20,7 +19,7 @@ const Hero = () => {
             <div className="flex flex-col md:flex-row gap-6">
               <ButtonHome name="Download Whitepaper" />
               <Link href="/dashboard/minting">
-                <Button name="Minting Page" />
+                <Button name="Mint Now" />
               </Link>
             </div>
           </div>
