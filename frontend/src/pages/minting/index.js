@@ -95,7 +95,7 @@ export default function Home() {
             <Image
               px="10px"
               m="10px"
-              boxSize={{ bade: '150px', md: '200px' }}
+              boxSize={{ base: '150px', md: '200px' }}
               src="minting.jpg"
               alt="Halalanft"
             />
