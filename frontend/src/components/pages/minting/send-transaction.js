@@ -33,17 +33,17 @@ export default function SendTransaction() {
           sendTransaction?.()
         }}
       >
-        <div class="grid gap-6 mb-6 md:grid-cols-2">
+        <div class="mb-6 grid gap-6 md:grid-cols-2">
           <div>
             <label
               for="address"
-              class="block mb-2 text-sm font-medium text-gray-900"
+              class="mb-2 block text-sm font-medium text-gray-900"
             >
               Address
             </label>
             <input
               id="address"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
               required
               aria-label="address"
               onChange={(e) => setTo(e.target.value)}
@@ -54,12 +54,12 @@ export default function SendTransaction() {
           <div>
             <label
               for="amount"
-              className="block mb-2 text-sm font-medium text-gray-900 "
+              className="mb-2 block text-sm font-medium text-gray-900 "
             >
               Amount
             </label>
             <input
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
               required
               aria-label="Amount (ether)"
               onChange={(e) => setAmount(e.target.value)}
@@ -70,7 +70,7 @@ export default function SendTransaction() {
         </div>
 
         <button
-          className="bg-blue-800 p-4 text-white rounded-xl shadow-lg"
+          className="w-1/3 rounded-xl bg-blue-800 p-4 text-white shadow-lg"
           disabled={!sendTransaction || !to || !amount}
         >
           {isLoading ? 'Sending...' : 'Send'}
