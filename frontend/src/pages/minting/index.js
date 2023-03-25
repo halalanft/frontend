@@ -81,7 +81,7 @@ export default function Home() {
         justifyContent="center"
       >
         <Stack
-          direction="row"
+          direction={{ base: 'column', md: 'row' }}
           backgroundColor="#FFFFFF"
           borderColor="#FAD02C"
           borderWidth="3px"

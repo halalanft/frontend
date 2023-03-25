@@ -1,7 +1,7 @@
 import { MintingHeader } from '@/components/header'
 import ContractAddress from '@/contracts/address.json'
 import HalalanftABI from '@/contracts/Halalanft.json'
-import ERC20ABI from '@/contracts/erc20ABI.json'
+
 import {
   useContractRead,
   usePrepareContractWrite,
@@ -12,14 +12,14 @@ import {
 import clsx from 'clsx'
 import { useState, useEffect } from 'react'
 
-export default function DashboardOwner() {
+export default function Controller() {
   const { address, isConnected } = useAccount()
   return (
     <div className="overflow-x-hidden">
       <MintingHeader />
       <div className="mx-auto mt-8 w-full rounded-lg bg-white p-8 shadow-xl md:w-2/3 lg:w-1/2">
         <div className="my-4 text-center text-2xl font-bold md:text-3xl">
-          Dashboard Owner
+          Controller
         </div>
         <hr className="mb-12" />
         {/* Enable/Disable Minting */}

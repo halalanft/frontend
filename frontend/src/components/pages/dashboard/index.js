@@ -1,3 +1,3 @@
-import DashboardOwner from './dashboard-owner'
+import Controller from './controller'
 
-export { DashboardOwner }
+export { Controller }

@@ -70,7 +70,7 @@ import {
   useWaitForTransaction,
 } from 'wagmi'
 import ContractAddress from '@/contracts/address.json'
-import erc20ABI from '@/contracts/erc20ABI.json'
+import ERC20ABI from '@/contracts/erc20ABI.json'
 import HalalanftABI from '@/contracts/Halalanft.json'
 import useIsMounted from '@/hooks/useIsMounted.js'
 
@@ -96,11 +96,12 @@ export default function Minting({ ...props }) {
     abi: HalalanftABI.abi,
     enabled: !!isConnected,
     functionName: 'mintingEnabled',
+    watch: true,
   })
 
   const { data: balanceOfUSDC } = useContractRead({
     address: ContractAddress.USDC,
-    abi: erc20ABI,
+    abi: ERC20ABI,
     functionName: 'balanceOf',
     enabled: !!isConnected,
     args: [accAddress],
@@ -126,7 +127,7 @@ export default function Minting({ ...props }) {
     isError: isPrepareUSDCError,
   } = usePrepareContractWrite({
     address: ContractAddress.USDC,
-    abi: erc20ABI,
+    abi: ERC20ABI,
     functionName: 'approve',
     args: [getAddress(ContractAddress.Halalanft), BigNumber.from(nftPrice)],
     enabled: !!isConnected,
@@ -158,7 +159,7 @@ export default function Minting({ ...props }) {
 
   const event = useContractEvent({
     address: ContractAddress.USDC,
-    abi: erc20ABI,
+    abi: ERC20ABI,
     eventName: 'Approval',
     listener: (owner, spender, value) => {
       setApproval(value)
@@ -250,7 +251,7 @@ export default function Minting({ ...props }) {
                       key={connector.id}
                       disabled={!connector.ready}
                       onClick={() => {
-                        const result = writeUSDC?.()
+                        writeUSDC?.()
                         setApproval(nftPrice)
                       }}
                       w="fit-content"
