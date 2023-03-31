@@ -74,7 +74,8 @@ import ERC20ABI from '@/contracts/erc20ABI.json'
 import HalalanftABI from '@/contracts/Halalanft.json'
 import useIsMounted from '@/hooks/useIsMounted.js'
 
-export default function Minting({ ...props }) {
+export default function Minting() {
+  const [isErrorOpened, setIsErrorOpened] = useState(true)
   const nftPrice = 1000000000
   const mounted = useIsMounted
 
@@ -150,24 +151,26 @@ export default function Minting({ ...props }) {
     hash: dataUSDC?.hash,
   })
 
-  const [approval, setApproval] = useState('')
+  const [approved, setApproved] = useState(false)
   useEffect(() => {
     if (window) {
-      setApproval(sessionStorage.getItem(accAddress))
+      setApproved(sessionStorage.getItem(accAddress))
     }
-  }, [])
+  }, [approved, accAddress])
 
-  const event = useContractEvent({
+  useContractEvent({
     address: ContractAddress.USDC,
     abi: ERC20ABI,
     eventName: 'Approval',
     listener: (owner, spender, value) => {
-      setApproval(value)
+      setApproved(value)
       if (window) {
         window.sessionStorage.setItem(owner, value)
       }
     },
   })
+
+  const debouncedMinting = useDebounce(mintingEnabled, 500)
 
   const [mintAmount, setMintAmount] = useState('')
   const debouncedMintAmount = useDebounce(mintAmount, 500)
@@ -199,6 +202,19 @@ export default function Minting({ ...props }) {
   } = useWaitForTransaction({
     hash: dataHalalanft?.hash,
   })
+
+  const { data: usdcAllowance, refetch: refetchUsdcAllowance } =
+    useContractRead({
+      address: ContractAddress.USDC,
+      abi: ERC20ABI,
+      enabled: !!isConnected,
+      functionName: 'allowance',
+      args: [accAddress],
+      onError(error) {
+        setIsErrorOpened(true)
+      },
+    })
+  const debouncedAllowance = useDebounce(usdcAllowance, 500)
 
   return (
     <>
@@ -252,7 +268,7 @@ export default function Minting({ ...props }) {
                       disabled={!connector.ready}
                       onClick={() => {
                         writeUSDC?.()
-                        setApproval(nftPrice)
+                        setApproved(nftPrice)
                       }}
                       w="fit-content"
                     >

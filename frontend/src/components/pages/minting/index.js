@@ -1,3 +1,3 @@
-import Test from './test'
+import Tests from './tests'
 
-export { Test }
+export { Tests }

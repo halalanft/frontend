@@ -30,7 +30,7 @@ import {
   useProvider,
   useSigner,
 } from 'wagmi'
-import { Test } from '@/components/pages/minting'
+import { Tests } from '@/components/pages/minting'
 import { Owner } from '@/components/owner'
 import ContractAddress from '@/contracts/address.json'
 import HalalanftABI from '@/contracts/Halalanft.json'
@@ -195,7 +195,7 @@ export default function Home() {
                   <Heading align="center" size="lg" m="16px" pt="8px">
                     MINT Halalanft NFTs Now!
                   </Heading>
-                  <Test
+                  <Tests
                     chainId={connectData?.chain.id}
                     provider={provider}
                     signer={signer}
