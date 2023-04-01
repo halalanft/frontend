@@ -1,0 +1,57 @@
+{
+    "editor.formatOnSave": true,
+
+	/* eslint */
+	"eslint.enable": false,
+	"eslint.run": "onSave",
+	"eslint.options": {
+		"extensions": [".html", ".js", ".ts", ".json"]
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+    "eslint.packageManager": "npm",
+    "eslint.lintTask.enable": true,
+    "eslint.useESLintClass": true,
+    
+	//vscode
+	"html.validate.scripts": false,
+	"javascript.validate.enable": false,
+	"eslint.alwaysShowStatus": true,
+	"eslint.format.enable": true,
+	"scss.lint.duplicateProperties": "error",
+	"css.lint.duplicateProperties": "error",
+	"less.lint.zeroUnits": "error",
+	"eslint.validate": ["javascript", "javascriptreact", "html"],
+
+	/* prettier */
+	"prettier.printWidth": 120,
+	"prettier.tabWidth": 2,
+	"prettier.useTabs": false,
+	"prettier.semi": false,
+	"prettier.singleQuote": true,
+	"prettier.proseWrap": "preserve",
+	"prettier.arrowParens": "avoid", 
+	"prettier.bracketSpacing": true,
+	"prettier.endOfLine": "auto",
+	"prettier.htmlWhitespaceSensitivity": "ignore",
+	"prettier.ignorePath": ".prettierignore",
+	"prettier.requireConfig": false,
+	"prettier.trailingComma": "es5",
+
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+}
