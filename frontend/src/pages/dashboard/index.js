@@ -1,3 +1,4 @@
+import { MintingLayout } from '@/components/layout'
 import { Owner } from '@/components/owner'
 import { Stack } from '@chakra-ui/react'
 
@@ -19,4 +20,8 @@ export default function Dashboard() {
       </Stack>
     </Stack>
   )
+}
+
+Dashboard.getLayout = function getLayout(page) {
+  return <MintingLayout>{page}</MintingLayout>
 }

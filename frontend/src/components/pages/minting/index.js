@@ -1,3 +1,6 @@
-import Tests from './tests'
+import Test from './test'
+import ConnectSection from './connect'
+import CheckoutSection from './checkout'
+import ReviewSection from './review'
 
-export { Tests }
+export { Test, ConnectSection, CheckoutSection, ReviewSection }
