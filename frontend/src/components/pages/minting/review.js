@@ -31,7 +31,10 @@ export default function ReviewSection() {
       <div className="mx-auto rounded-lg bg-white shadow-lg">
         <section className="md:flex md:justify-between">
           {tabMenu.map(({ number, title, description }) => (
-            <div className="flex justify-items-center space-x-4 border-gray-100 py-8 px-8 max-sm:border-b-2 lg:px-14">
+            <div
+              key={number}
+              className="flex justify-items-center space-x-4 border-gray-100 py-8 px-8 max-sm:border-b-2 lg:px-14"
+            >
               <div className="shrink-0">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
                   <p className="items-center self-center text-white">
