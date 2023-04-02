@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 import hero from '@/assets/images/concept_art_2.jpg'
+import Link from 'next/link'
+import { Button } from '@/components/button'
 
 export default function ReviewSection() {
   const tabMenu = [
@@ -33,7 +35,7 @@ export default function ReviewSection() {
           {tabMenu.map(({ number, title, description }) => (
             <div
               key={number}
-              className="flex justify-items-center space-x-4 border-gray-100 py-8 px-8 max-sm:border-b-2 lg:px-14"
+              className="flex justify-items-center space-x-4 border-gray-100 px-8 py-8 max-sm:border-b-2 lg:px-14"
             >
               <div className="shrink-0">
                 <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
@@ -82,6 +84,9 @@ export default function ReviewSection() {
               <p className="text-[1.4rem] italic text-[#171717] opacity-[0.68]">
                 Access to future airdrops
               </p>
+              <Link href="/dashboard">
+                <Button name="Go To Dashboard" />
+              </Link>
             </div>
           </div>
         </section>
