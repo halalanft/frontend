@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  experimental: {
-    nftTracing: true,
-  },
+  reactStrictMode: false,
+  swcMinify: true,
+  output: 'standalone',
 }
 
 module.exports = nextConfig
