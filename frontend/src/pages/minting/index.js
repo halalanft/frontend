@@ -4,9 +4,11 @@ import {
   ReviewSection,
 } from '@/components/pages/minting'
 import { MintingLayout } from '@/components/layout'
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Flex } from '@chakra-ui/react'
+import { useState } from 'react'
 
 export default function MintingPage() {
+  const [activeTab, setActiveTab] = useState(1)
+  const handleClick = (index) => setActiveTab(index)
   const tabMenu = [
     {
       number: '1',
@@ -32,50 +34,86 @@ export default function MintingPage() {
             Mint
           </h1>
         </div>
-        <Tabs defaultIndex={1}>
-          <div className="mx-auto rounded-lg bg-white shadow-lg">
-            <TabList justifyContent="space-around">
-              <Flex align="center">
-                {tabMenu.map(({ number, title, description }) => (
-                  <Tab key={number}>
-                    <div className="flex justify-items-center space-x-4 border-gray-100 px-8 py-8 max-sm:border-b-2 lg:px-14">
-                      <div className="shrink-0">
-                        <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
-                          <button
-                            className="items-center self-center text-white"
-                            type="button"
-                            role="tab"
-                          >
-                            {number}
-                          </button>
-                        </div>
-                      </div>
-                      <div className="text-left">
-                        <h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">
-                          {title}
-                        </h1>
-                        <p className="text-slate-500">{description}</p>
-                      </div>
-                    </div>
-                  </Tab>
-                ))}
-              </Flex>
-            </TabList>
 
-            <div className="hidden h-[0.5px] bg-[#171717] opacity-10 md:block"></div>
-            <TabPanels>
-              <TabPanel px={0}>
-                <ConnectSection />
-              </TabPanel>
-              <TabPanel px={0}>
-                <CheckoutSection />
-              </TabPanel>
-              <TabPanel px={0}>
-                <ReviewSection />
-              </TabPanel>
-            </TabPanels>
+        <div className="mx-auto rounded-lg bg-white shadow-lg">
+          <section className="justify-between md:flex md:flex-row">
+            <div
+              onClick={() => handleClick(1)}
+              className={`flex cursor-pointer justify-items-center space-x-4 border-gray-100 px-8 py-8 hover:bg-sky-100 max-sm:border-b-2 lg:px-14 ${
+                activeTab === 1 ? 'border-b-2 border-blue-900' : ''
+              }`}
+            >
+              <div className="shrink-0">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
+                  <button
+                    className="items-center self-center text-white"
+                    type="button"
+                  >
+                    1
+                  </button>
+                </div>
+              </div>
+              <div className="text-left">
+                <h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">
+                  CONNECT
+                </h1>
+                <p className="text-slate-500">wallet and check network</p>
+              </div>
+            </div>
+            <div
+              onClick={() => handleClick(2)}
+              className={`flex cursor-pointer justify-items-center space-x-4 border-gray-100 px-8 py-8 hover:bg-sky-100 max-sm:border-b-2 lg:px-14 ${
+                activeTab === 2 ? 'border-b-2 border-blue-900' : ''
+              }`}
+            >
+              <div className="shrink-0">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
+                  <button
+                    className="items-center self-center text-white"
+                    type="button"
+                  >
+                    2
+                  </button>
+                </div>
+              </div>
+              <div className="text-left">
+                <h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">
+                  CHECKOUT
+                </h1>
+                <p className="text-slate-500">quantity and mint</p>
+              </div>
+            </div>
+            <div
+              onClick={() => handleClick(3)}
+              className={`flex cursor-pointer justify-items-center space-x-4 border-gray-100 px-8 py-8 hover:bg-sky-100 max-sm:border-b-2 lg:px-14 ${
+                activeTab === 3 ? 'border-b-2 border-blue-900' : ''
+              }`}
+            >
+              <div className="shrink-0">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
+                  <button
+                    className="items-center self-center text-white"
+                    type="button"
+                  >
+                    3
+                  </button>
+                </div>
+              </div>
+              <div className="text-left">
+                <h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">
+                  REVIEW
+                </h1>
+                <p className="text-slate-500">reciept</p>
+              </div>
+            </div>
+          </section>
+          <div className="hidden h-[0.5px] bg-[#171717] opacity-10 md:block"></div>
+          <div>
+            {activeTab === 1 && <ConnectSection />}
+            {activeTab === 2 && <CheckoutSection />}
+            {activeTab === 3 && <ReviewSection />}
           </div>
-        </Tabs>
+        </div>
       </div>
     </>
   )
