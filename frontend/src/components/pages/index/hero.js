@@ -18,7 +18,7 @@ const Hero = () => {
             </p>
             <div className="flex flex-col gap-6 md:flex-row">
               <ButtonHome name="Download Whitepaper" />
-              <Link href="/minting/connect">
+              <Link href="/minting">
                 <Button name="Mint Now" />
               </Link>
             </div>
