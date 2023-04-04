@@ -37,11 +37,8 @@ export default function MintingPage() {
             <TabList justifyContent="space-around">
               <Flex align="center">
                 {tabMenu.map(({ number, title, description }) => (
-                  <Tab>
-                    <div
-                      key={number}
-                      className="flex justify-items-center space-x-4 border-gray-100 px-8 py-8 max-sm:border-b-2 lg:px-14"
-                    >
+                  <Tab key={number}>
+                    <div className="flex justify-items-center space-x-4 border-gray-100 px-8 py-8 max-sm:border-b-2 lg:px-14">
                       <div className="shrink-0">
                         <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
                           <button
