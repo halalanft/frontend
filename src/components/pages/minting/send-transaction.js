@@ -1,11 +1,11 @@
+import { utils } from 'ethers'
 import React, { useState } from 'react'
 import { useDebounce } from 'use-debounce'
 import {
-  usePrepareSendTransaction,
-  useSendTransaction,
-  useWaitForTransaction,
+    usePrepareSendTransaction,
+    useSendTransaction,
+    useWaitForTransaction,
 } from 'wagmi'
-import { utils } from 'ethers'
 
 export default function SendTransaction() {
   const [to, setTo] = React.useState('')
@@ -33,11 +33,11 @@ export default function SendTransaction() {
           sendTransaction?.()
         }}
       >
-        <div class="mb-6 grid gap-6 md:grid-cols-2">
+        <div className="mb-6 grid gap-6 md:grid-cols-2">
           <div>
             <label
               for="address"
-              class="mb-2 block text-sm font-medium text-gray-900"
+              className="mb-2 block text-sm font-medium text-gray-900"
             >
               Address
             </label>
