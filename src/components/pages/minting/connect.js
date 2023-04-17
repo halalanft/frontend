@@ -58,9 +58,7 @@ export default function ConnectSection({ handleTab }) {
             <ConnectButton />
           </div>
           <p className="md:px-18 mx-auto px-6 py-6 text-left leading-loose text-[#171717] opacity-[0.68] md:w-3/4 md:text-center lg:px-32">
-            You will need to have Ether on the Optimism network to mint the NFT.
-            Please go to the official Optimism GatewayorHop exchange to move
-            some Ether to the Optimism network before you begin.
+            You will need to have Ether on the Fuji network to mint the NFT.
           </p>
         </div>
       </section>

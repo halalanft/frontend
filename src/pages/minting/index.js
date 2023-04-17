@@ -7,8 +7,8 @@ import { MintingLayout } from '@/components/layout'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractEvent } from 'wagmi'
 import useIsMounted from '@/hooks/useIsMounted'
-import ContractAddress from '@/contracts/address.json'
 import HalalanftABI from '@/contracts/Halalanft.json'
+import { Halalanft } from '@/utils/contract-address'
 
 export default function MintingPage() {
   const isMounted = useIsMounted()
@@ -18,10 +18,11 @@ export default function MintingPage() {
     },
   })
   const [activeTab, setActiveTab] = useState(isMounted && isConnected ? 2 : 1)
+  const [tokenBought, setTokenBought] = useState([])
   const handleTab = (index) => setActiveTab(index)
 
   useContractEvent({
-    address: ContractAddress.Halalanft,
+    address: Halalanft,
     abi: HalalanftABI.abi,
     enabled: !!isConnected && isMounted,
     eventName: 'Transfer',

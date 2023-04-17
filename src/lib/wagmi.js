@@ -10,13 +10,13 @@ import {
   trustWallet,
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets'
-import { configureChains, createClient } from 'wagmi'
-import { avalanche, avalancheFuji, polygon, polygonMumbai } from 'wagmi/chains'
+import { configureChains, createClient, mainnet } from 'wagmi'
+import { avalancheFuji } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 
 const { chains, provider } = configureChains(
-  [avalancheFuji],
+  process.env.NEXT_PUBLIC_CHAIN === 'fuji' ? [avalancheFuji] : [mainnet],
   [
     publicProvider(),
     alchemyProvider({
