@@ -1,9 +1,9 @@
 import { Controller } from '@/components/pages/dashboard'
 
-export default function Admin() {
+export default function AdminAllUnits() {
   return (
     <>
-      <Controller />
+      <p>Cooming Soon</p>
     </>
   )
 }

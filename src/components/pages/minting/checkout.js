@@ -304,7 +304,7 @@ const PublicMintButton = ({
     <>
       <button
         className={'btn rounded-md bg-[#374C8C] font-bold text-white shadow-lg'}
-        // disabled={!(isConnected && debouncedMinting)}
+        disabled={!(isConnected && debouncedMinting)}
         onClick={async () => mintNFT()}
       >
         {debouncedMinting ? 'Purchase' : 'Minting Disabled'}
