@@ -11,12 +11,18 @@ import {
   walletConnectWallet,
 } from '@rainbow-me/rainbowkit/wallets'
 import { configureChains, createClient } from 'wagmi'
-import { avalanche, avalancheFuji } from 'wagmi/chains'
+import { avalanche, avalancheFuji, polygon, polygonMumbai } from 'wagmi/chains'
+import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
 
 const { chains, provider } = configureChains(
-  process.env.NEXT_PUBLIC_CHAIN === 'fuji' ? [avalancheFuji] : [avalanche],
-  [publicProvider()]
+  [avalancheFuji],
+  [
+    publicProvider(),
+    alchemyProvider({
+      apiKey: process.env.NEXT_PUBLIC_ALCHEMY,
+    }),
+  ]
 )
 
 const connectors = connectorsForWallets([

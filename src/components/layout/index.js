@@ -1,3 +1,3 @@
-import Layout from './minting-layout'
+import MintingLayout from './minting-layout'
 
-export { Layout }
+export { MintingLayout }

@@ -1,10 +1,4 @@
 {
-    "fuji" : {
-        "Halalanft": "0xA3dA1C28CA2DF434762351b03b5F40412a67b3aa",
-        "USDC": "0xB6076C93701D6a07266c31066B298AeC6dd65c2d"
-    },
-    "avax": {
-        "Halalanft": "",
-        "USDC": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"
-    }
+  "Halalanft": "0xC8D2528F9257375921e29a28FaC525144a9ecff8",
+  "USDC": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e"
 }
