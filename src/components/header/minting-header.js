@@ -32,7 +32,7 @@ export default function MintingHeader() {
             </li>
             <li className="text-[#171717] opacity-[0.68]">
               <Link
-                href="/minting/connect"
+                href="/minting"
                 className="cursor-pointer hover:text-[#FAD02C]"
               >
                 Minting
@@ -71,10 +71,7 @@ export default function MintingHeader() {
           </Link>
         </li>
         <li className="py-6 text-2xl text-white">
-          <Link
-            href="/minting/connect"
-            className="cursor-pointer hover:text-[#374C8C]"
-          >
+          <Link href="/minting" className="cursor-pointer hover:text-[#374C8C]">
             Minting
           </Link>
         </li>

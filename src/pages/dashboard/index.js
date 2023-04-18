@@ -1,27 +1,34 @@
-// import { MintingLayout } from '@/components/layout'
-// import { Owner } from '@/components/owner'
-// import { Stack } from '@chakra-ui/react'
+import { DashboardLayout } from '@/components/layout'
+import {
+  AttributesSection,
+  FeatureSection,
+  MyPurchasesSection,
+  NFTDetailSection,
+  OverviewSection,
+} from '@/components/pages/dashboard/index'
 
-// export default function Dashboard() {
-//   return (
-//     <Stack
-//       direction="row"
-//       backgroundColor="#FFFFFF"
-//       borderColor="#FAD02C"
-//       borderWidth="3px"
-//       borderRadius="2xl"
-//       spacing={3}
-//       shadow="lg"
-//       p="16px"
-//       m="32px"
-//     >
-//       <Stack direction="column" align="center">
-//         <Owner />
-//       </Stack>
-//     </Stack>
-//   )
-// }
+export default function DashboardPage() {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      <div className="col-span-4 md:col-span-4 rounded-md bg-slate-100 p-4">
+        <MyPurchasesSection />
+      </div>
+      <div className="col-span-4 md:col-span-1 rounded-md bg-slate-100 p-4">
+        <FeatureSection />
+      </div>
+      <div className="col-span-4 md:col-span-3 rounded-md bg-slate-100 p-4">
+        <NFTDetailSection />
+      </div>
+      <div className="col-span-4 md:col-span-1 rounded-md bg-slate-100 p-4">
+        <AttributesSection />
+      </div>
+      <div className="col-span-4 md:col-span-3 rounded-md bg-slate-100 p-4">
+        <OverviewSection />
+      </div>
+    </div>
+  )
+}
 
-// Dashboard.getLayout = function getLayout(page) {
-//   return <MintingLayout>{page}</MintingLayout>
-// }
+DashboardPage.getLayout = function getLayout(page) {
+  return <DashboardLayout>{page}</DashboardLayout>
+}
