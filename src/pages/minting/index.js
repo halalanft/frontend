@@ -1,25 +1,43 @@
 import {
-  CheckoutSection,
-  ConnectSection,
-  ReviewSection,
-} from '@/components/pages/minting'
-import { MintingLayout } from '@/components/layout'
+  Flex,
+  Stack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractEvent } from 'wagmi'
-import useIsMounted from '@/hooks/useIsMounted'
-import HalalanftABI from '@/contracts/Halalanft.json'
-import { Halalanft } from '@/utils/contract-address'
+import { MintingLayout } from '~/components/layout'
+import {
+  HeroSection,
+  PurchaseSection,
+  ResultSection,
+} from '~/components/pages/minting'
+import HalalanftABI from '~/contracts/Halalanft.json'
+import { useIsMounted } from '~/hooks/useIsMounted'
+import { Halalanft } from '~/utils/contract-address'
+import { LoadingLayer } from '~/utils/loading-layer'
 
 export default function MintingPage() {
   const isMounted = useIsMounted()
-  const { isConnected, address } = useAccount({
-    onDisconnect() {
-      handleTab(1)
-    },
-  })
-  const [activeTab, setActiveTab] = useState(isMounted && isConnected ? 2 : 1)
+  const { address, isConnected } = useAccount()
+
+  const [activeTab, setActiveTab] = useState(1)
   const [tokenBought, setTokenBought] = useState([])
-  const handleTab = (index) => setActiveTab(index)
+  const handleTab = (index) => {
+    setActiveTab(index)
+  }
+
+  useEffect(() => {
+    isConnected
+      ? tokenBought.length > 0
+        ? setActiveTab(3)
+        : setActiveTab(2)
+      : setActiveTab(1)
+  }, [isConnected, isMounted, tokenBought])
 
   useContractEvent({
     address: Halalanft,
@@ -35,95 +53,105 @@ export default function MintingPage() {
   })
 
   return (
-    <>
-      <div className="bg h-full px-4 md:px-8">
-        <div className="my-6 flex justify-center">
-          <h1 className="font-impact text-[3rem] text-[#171717] opacity-[0.68]">
-            Mint
-          </h1>
-        </div>
+    <div>
+      {!isMounted ? <LoadingLayer /> : <></>}
+      <Tabs
+        index={activeTab - 1}
+        onChange={(index) => setActiveTab(index + 1)}
+        isLazy
+        lazyBehavior="keepMounted"
+        display={isMounted ? 'block' : 'none'}
+      >
+        <TabList>
+          <Flex justifyContent="space-around" w="full">
+            <Tab isDisabled={activeTab !== 1}>
+              <Stack
+                direction="row"
+                align="center"
+                spacing={4}
+                cursor="default"
+              >
+                <Flex
+                  bg="#374C8C"
+                  w={8}
+                  h={8}
+                  textColor="white"
+                  justify="center"
+                  align="center"
+                  borderRadius="lg"
+                >
+                  1
+                </Flex>
+                <Stack direction="column" spacing={0}>
+                  <Text fontWeight="semibold">CONNECT</Text>
+                  <Text>wallet and check network</Text>
+                </Stack>
+              </Stack>
+            </Tab>
+            <Tab isDisabled={activeTab !== 2}>
+              <Stack
+                direction="row"
+                align="center"
+                spacing={4}
+                cursor="default"
+              >
+                <Flex
+                  bg="#374C8C"
+                  w={8}
+                  h={8}
+                  textColor="white"
+                  justify="center"
+                  align="center"
+                  borderRadius="lg"
+                >
+                  2
+                </Flex>
+                <Stack direction="column" spacing={0}>
+                  <Text fontWeight="semibold">CHECKOUT</Text>
+                  <Text>quantity and mint</Text>
+                </Stack>
+              </Stack>
+            </Tab>
+            <Tab isDisabled={activeTab !== 3}>
+              <Stack
+                direction="row"
+                align="center"
+                spacing={4}
+                cursor="default"
+              >
+                <Flex
+                  bg="#374C8C"
+                  w={8}
+                  h={8}
+                  textColor="white"
+                  justify="center"
+                  align="center"
+                  borderRadius="lg"
+                >
+                  3
+                </Flex>
+                <Stack direction="column" spacing={0}>
+                  <Text fontWeight="semibold">REVIEW</Text>
+                  <Text>receipt</Text>
+                </Stack>
+              </Stack>
+            </Tab>
+          </Flex>
+        </TabList>
 
-        <div className="mx-auto rounded-lg bg-white shadow-lg">
-          <section className="justify-between md:flex md:flex-row">
-            <div
-              className={`flex justify-items-center space-x-4 max-sm:border-gray-100 px-8 py-8 max-sm:border-b-2 lg:px-14 ${
-                activeTab === 1 ? 'border-b-2 border-blue-900' : ''
-              }`}
-            >
-              <div className="shrink-0">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
-                  <button
-                    className="items-center self-center text-white"
-                    type="button"
-                  >
-                    1
-                  </button>
-                </div>
-              </div>
-              <div className="text-left">
-                <h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">
-                  CONNECT
-                </h1>
-                <p className="text-slate-500">wallet and check network</p>
-              </div>
-            </div>
-            <div
-              className={`flex justify-items-center space-x-4 max-sm:border-gray-100 px-8 py-8 max-sm:border-b-2 lg:px-14 ${
-                activeTab === 2 ? 'border-b-2 border-blue-900' : ''
-              }`}
-            >
-              <div className="shrink-0">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
-                  <button
-                    className="items-center self-center text-white"
-                    type="button"
-                  >
-                    2
-                  </button>
-                </div>
-              </div>
-              <div className="text-left">
-                <h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">
-                  CHECKOUT
-                </h1>
-                <p className="text-slate-500">quantity and mint</p>
-              </div>
-            </div>
-            <div
-              onClick={() => handleTab(3)}
-              className={`flex justify-items-center space-x-4 max-sm:border-gray-100 px-8 py-8 max-sm:border-b-2 lg:px-14 ${
-                activeTab === 3 ? 'border-b-2 border-blue-900' : ''
-              }`}
-            >
-              <div className="shrink-0">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-[#374C8C] p-2 shadow-lg">
-                  <button
-                    className="items-center self-center text-white"
-                    type="button"
-                  >
-                    3
-                  </button>
-                </div>
-              </div>
-              <div className="text-left">
-                <h1 className="text-xl font-semibold text-[#171717] opacity-[0.68]">
-                  REVIEW
-                </h1>
-                <p className="text-slate-500">reciept</p>
-              </div>
-            </div>
-          </section>
-          <div className="hidden h-[0.5px] bg-[#171717] opacity-10 md:block"></div>
-          <div>
-            {activeTab === 1 && <ConnectSection handleTab={handleTab} />}
-            {activeTab === 2 && <CheckoutSection handleTab={handleTab} />}
-            {activeTab === 3 && tokenBought.length > 0 && (
-              <ReviewSection tokenBought={tokenBought} handleTab={handleTab} />
+        <TabPanels>
+          <TabPanel>{isMounted && activeTab === 1 && <HeroSection />}</TabPanel>
+          <TabPanel>
+            {isMounted && activeTab === 2 && <PurchaseSection />}
+          </TabPanel>
+          <TabPanel>
+            {isMounted && activeTab === 3 && tokenBought.length > 0 && (
+              <ResultSection tokenBought={tokenBought} />
             )}
-          </div>
-        </div>
-      </div>
-    </>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </div>
   )
 }
 

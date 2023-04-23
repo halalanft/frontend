@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react'
+import { Box, Image } from '@chakra-ui/react'
+import { ipfsImageLoader } from '~/utils/loader'
 
-export default function FeatureSection() {
+export default function FeatureSection({ selectedToken }) {
   return (
-    <>
-      <p>Cooming Soon</p>
-    </>
+    <Box p={4}>
+      <Image
+        src={ipfsImageLoader(`${selectedToken}.png`)}
+        alt={`Token ${selectedToken}`}
+        borderRadius="lg"
+      />
+    </Box>
   )
 }

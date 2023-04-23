@@ -1,3 +1,4 @@
 import ErrorPopup from './error-popup'
+import UnitsModal from './units-modal'
 
-export { ErrorPopup }
+export { UnitsModal, ErrorPopup }

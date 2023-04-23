@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useFeeData } from 'wagmi'
 
-// returns the gas cost of a transaction in ETH
+// returns the gas cost of a transaction in USDC
 // config is what is returned by wagmi's `usePrepareContractWrite` hook
 export const useGasCost = (config) => {
   const [gasCost, setGasCost] = useState(0)

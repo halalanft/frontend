@@ -1,5 +1,5 @@
-import ConnectSection from './connect'
-import CheckoutSection from './checkout'
-import ReviewSection from './review'
+import HeroSection from './hero-section'
+import PurchaseSection from './purchase-section'
+import ResultSection from './result-section'
 
-export { ConnectSection, CheckoutSection, ReviewSection }
+export { HeroSection, ResultSection, PurchaseSection }

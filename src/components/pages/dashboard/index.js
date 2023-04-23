@@ -1,13 +1,6 @@
-import NFTDetailSection from './nft-detail-section'
-import AttributesSection from './atttributes-section'
+import AttributesSection from './attributes-section'
 import FeatureSection from './feature-section'
-import MyPurchasesSection from './my-purchases-section'
-import OverviewSection from './overview-section'
+import MyCollectionSection from './mycollection-section'
+import Sidebar from './sidebar'
 
-export {
-  MyPurchasesSection,
-  AttributesSection,
-  FeatureSection,
-  NFTDetailSection,
-  OverviewSection,
-}
+export { FeatureSection, AttributesSection, Sidebar, MyCollectionSection }

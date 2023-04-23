@@ -1,11 +1,12 @@
 {
     "editor.formatOnSave": true,
-
-	/* eslint */
+	"git.ignoreLimitWarning": true,
+    
+    /* eslint */
 	"eslint.enable": false,
 	"eslint.run": "onSave",
 	"eslint.options": {
-		"extensions": [".html", ".js", ".ts", ".json"]
+		"extensions": [".html", ".js", ".ts", ".json"],
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
@@ -54,4 +55,5 @@
 	"[json]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
+    
 }

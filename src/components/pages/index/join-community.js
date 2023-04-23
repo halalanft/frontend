@@ -1,37 +1,105 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiscord, faTwitter, faMedium } from "@fortawesome/free-brands-svg-icons";
+import { Box, Button, Flex, Heading, Link, Text } from '@chakra-ui/react'
+import {
+  faDiscord,
+  faMedium,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const JoinCommunity = () => {
-	return (
-		<div id="community" className="px-8 py-16  bg-[#F2F2F2]  w-screen">
-			<h1 className="text-4xl font-impact mb-8 text-center text-[#171717] opacity-[0.68] ">Join with Community</h1>
-			<p className="mb-16 lg:w-1/2 mx-auto text-center text-[#171717] opacity-[0.68] ">
-				Building NFTs should always be about community. Thus, we are aiming to help the Web3 community with halal ecosystem in the DeFi world. If you want to discuss and chat with us, please follow and join our media below.
-			</p>
-			<div className="justify-center flex md:flex-row flex-col gap-5 text-center ">
-				<a className="self-center" href="https://discord.com/invite/be5fnEqrZQ">
-					<button className=" max-sm:w-40 px-4 py-2 gap-2 bg-[#374C8C] hover:bg-[#283765] text-white rounded-md flex items-center justify-center self-center mb-4">
-						<FontAwesomeIcon icon={faDiscord} className="w-8" />
-						<strong>DISCORD</strong>
-					</button>
-				</a>
+  return (
+    <Box id="community" px={8} py={16} bg="#F2F2F2" w="full">
+      <Heading
+        as="h1"
+        fontSize="4xl"
+        fontFamily="impact"
+        mb={8}
+        textAlign="center"
+        color="#171717"
+        opacity={0.68}
+      >
+        Join with Community
+      </Heading>
+      <Text
+        mb={16}
+        textAlign="center"
+        color="#171717"
+        opacity={0.68}
+        maxW="lg"
+        mx="auto"
+      >
+        Building NFTs should always be about community. Thus, we are aiming to
+        help the Web3 community with halal ecosystem in the DeFi world. If you
+        want to discuss and chat with us, please follow and join our media
+        below.
+      </Text>
+      <Flex
+        justifyContent="center"
+        direction={['column', 'column', 'row']}
+        gap={5}
+        textAlign="center"
+      >
+        <Link href="https://discord.com/invite/be5fnEqrZQ" isExternal>
+          <Button
+            w={['full', 'full', 'auto']}
+            px={4}
+            py={2}
+            gap={2}
+            bg="#374C8C"
+            _hover={{ bg: '#283765' }}
+            color="white"
+            borderRadius="md"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            mb={4}
+          >
+            <FontAwesomeIcon icon={faDiscord} width="32" />
+            <strong>DISCORD</strong>
+          </Button>
+        </Link>
 
-				<a className="self-center" href="https://twitter.com/halalanft">
-					<button className="max-sm:w-40 px-4 py-2 gap-2 bg-[#374C8C] hover:bg-[#283765] text-white rounded-md flex items-center justify-center self-center mb-4">
-						<FontAwesomeIcon icon={faTwitter} className="w-[1.6rem]" />
-						<strong>TWITTER</strong>
-					</button>
-				</a>
-				<a className="self-center" href="#">
-					<button className="max-sm:w-40 px-4 py-2 gap-2 bg-[#374C8C] hover:bg-[#283765] text-white rounded-md flex items-center justify-center self-center mb-4">
-						<FontAwesomeIcon icon={faMedium} className="w-8" />
-						<strong>MEDIUM</strong>
-					</button>
-				</a>
-			</div>
-		</div>
-	);
-};
+        <Link href="https://twitter.com/halalanft" isExternal>
+          <Button
+            w={['full', 'full', 'auto']}
+            px={4}
+            py={2}
+            gap={2}
+            bg="#374C8C"
+            _hover={{ bg: '#283765' }}
+            color="white"
+            borderRadius="md"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            mb={4}
+          >
+            <FontAwesomeIcon icon={faTwitter} width="24" />
+            <strong>TWITTER</strong>
+          </Button>
+        </Link>
+        <Link href="#" isExternal>
+          <Button
+            w={['full', 'full', 'auto']}
+            px={4}
+            py={2}
+            gap={2}
+            bg="#374C8C"
+            _hover={{ bg: '#283765' }}
+            color="white"
+            borderRadius="md"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            mb={4}
+          >
+            <FontAwesomeIcon icon={faMedium} width="32" />
+            <strong>MEDIUM</strong>
+          </Button>
+        </Link>
+      </Flex>
+    </Box>
+  )
+}
 
-export default JoinCommunity;
+export default JoinCommunity

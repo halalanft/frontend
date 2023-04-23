@@ -1,19 +1,31 @@
-import React from 'react'
-import Image from 'next/image'
-import logo from '@/assets/images/black.png'
+import { Flex, Image, Text } from '@chakra-ui/react'
+import logo from '~/assets/images/black.png'
 
 const Footer = () => {
   return (
-    <footer className="footer items-center px-8 py-14 bg-[#FAD02C] justify-between w-full">
-      <div className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-        <Image src={logo} width={280} alt="Logo" />
-      </div>
-      <div className="items-center grid-flow-col">
-        <p className="font-semibold text-[#171717] opacity-[0.68]">
+    <Flex
+      as="footer"
+      w="full"
+      alignItems="center"
+      justifyContent="space-between"
+      bg="#FAD02C"
+      px={8}
+      py={14}
+    >
+      <Flex direction="column" gap={4} alignSelf="center" justifyContent="end">
+        <Image src={logo.src} width={280} alt="Logo" />
+      </Flex>
+      <Flex direction="column" alignItems="center">
+        <Text
+          fontSize="md"
+          fontWeight="semibold"
+          color="#171717"
+          opacity={0.68}
+        >
           Copyright © 2022 - All right reserved
-        </p>
-      </div>
-    </footer>
+        </Text>
+      </Flex>
+    </Flex>
   )
 }
 
