@@ -1,12 +1,8 @@
 {
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@/contracts/*": ["src/contracts/*"],
-			"@/components/*": ["src/components/*"],
-			"@/hooks/*": ["src/hooks/*"],
-			"@/styles/*": ["src/styles/*"],
-			"@/assets/*": ["src/assets/*"]
-		}
-	}
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+        "~/*":["src/*"],
+    }
+  }
 }

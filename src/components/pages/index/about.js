@@ -1,18 +1,32 @@
-import React from 'react'
-import Image from 'next/image'
-import logo from '@/assets/images/fix.png'
+import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import logo from '~/assets/images/fix.png'
 
 const About = () => {
   return (
-    <div
+    <Flex
       id="about"
-      className="px-8 py-16 lg:flex flex-row lg:justify-between w-screen bg-white"
+      direction={['column', 'column', 'row']}
+      bgColor="white"
+      px={8}
+      py={16}
+      w="full"
+      justify="space-between"
     >
-      <div className="lg:w-[40rem] ">
-        <h1 className="text-4xl font-impact mb-8 text-[#171717] opacity-[0.68]">
-          About <span className="text-[#FAD02C]">Halalanft</span>
-        </h1>
-        <p className="text-[#171717] opacity-[0.68]">
+      <Box w={['full', 'full', '40rem']}>
+        <Heading
+          as="h1"
+          fontFamily="Impact"
+          mb={8}
+          fontSize="4xl"
+          color="#171717"
+          opacity={0.68}
+        >
+          {'About '}
+          <Text as="span" color="#FAD02C">
+            Halalanft
+          </Text>
+        </Heading>
+        <Text color="#171717" opacity={0.68}>
           Halalanft is a <strong>community NFT collection</strong> of halal Web3
           enthusiasts, which will bring halal perspective as the main foundation
           for NFT and DeFi protocols to be built in the ecosystem. Halalanft is
@@ -21,12 +35,12 @@ const About = () => {
           temporary hype. Halalanft is a long-term NFT project that will give
           benefits to the holder beyond enjoying the art of NFT they have
           purchased.
-        </p>
-      </div>
-      <div className="lg:self-end mt-8">
-        <Image src={logo} width={200} alt="Logo" className="lg:w-[280px]" />
-      </div>
-    </div>
+        </Text>
+      </Box>
+      <Box mt={[8, 8, 0]} alignSelf={['auto', 'auto', 'end']}>
+        <Image src={logo.src} width={400} alt="Logo" />
+      </Box>
+    </Flex>
   )
 }
 

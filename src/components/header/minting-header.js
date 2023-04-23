@@ -1,67 +1,92 @@
-import logo from '@/assets/images/fix.png'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useState } from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import {
+  Box,
+  Collapse,
+  Flex,
+  Heading,
+  Image,
+  Link,
+  Show,
+  Stack,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+import { useAccount, useContractRead } from 'wagmi'
+import logo from '~/assets/images/fix.png'
+import HalalanftABI from '~/contracts/Halalanft.json'
+import { useIsMounted } from '~/hooks/useIsMounted'
+import { Halalanft } from '~/utils/contract-address'
 
 export default function MintingHeader() {
-  const [nav, setNav] = useState(false)
-  const handleClick = () => {
-    setNav(!nav)
-  }
+  const { address, isConnected } = useAccount()
+  const isMounted = useIsMounted()
+  const { data: dataBalanceNFT } = useContractRead({
+    abi: HalalanftABI.abi,
+    address: Halalanft,
+    enabled: isMounted && isConnected,
+    functionName: 'balanceOf',
+    args: [address],
+  })
 
+  const [totalNFT, setTotalNFT] = useState(0)
+  useEffect(() => {
+    if (dataBalanceNFT) {
+      setTotalNFT(dataBalanceNFT)
+    }
+  }, [dataBalanceNFT])
+
+  const { isOpen, onToggle } = useDisclosure()
   return (
-    <nav className="flex w-screen items-center px-8 py-6 shadow-lg ">
-      <div className="mr-12">
-        <Image src={logo} alt="Logo" width={150} className="lg:w-[194px]" />
-      </div>
-      {/* menu */}
-      <ul className="hidden space-x-8 md:flex">
-        <li className="text-[#171717] opacity-[0.68]">
-          <Link href="/" className="cursor-pointer hover:text-[#FAD02C]">
-            Home
-          </Link>
-        </li>
-        <li className="text-[#171717] opacity-[0.68]">
+    <>
+      <Flex
+        pos="sticky"
+        w="100%"
+        zIndex={2}
+        bgColor="#FAD02C"
+        p={4}
+        color="#374C8C"
+        align="center"
+        justify="space-between"
+      >
+        <Flex alignItems="center">
           <Link
-            href="/dashboard"
-            className="cursor-pointer hover:text-[#FAD02C]"
+            cursor="pointer"
+            textDecoration="none"
+            href="/"
+            _hover={{ textDecoration: 'none' }}
           >
-            Dashboard
+            <Image src={logo.src} alt="Logo" width={64} height={32} />
           </Link>
-        </li>
-        <li className="text-[#171717] opacity-[0.68]">
-          <Link href="/minting" className="cursor-pointer hover:text-[#FAD02C]">
-            Minting
-          </Link>
-        </li>
-      </ul>
-      {/* hamburger */}
-      <div
-        className={nav ? 'z-50 text-white md:hidden' : 'z-50 md:hidden'}
-        onClick={handleClick}
-      >
-        {!nav ? <FaBars /> : <FaTimes />}
-      </div>
-      {/* mobile menu */}
-      <ul
-        className={
-          !nav
-            ? 'hidden'
-            : 'absolute top-0 left-0 z-20 flex  h-screen w-full flex-col items-center justify-center bg-[#374C8C]'
-        }
-      >
-        <li className="py-6 text-2xl text-white">
-          <Link href="/" className="cursor-pointer hover:text-[#374C8C]">
-            Home
-          </Link>
-        </li>
-        <li className="py-6 text-2xl text-white">
-          <Link href="/minting" className="cursor-pointer hover:text-[#374C8C]">
-            Mint
-          </Link>
-        </li>
-      </ul>
-    </nav>
+          <Heading as="p" size="md" pl={4} color="white">
+            Halalanft
+          </Heading>
+        </Flex>
+        <Show above="sm">
+          <Flex direction="row" align="center" gap={12}>
+            <Link href="/">
+              <Text>Home</Text>
+            </Link>
+            {isMounted && isConnected && totalNFT > 0 ? (
+              <Link href="/dashboard">
+                <Text>Dashboard</Text>
+              </Link>
+            ) : (
+              <></>
+            )}
+          </Flex>
+        </Show>
+      </Flex>
+      {/* Mobile Nav */}
+      <Collapse in={isOpen} animateOpacity>
+        <Box p={4} bg="#FAD02C">
+          <Stack spacing={4} my={2}>
+            <Link href="/">
+              <Text fontWeight="semibold">Home</Text>
+            </Link>
+            <Box bgColor="#374C8C" h="1px"></Box>
+          </Stack>
+        </Box>
+      </Collapse>
+    </>
   )
 }

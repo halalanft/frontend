@@ -1,4 +1,5 @@
+import NFTCard from './nft-card'
 import CardTeam from './our-team'
 import CardSpecial from './special'
 
-export { CardTeam, CardSpecial }
+export { NFTCard, CardTeam, CardSpecial }

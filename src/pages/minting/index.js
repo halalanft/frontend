@@ -1,206 +1,160 @@
 import {
-  Box,
-  Button,
-  Heading,
-  HStack,
-  Image,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
+  Flex,
   Stack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
 } from '@chakra-ui/react'
-
-import { MintingHeader } from '@/components/header'
-import { Owner } from '@/components/owner'
-import { Test } from '@/components/pages/minting'
-import ContractAddress from '@/contracts/address.json'
-import HalalanftABI from '@/contracts/Halalanft.json'
-import useIsMounted from '@/hooks/useIsMounted.js'
-import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import { useAccount, useContractEvent } from 'wagmi'
+import { MintingLayout } from '~/components/layout'
 import {
-  useAccount,
-  useConnect,
-  useContractRead,
-  useProvider,
-  useSigner,
-} from 'wagmi'
+  HeroSection,
+  PurchaseSection,
+  ResultSection,
+} from '~/components/pages/minting'
+import HalalanftABI from '~/contracts/Halalanft.json'
+import { useIsMounted } from '~/hooks/useIsMounted'
+import { Halalanft } from '~/utils/contract-address'
+import { LoadingLayer } from '~/utils/loading-layer'
 
-export default function Minting() {
-  const mounted = useIsMounted()
-  const { address: accAddress, isConnected: isAccountConnected } = useAccount()
-  const provider = useProvider()
-  const { signer } = useSigner()
-  const {
-    connect,
-    connectors,
-    data: connectData,
-    error: errorConnect,
-    isLoading: isLoadingConnect,
-    pendingConnector,
-  } = useConnect()
+export default function MintingPage() {
+  const isMounted = useIsMounted()
+  const { address, isConnected } = useAccount()
 
-  const { data: totalSupply } = useContractRead({
-    address: ContractAddress.Halalanft,
+  const [activeTab, setActiveTab] = useState(1)
+  const [tokenBought, setTokenBought] = useState([])
+  const handleTab = (index) => {
+    setActiveTab(index)
+  }
+
+  useEffect(() => {
+    isConnected
+      ? tokenBought.length > 0
+        ? setActiveTab(3)
+        : setActiveTab(2)
+      : setActiveTab(1)
+  }, [isConnected, isMounted, tokenBought])
+
+  useContractEvent({
+    address: Halalanft,
     abi: HalalanftABI.abi,
-    functionName: 'totalSupply',
-  })
-
-  const { data: owner } = useContractRead({
-    address: ContractAddress.Halalanft,
-    abi: HalalanftABI.abi,
-    functionName: 'owner',
+    enabled: !!isConnected && isMounted,
+    eventName: 'Transfer',
+    watch: true,
+    listener: (from, to, tokenId) => {
+      if (address === to) {
+        setTokenBought((prevTokenIds) => [...prevTokenIds, tokenId.toNumber()])
+      }
+    },
   })
 
   return (
-    <>
-      <MintingHeader />
-      <Head>
-        <title>Halalanft - Minting Page</title>
-        <meta name="description" content="Halalanft minting page" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Box
-        h="100%"
-        w="100%"
-        borderColor="red.300"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
+    <div>
+      {!isMounted ? <LoadingLayer /> : <></>}
+      <Tabs
+        index={activeTab - 1}
+        onChange={(index) => setActiveTab(index + 1)}
+        isLazy
+        lazyBehavior="keepMounted"
+        display={isMounted ? 'block' : 'none'}
       >
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          backgroundColor="#FFFFFF"
-          borderColor="#FAD02C"
-          borderWidth="3px"
-          borderRadius="2xl"
-          spacing={3}
-          shadow="lg"
-          p="16px"
-          m="32px"
-        >
-          <Stack direction="column" align="center">
-            <Image
-              px="10px"
-              m="10px"
-              boxSize={{ base: '150px', md: '200px' }}
-              src="minting.jpg"
-              alt="Halalanft"
-            />
-            (
-            {mounted ? (
-              owner == accAddress || !isAccountConnected ? (
-                <></>
-              ) : (
-                <>
-                  <Box mt="8px" align="center">
-                    65 USDC
-                    <Box pl="8px" as="span" color="gray.600" fontSize="sm">
-                      per mint
-                    </Box>
-                  </Box>
+        <TabList>
+          <Flex justifyContent="space-around" w="full">
+            <Tab isDisabled={activeTab !== 1}>
+              <Stack
+                direction="row"
+                align="center"
+                spacing={4}
+                cursor="default"
+              >
+                <Flex
+                  bg="#374C8C"
+                  w={8}
+                  h={8}
+                  textColor="white"
+                  justify="center"
+                  align="center"
+                  borderRadius="lg"
+                >
+                  1
+                </Flex>
+                <Stack direction="column" spacing={0}>
+                  <Text fontWeight="semibold">CONNECT</Text>
+                  <Text>wallet and check network</Text>
+                </Stack>
+              </Stack>
+            </Tab>
+            <Tab isDisabled={activeTab !== 2}>
+              <Stack
+                direction="row"
+                align="center"
+                spacing={4}
+                cursor="default"
+              >
+                <Flex
+                  bg="#374C8C"
+                  w={8}
+                  h={8}
+                  textColor="white"
+                  justify="center"
+                  align="center"
+                  borderRadius="lg"
+                >
+                  2
+                </Flex>
+                <Stack direction="column" spacing={0}>
+                  <Text fontWeight="semibold">CHECKOUT</Text>
+                  <Text>quantity and mint</Text>
+                </Stack>
+              </Stack>
+            </Tab>
+            <Tab isDisabled={activeTab !== 3}>
+              <Stack
+                direction="row"
+                align="center"
+                spacing={4}
+                cursor="default"
+              >
+                <Flex
+                  bg="#374C8C"
+                  w={8}
+                  h={8}
+                  textColor="white"
+                  justify="center"
+                  align="center"
+                  borderRadius="lg"
+                >
+                  3
+                </Flex>
+                <Stack direction="column" spacing={0}>
+                  <Text fontWeight="semibold">REVIEW</Text>
+                  <Text>receipt</Text>
+                </Stack>
+              </Stack>
+            </Tab>
+          </Flex>
+        </TabList>
 
-                  <Box align="center" mt="8px">
-                    {mounted ? totalSupply?.toNumber() : 0}/ 10,000 minted
-                  </Box>
-                </>
-              )
-            ) : (
-              <></>
+        <TabPanels>
+          <TabPanel>{isMounted && activeTab === 1 && <HeroSection />}</TabPanel>
+          <TabPanel>
+            {isMounted && activeTab === 2 && <PurchaseSection />}
+          </TabPanel>
+          <TabPanel>
+            {isMounted && activeTab === 3 && tokenBought.length > 0 && (
+              <ResultSection tokenBought={tokenBought} />
             )}
-            )
-          </Stack>
-          <Stack direction="column" align="center">
-            {mounted ? (
-              !isAccountConnected ? (
-                <>
-                  <Heading align="center" size="lg" m="8px" pt="8px">
-                    MINT Halalanft NFTs Now!
-                  </Heading>
-                  <Text align="center" size="lg" m="8px" pt="8px">
-                    You are not connected
-                  </Text>
-                  <Menu isLazy>
-                    <MenuButton as={Button} colorScheme="blue" w="fit-content">
-                      Connect
-                    </MenuButton>
-                    <MenuList>
-                      {connectors.map((connector) => (
-                        <MenuItem
-                          variant="outline"
-                          key={connector.id}
-                          disabled={!connector.ready}
-                          onClick={() => {
-                            connect({ connector })
-                          }}
-                          w="100%"
-                        >
-                          <HStack w="100%" justifyContent="center">
-                            <Image
-                              width={26}
-                              height={26}
-                              borderRadius="3px"
-                              src={walletIcons(connector.name)}
-                              alt={'Wallet'}
-                            ></Image>
-                            <Text>
-                              {connector.name}{' '}
-                              {isLoadingConnect &&
-                                pendingConnector?.id === connector.id &&
-                                ' (connecting)'}
-                            </Text>
-                          </HStack>
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </Menu>
-                  <Box mt="8px" align="center">
-                    65 USDC
-                    <Box pl="8px" as="span" color="gray.600" fontSize="sm">
-                      per mint
-                    </Box>
-                  </Box>
-
-                  <Box align="center" mt="8px">
-                    {mounted ? totalSupply?.toNumber() : 0}/ 10,000 minted
-                  </Box>
-                </>
-              ) : mounted && owner == accAddress ? (
-                <>
-                  <Heading align="center" size="lg" m="16px" pt="8px">
-                    Owner Dashboard
-                  </Heading>
-                  <Owner
-                    owner={owner}
-                    isOwner={mounted ? owner == accAddress : false}
-                    accAddress={mounted ? accAddress : null}
-                    isConnected={isAccountConnected}
-                    totalSupply={totalSupply?.toNumber()}
-                  />
-                </>
-              ) : (
-                <>
-                  <Heading align="center" size="lg" m="16px" pt="8px">
-                    MINT Halalanft NFTs Now!
-                  </Heading>
-                  <Test
-                    chainId={connectData?.chain.id}
-                    provider={provider}
-                    signer={signer}
-                  />
-                </>
-              )
-            ) : (
-              <></>
-            )}
-          </Stack>
-        </Stack>
-      </Box>
-    </>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </div>
   )
 }
 
-const walletIcons = (walletName) =>
-  walletName === 'MetaMask' ? 'mm.png' : '/cbw.png'
+MintingPage.getLayout = function getLayout(page) {
+  return <MintingLayout>{page}</MintingLayout>
+}

@@ -12,11 +12,23 @@ import {
 } from '@rainbow-me/rainbowkit/wallets'
 import { configureChains, createClient } from 'wagmi'
 import { avalanche, avalancheFuji } from 'wagmi/chains'
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 import { publicProvider } from 'wagmi/providers/public'
+
+const rpcNetwork =
+  process.env.NEXT_PUBLIC_CHAIN === 'fuji' ? 'avax-test' : 'eth'
+const urlRpc = `https://api.${rpcNetwork}.network/ext/bc/C/rpc`
 
 const { chains, provider } = configureChains(
   process.env.NEXT_PUBLIC_CHAIN === 'fuji' ? [avalancheFuji] : [avalanche],
-  [publicProvider()]
+  [
+    publicProvider(),
+    jsonRpcProvider({
+      rpc: () => ({
+        http: urlRpc,
+      }),
+    }),
+  ]
 )
 
 const connectors = connectorsForWallets([

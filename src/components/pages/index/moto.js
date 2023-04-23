@@ -1,28 +1,52 @@
-import React from 'react'
+import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import Image from 'next/image'
-import motto from '@/assets/images/motto.png'
+import motto from '~/assets/images/motto.png'
 
 const Moto = () => {
   return (
-    <div className="bg-white relative -z-20">
-      <div
+    <Box position="relative" zIndex={-20} bg="white">
+      <Flex
         id="concept art"
-        className="px-8 py-16  bg-[rgba(250,208,44,0.43)] max-h-screen w-screen lg:flex lg:flex-row items-center"
+        maxH="screen"
+        w="full"
+        alignItems="center"
+        bg="rgba(250, 208, 44, 0.43)"
+        px={8}
+        py={16}
+        direction={['column', 'column', 'row']}
       >
-        <div>
-          <h1 className="text-4xl font-impact mb-8 lg:w-[30rem] text-[#171717] opacity-[0.68]">
+        <Box>
+          <Heading
+            as="h1"
+            fontFamily="impact"
+            mb={8}
+            fontSize="4xl"
+            color="#171717"
+            opacity={0.68}
+            maxW={['full', 'full', '30rem']}
+          >
             We bring very high-quality NFTs to your collection
-          </h1>
-          <p className="mb-16 lg:w-[30rem] text-[#171717] opacity-[0.68]">
+          </Heading>
+          <Text
+            mb={16}
+            color="#171717"
+            opacity={0.68}
+            maxW={['full', 'full', '30rem']}
+          >
             Our NFTs are painted with a high-quality design in mind to ensure
             that our holders are completely satisfied.
-          </p>
-        </div>
-        <div className="-z-10 max-sm:hidden md:hidden lg:block absolute left-[42rem]">
-          <Image src={motto} alt="Motto" className="lg:w-[500px] opacity-40 " />
-        </div>
-      </div>
-    </div>
+          </Text>
+        </Box>
+        <Box
+          position="absolute"
+          left={['auto', 'auto', '42rem']}
+          zIndex={-10}
+          display={['none', 'none', 'block']}
+        >
+          <Image src={motto} alt="Motto" width={500} className="opacity-40" />
+        </Box>
+      </Flex>
+    </Box>
   )
 }
 

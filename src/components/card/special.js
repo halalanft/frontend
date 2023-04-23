@@ -1,24 +1,40 @@
-import React from 'react'
-import Image from 'next/image'
+import { Box, Image, Text, VStack } from '@chakra-ui/react'
 
 const CardSpecial = ({ icon, title, description }) => {
   return (
-    <div className="card mx-auto bg-white shadow-xl">
-      <div className="card-body">
-        <div className="card-title text-[#171717]">
-          <div className="bg-[#374C8C] w-10 h-10 rounded-md shadow-lg inline-flex items-center justify-center p-2">
-            <Image
-              src={require('../../assets/images/' + icon + '.svg')}
-              alt={icon}
-              width={20}
-              className="self-center items-center "
-            />
-          </div>
-          {title}
-        </div>
-        <p className="text-[#171717] opacity-[0.68]">{description}</p>
-      </div>
-    </div>
+    <Box
+      mx="auto"
+      bgColor="white"
+      boxShadow="xl"
+      borderRadius="md"
+      p={4}
+      w="100%"
+      maxW="md"
+    >
+      <VStack alignItems="start" spacing={4}>
+        <Box>
+          <Box
+            display="inline-flex"
+            h={10}
+            w={10}
+            alignItems="center"
+            justifyContent="center"
+            borderRadius="md"
+            p={2}
+            boxShadow="lg"
+            bg="#FAD02C"
+          >
+            <Image src={icon.src} alt={icon} width={20} />
+          </Box>
+          <Text fontWeight="bold" color="#171717">
+            {title}
+          </Text>
+        </Box>
+        <Text color="#171717" opacity="0.68">
+          {description}
+        </Text>
+      </VStack>
+    </Box>
   )
 }
 

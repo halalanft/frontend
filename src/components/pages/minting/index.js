@@ -1,3 +1,5 @@
-import Test from './test'
+import HeroSection from './hero-section'
+import PurchaseSection from './purchase-section'
+import ResultSection from './result-section'
 
-export { Test }
+export { HeroSection, ResultSection, PurchaseSection }

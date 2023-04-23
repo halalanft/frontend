@@ -1,3 +1,6 @@
-import Controller from './controller'
+import AttributesSection from './attributes-section'
+import FeatureSection from './feature-section'
+import MyCollectionSection from './mycollection-section'
+import Sidebar from './sidebar'
 
-export { Controller }
+export { FeatureSection, AttributesSection, Sidebar, MyCollectionSection }

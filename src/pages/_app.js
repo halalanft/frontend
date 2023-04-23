@@ -1,34 +1,32 @@
-import '@/styles/index.css'
-import { ChakraProvider } from '@chakra-ui/react'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import dynamic from 'next/dynamic'
+import { chains, wagmiClient } from 'src/lib/wagmi'
+import { WagmiConfig } from 'wagmi'
+
+import { ChakraProvider } from '@chakra-ui/react'
 import '@rainbow-me/rainbowkit/styles.css'
-import { configureChains, createClient, WagmiConfig } from 'wagmi'
-import { avalanche, avalancheFuji } from 'wagmi/chains'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
-import { publicProvider } from 'wagmi/providers/public'
+import '~/styles/index.css'
 
-function MyApp({ Component, pageProps }) {
-  return (
-    <ChakraProvider>
-      <WagmiConfig client={client}>
-        <RainbowKitProvider chains={chains}>
-          <Component {...pageProps} />
-        </RainbowKitProvider>
-      </WagmiConfig>
-    </ChakraProvider>
-  )
-}
-
-const { chains, provider } = configureChains(
-  process.env.NEXT_PUBLIC_CHAIN === 'avalanche' ? [avalanche] : [avalancheFuji],
-  [publicProvider()]
+const Toaster = dynamic(
+  () => import('react-hot-toast').then((c) => c.Toaster),
+  {
+    ssr: false,
+  }
 )
 
-const connectors = [new MetaMaskConnector({ chains })]
+function MyApp({ Component, pageProps }) {
+  const getLayout = Component.getLayout || ((page) => page)
 
-const client = createClient({
-  connectors,
-  provider,
-})
+  return (
+    <WagmiConfig client={wagmiClient}>
+      <Toaster />
+      <RainbowKitProvider chains={chains}>
+        <ChakraProvider>
+          {getLayout(<Component {...pageProps} />)}
+        </ChakraProvider>
+      </RainbowKitProvider>
+    </WagmiConfig>
+  )
+}
 
 export default MyApp

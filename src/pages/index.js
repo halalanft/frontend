@@ -8,7 +8,7 @@ import {
   OurTeam,
   RoadMap,
   WhatMakes,
-} from '@/components/pages/index'
+} from '~/components/pages/index'
 
 import Head from 'next/head'
 

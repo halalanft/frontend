@@ -1,3 +1,5 @@
-import Layout from './minting-layout'
+import AdminLayout from './admin'
+import DeFiLayout from './defi'
+import MintingLayout from './minting'
 
-export { Layout }
+export { AdminLayout, MintingLayout, DeFiLayout }

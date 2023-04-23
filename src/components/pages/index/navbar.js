@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import { Box, Link as ChakraLink, Flex, HStack, VStack } from '@chakra-ui/react'
 import Image from 'next/image'
-import logo from '@/assets/images/fix.png'
-import { Link } from 'react-scroll'
+import { useState } from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { Link as ScrollLink } from 'react-scroll'
+import logo from '~/assets/images/fix.png'
 
 const Navbar = () => {
   const [nav, setNav] = useState(false)
@@ -10,174 +11,117 @@ const Navbar = () => {
     setNav(!nav)
   }
 
-  return (
-    <nav className="z-50 max-sm:sticky max-sm:top-0  bg-white  flex justify-between px-8 py-6 items-center w-screen ">
-      <div>
-        <Image src={logo} alt="Logo" width={150} className="lg:w-[194px]" />
-      </div>
-      {/* menu */}
+  const menuItemProps = {
+    color: 'rgba(23, 23, 23, 0.68)',
+    _hover: { color: '#FAD02C' },
+  }
 
-      <ul className="hidden md:flex space-x-8">
-        <li className="text-[#171717] opacity-[0.68]">
-          <Link
-            to="about"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#FAD02C] cursor-pointer"
-          >
-            About
-          </Link>
-        </li>
-        <li className="text-[#171717] opacity-[0.68]">
-          <Link
-            to="why us"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#FAD02C] cursor-pointer"
-          >
-            Why Us
-          </Link>
-        </li>
-        <li className="text-[#171717] opacity-[0.68]">
-          <Link
-            to="concept art"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#FAD02C] cursor-pointer"
-          >
-            Concept Art
-          </Link>
-        </li>
-        <li className="text-[#171717] opacity-[0.68]">
-          <Link
-            to="team"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#FAD02C] cursor-pointer"
-          >
-            Team
-          </Link>
-        </li>
-        <li className="text-[#171717] opacity-[0.68]">
-          <Link
-            to="roadmap"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#FAD02C] cursor-pointer"
-          >
-            Roadmap
-          </Link>
-        </li>
-        <li className="text-[#171717] opacity-[0.68]">
-          <Link
-            to="community"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#FAD02C] cursor-pointer"
-          >
-            Community
-          </Link>
-        </li>
-        <li className="text-[#171717] opacity-[0.68]">
-          <a
-            className="hover:text-[#FAD02C] cursor-pointer"
-            href="https://halalanft-ecosystem.gitbook.io/"
-          >
-            Gitbook
-          </a>
-        </li>
-      </ul>
+  return (
+    <Flex
+      zIndex={50}
+      w="full"
+      alignItems="center"
+      justifyContent="space-between"
+      bg="white"
+      px={8}
+      py={6}
+      position={['static', 'static', 'sticky']}
+      top={0}
+    >
+      <Box>
+        <Image src={logo} alt="Logo" width={150} />
+      </Box>
+      {/* menu */}
+      <HStack spacing={8} display={['none', 'none', 'flex']}>
+        <ScrollLink to="about" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>About</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="why us" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Why Us</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="concept art" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Concept Art</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="team" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Team</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="roadmap" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Roadmap</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="community" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Community</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink
+          to="https://halalanft-ecosystem.gitbook.io/"
+          smooth={true}
+          duration={500}
+        >
+          <ChakraLink {...menuItemProps}>Gitbook</ChakraLink>
+        </ScrollLink>
+        {/* Add other ScrollLink components here */}
+      </HStack>
 
       {/* hamburger */}
-      <div
-        className={nav ? 'md:hidden z-50 text-white' : 'md:hidden z-50'}
+      <Box
+        display={['block', 'block', 'none']}
+        zIndex={50}
         onClick={handleClick}
       >
         {!nav ? (
-          <FaBars className="text-[#171717] opacity-[0.68]" />
+          <FaBars color="rgba(23, 23, 23, 0.68)" />
         ) : (
-          <FaTimes />
+          <FaTimes color="white" />
         )}
-      </div>
+      </Box>
       {/* mobile menu */}
-
-      <ul
-        className={
-          !nav
-            ? 'hidden'
-            : 'absolute top-0 left-0 w-full h-screen  flex flex-col justify-center items-center bg-[#374C8C] z-20'
-        }
+      <VStack
+        display={!nav ? 'none' : 'flex'}
+        position="absolute"
+        top={0}
+        left={0}
+        zIndex={20}
+        h="screen"
+        w="full"
+        alignItems="center"
+        justifyContent="center"
+        bg="#374C8C"
+        spacing={6}
+        fontSize="2xl"
+        color="white"
       >
-        <li className="py-6 text-2xl text-white">
-          <Link
-            to="about"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#374C8C] cursor-pointer"
-          >
-            About
-          </Link>
-        </li>
-        <li className="py-6 text-2xl text-white">
-          <Link
-            to="why us"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#374C8C] cursor-pointer"
-          >
-            Why Us
-          </Link>
-        </li>
-        <li className="py-6 text-2xl text-white">
-          <Link
-            to="concept art"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#374C8C] cursor-pointer"
-          >
-            Concept Art
-          </Link>
-        </li>
-        <li className="py-6 text-2xl text-white">
-          <Link
-            to="team"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#374C8C] cursor-pointer"
-          >
-            Team
-          </Link>
-        </li>
-        <li className="py-6 text-2xl text-white">
-          <Link
-            to="roadmap"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#374C8C] cursor-pointer"
-          >
-            Roadmap
-          </Link>
-        </li>
-        <li className="py-6 text-2xl text-white">
-          <Link
-            to="community"
-            smooth={true}
-            duration={500}
-            className="hover:text-[#374C8C] cursor-pointer"
-          >
-            Community
-          </Link>
-        </li>
-        <li className="py-6 text-2xl text-white">
-          <a
-            className="hover:text-[#374C8C] cursor-pointer"
-            href="https://halalanft-ecosystem.gitbook.io/"
-          >
-            Gitbook
-          </a>
-        </li>
-      </ul>
-    </nav>
+        <ScrollLink to="about" smooth={true} duration={500}>
+          <ChakraLink _hover={{ color: '#374C8C' }}>About</ChakraLink>
+        </ScrollLink>
+        <ScrollLink to="why us" smooth={true} duration={500}>
+          <ChakraLink _hover={{ color: '#374C8C' }}>Why Us</ChakraLink>
+        </ScrollLink>
+        <ScrollLink to="concept art" smooth={true} duration={500}>
+          <ChakraLink _hover={{ color: '#374C8C' }}>Concept Art</ChakraLink>
+        </ScrollLink>
+        <ScrollLink to="team" smooth={true} duration={500}>
+          <ChakraLink _hover={{ color: '#374C8C' }}>Team</ChakraLink>
+        </ScrollLink>
+        <ScrollLink to="roadmap" smooth={true} duration={500}>
+          <ChakraLink _hover={{ color: '#374C8C' }}>Roadmap</ChakraLink>
+        </ScrollLink>
+        <ScrollLink to="community" smooth={true} duration={500}>
+          <ChakraLink _hover={{ color: '#374C8C' }}>Community</ChakraLink>
+        </ScrollLink>
+        <ScrollLink
+          to="https://halalanft-ecosystem.gitbook.io/"
+          smooth={true}
+          duration={500}
+        >
+          <ChakraLink _hover={{ color: '#374C8C' }}>Gitbook</ChakraLink>
+        </ScrollLink>
+      </VStack>
+    </Flex>
   )
 }
 
