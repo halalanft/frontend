@@ -29,9 +29,7 @@ const RoadMap = () => {
         color="rgba(23, 23, 23, 0.68)"
         mb={8}
         textAlign="center"
-        color="rgba(23, 23, 23, 0.68)"
         fontSize="4xl"
-        color="rgba(23, 23, 23, 0.68)"
       >
         Roadmap to Halalan Ecosystem
       </Text>
