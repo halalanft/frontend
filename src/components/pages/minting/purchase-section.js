@@ -113,7 +113,7 @@ export default function PurchaseSection() {
       },
     })
   const debouncedAllowance = useDebounce(usdcAllowance, 500)
-  console.log(BigInt(debouncedAllowance))
+
   return (
     <Box
       h="100vh"

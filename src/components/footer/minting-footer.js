@@ -8,12 +8,7 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react'
-import {
-  UilDiscord,
-  UilInstagram,
-  UilMediumM,
-  UilTwitter,
-} from '@iconscout/react-unicons'
+import { FaDiscord, FaInstagram, FaMedium, FaTwitter } from 'react-icons/fa'
 import logo from '~/assets/images/fix.png'
 
 export default function MintingFooter() {
@@ -46,16 +41,16 @@ export default function MintingFooter() {
                 maxWidth="80%"
               >
                 <Link href="#">
-                  <UilTwitter color="#374C8C" size={25} />
+                  <FaTwitter color="#374C8C" size={25} />
                 </Link>
                 <Link href="#">
-                  <UilInstagram color="#374C8C" size={25} />
+                  <FaInstagram color="#374C8C" size={25} />
                 </Link>
                 <Link href="#">
-                  <UilMediumM color="#374C8C" size={25} />
+                  <FaMedium color="#374C8C" size={25} />
                 </Link>
                 <Link href="#">
-                  <UilDiscord color="#374C8C" size={25} />
+                  <FaDiscord color="#374C8C" size={25} />
                 </Link>
               </Flex>
             </Flex>

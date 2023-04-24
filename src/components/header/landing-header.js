@@ -1,136 +1,133 @@
-import { HamburgerIcon } from '@chakra-ui/icons'
 import {
   Box,
+  Link as ChakraLink,
   Collapse,
   Flex,
-  Heading,
-  Hide,
-  Image,
-  Link,
-  Show,
+  HStack,
+  VStack,
   useDisclosure,
 } from '@chakra-ui/react'
+import Image from 'next/image'
+import { useState } from 'react'
+import { FaBars, FaTimes } from 'react-icons/fa'
+import { Link as ScrollLink } from 'react-scroll'
 import logo from '~/assets/images/fix.png'
 
-const NAV_ITEMS = [
-  {
-    label: 'Home',
-    href: '/',
-  },
-  {
-    label: 'About',
-    href: '#about',
-  },
-  {
-    label: 'Team',
-    href: '#team',
-  },
-  {
-    label: 'Roadmap',
-    href: '#roadmap',
-  },
-  {
-    label: 'Community',
-    href: '#community',
-  },
-]
-
 export default function LandingHeader() {
+  const menuItemProps = {
+    color: 'rgba(23, 23, 23, 0.68)',
+    _hover: { color: '#FAD02C' },
+  }
+
   const { isOpen, onToggle } = useDisclosure()
 
   return (
-    <Box
-      position="sticky"
+    <Flex
+      zIndex={50}
+      w="full"
+      alignItems="center"
+      justifyContent="space-between"
+      bg="white"
+      px={8}
+      py={6}
+      position={['static', 'static', 'sticky']}
       top={0}
-      width="100%"
-      bgColor="white"
-      zIndex={40}
-      shadow="sm"
-      transition="box-shadow 0.1s"
     >
-      <Flex
-        minHeight="60px"
-        alignItems="center"
-        justifyContent="space-between"
-        py={2}
-        px={4}
-        pos="sticky"
-      >
-        {/* Logo and Name */}
-        <Flex alignItems="center">
-          <Link
-            cursor="pointer"
-            textDecoration="none"
-            href="/"
-            _hover={{ textDecoration: 'none' }}
-          >
-            <Image src={logo.src} alt="Logo" width={160} height={120} />
-          </Link>
-          <Heading as="p" size="md" pl={4}>
-            Halalanft
-          </Heading>
-        </Flex>
-        {/* Desktop and Mobile Navigation */}
-        <Box>
-          <Hide below="md">
-            <DesktopNav />
-          </Hide>
-          <Show below="md">
-            <HamburgerIcon boxSize={6} onClick={onToggle} />
-          </Show>
-          <Collapse in={isOpen}>
-            <MobileNav />
-          </Collapse>
-        </Box>
-      </Flex>
-      {/* Gradient Line */}
+      <Box>
+        <Image src={logo} alt="Logo" width={200} />
+      </Box>
+      {/* menu */}
+      <HStack spacing={8} display={{ base: 'none', md: 'none', lg: 'flex' }}>
+        <ScrollLink to="about" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>About</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="why us" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Why Us</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="concept art" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Concept Art</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="team" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Team</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="roadmap" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Roadmap</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink to="community" smooth={true} duration={500}>
+          <ChakraLink {...menuItemProps}>Community</ChakraLink>
+        </ScrollLink>
+
+        <ScrollLink
+          to="https://halalanft-ecosystem.gitbook.io/"
+          smooth={true}
+          duration={500}
+        >
+          <ChakraLink {...menuItemProps}>Gitbook</ChakraLink>
+        </ScrollLink>
+        {/* Add other ScrollLink components here */}
+      </HStack>
+
+      {/* hamburger */}
       <Box
-        h="4px"
-        background="linear-gradient(to right, #FAD02C, #374C8C 90%)"
-      />
-    </Box>
-  )
-}
-
-const DesktopNav = () => {
-  return (
-    <Flex direction="row" align="center">
-      {NAV_ITEMS.map(({ label, href }, index) => (
-        <Link
-          key={label}
-          href={href}
-          p={2}
-          fontSize={{ base: 'sm', md: 'base' }}
-          textDecoration="none"
-          color="#2A2928"
-          _hover={{ color: 'yellow.400' }}
-          marginRight={index === NAV_ITEMS.length - 1 ? 0 : 4}
+        display={{ base: 'block', md: 'block', lg: 'none' }}
+        zIndex={50}
+        onClick={onToggle}
+      >
+        {!isOpen ? (
+          <FaBars color="rgba(23, 23, 23, 0.68)" />
+        ) : (
+          <FaTimes color="white" />
+        )}
+      </Box>
+      {/* mobile menu */}
+      <Collapse in={isOpen} animateOpacity>
+        <VStack
+          position="absolute"
+          top={0}
+          left={0}
+          zIndex={20}
+          h="screen"
+          w="full"
+          alignItems="center"
+          justifyContent="center"
+          bg="#374C8C"
+          spacing={6}
+          fontSize="lg"
+          color="white"
+          p={6}
         >
-          {label}
-        </Link>
-      ))}
-    </Flex>
-  )
-}
-
-const MobileNav = () => {
-  return (
-    <Flex direction="column" align="center">
-      {NAV_ITEMS.map(({ label, href }, index) => (
-        <Link
-          key={label}
-          href={href}
-          p={2}
-          fontSize={{ base: 'sm', md: 'base' }}
-          fontWeight="medium"
-          textDecoration="none"
-          color="#363755"
-          _hover={{ color: 'yellow.400' }}
-          marginRight={index === NAV_ITEMS.length - 1 ? 0 : 2}
-        >
-          {label}
-        </Link>
-      ))}
+          <ScrollLink to="about" smooth={true} duration={500}>
+            <ChakraLink _hover={{ color: '#374C8C' }}>About</ChakraLink>
+          </ScrollLink>
+          <ScrollLink to="why us" smooth={true} duration={500}>
+            <ChakraLink _hover={{ color: '#374C8C' }}>Why Us</ChakraLink>
+          </ScrollLink>
+          <ScrollLink to="concept art" smooth={true} duration={500}>
+            <ChakraLink _hover={{ color: '#374C8C' }}>Concept Art</ChakraLink>
+          </ScrollLink>
+          <ScrollLink to="team" smooth={true} duration={500}>
+            <ChakraLink _hover={{ color: '#374C8C' }}>Team</ChakraLink>
+          </ScrollLink>
+          <ScrollLink to="roadmap" smooth={true} duration={500}>
+            <ChakraLink _hover={{ color: '#374C8C' }}>Roadmap</ChakraLink>
+          </ScrollLink>
+          <ScrollLink to="community" smooth={true} duration={500}>
+            <ChakraLink _hover={{ color: '#374C8C' }}>Community</ChakraLink>
+          </ScrollLink>
+          <ScrollLink
+            to="https://halalanft-ecosystem.gitbook.io/"
+            smooth={true}
+            duration={500}
+          >
+            <ChakraLink _hover={{ color: '#374C8C' }}>Gitbook</ChakraLink>
+          </ScrollLink>
+        </VStack>
+      </Collapse>
     </Flex>
   )
 }
