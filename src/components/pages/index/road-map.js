@@ -29,7 +29,6 @@ const RoadMap = () => {
         color="rgba(23, 23, 23, 0.68)"
         mb={8}
         textAlign="center"
-        fontFamily="Impact"
         color="rgba(23, 23, 23, 0.68)"
         fontSize="4xl"
         color="rgba(23, 23, 23, 0.68)"
