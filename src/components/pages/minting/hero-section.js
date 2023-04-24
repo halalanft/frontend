@@ -23,24 +23,27 @@ export default function HeroSection() {
   // Get the balance
   const debouncedAddress = useDebounce(address, 500)
   return (
-    <Box h="100vh" bgSize="cover" bgPosition="center" bgRepeat="no-repeat">
+    <Box bg="white" borderRadius="md" shadow="xl" py={8}>
+      <Text color="#FAD02C" align="center" fontSize="xl">
+        HALALANFT MINTING
+      </Text>
       <Text
-        fontSize="3xl"
+        fontSize="4xl"
         align="center"
         fontWeight="bold"
-        textColor="#FAD02C"
+        opacity="0.68"
         mb={6}
       >
         Are You Ready?
       </Text>
 
       {!!isWrongNetwork && isMounted ? (
-        <Text align="center" mb={8} textColor="#FAD02C">
+        <Text align="center" mb={8}>
           Connect your Metamask wallet and make sure you are in the right
           network
         </Text>
       ) : (
-        <Text align="center" mb={8} textColor="#FAD02C">
+        <Text align="center" mb={8} color="red.400">
           You are in the wrong network
         </Text>
       )}

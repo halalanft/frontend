@@ -41,46 +41,51 @@ export default function Sidebar() {
   ]
 
   return (
-    <Box bgColor="#FAD02C" minHeight="100%" maxHeight="100%" color="#FAD02C">
-      <Flex direction="column" justifyContent="space-between" height="100%">
-        <Stack p={4} spacing={4}>
-          {navItem.map(({ icon, label, route }) => (
+    <Box
+      p={4}
+      shadow="xl"
+      bg="white"
+      width="full"
+      minHeight="full"
+      maxHeight="full"
+    >
+      <Stack p={4} spacing={8}>
+        {navItem.map(({ icon, label, route }) => (
+          <Link href={route}>
             <Flex
               direction="row"
               align="center"
-              gap={2}
+              gap={4}
               key={label}
-              color="white"
+              color="#171717"
             >
-              <Link href={route}>
-                {icon}
-                <Text fontSize="md" fontWeight="semibold" color="white">
-                  {label}
-                </Text>
-              </Link>
+              {icon}
+              <Text fontSize="md" fontWeight="semibold" color="#171717">
+                {label}
+              </Text>
             </Flex>
-          ))}
-          {isMounted &&
-            isConnected &&
-            address === adminAddress &&
-            navAdmin.map(({ icon, label, route }) => (
+          </Link>
+        ))}
+        {isMounted &&
+          isConnected &&
+          address === adminAddress &&
+          navAdmin.map(({ icon, label, route }) => (
+            <Link href={route}>
               <Flex
                 direction="row"
                 align="center"
-                gap={2}
+                gap={4}
                 key={label}
-                color="white"
+                color="#171717"
               >
-                <Link href={route}>
-                  {icon}
-                  <Text fontSize="md" fontWeight="semibold" color="white">
-                    {label}
-                  </Text>
-                </Link>
+                {icon}
+                <Text fontSize="md" fontWeight="semibold" color="#171717">
+                  {label}
+                </Text>
               </Flex>
-            ))}
-        </Stack>
-      </Flex>
+            </Link>
+          ))}
+      </Stack>
     </Box>
   )
 }

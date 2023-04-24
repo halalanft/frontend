@@ -17,7 +17,7 @@ import HalalanftABI from '~/contracts/Halalanft.json'
 import { useIsMounted } from '~/hooks/useIsMounted'
 import { Halalanft } from '~/utils/contract-address'
 
-export default function MintingHeader() {
+export default function DashboardHeader() {
   const { address, isConnected } = useAccount()
   const isMounted = useIsMounted()
   const { data: dataBalanceNFT } = useContractRead({
