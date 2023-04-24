@@ -51,7 +51,7 @@ export default function Sidebar() {
     >
       <Stack p={4} spacing={8}>
         {navItem.map(({ icon, label, route }) => (
-          <Link href={route}>
+          <Link href={route} key={icon}>
             <Flex
               direction="row"
               align="center"
@@ -70,7 +70,7 @@ export default function Sidebar() {
           isConnected &&
           address === adminAddress &&
           navAdmin.map(({ icon, label, route }) => (
-            <Link href={route}>
+            <Link href={route} key={icon}>
               <Flex
                 direction="row"
                 align="center"
