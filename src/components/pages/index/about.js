@@ -13,10 +13,10 @@ const About = () => {
       justify="space-between"
     >
       <Box w={['full', 'full', '40rem']}>
-        <Heading
+        <Text
           as="h1"
           fontFamily="Impact"
-          mb={8}
+          mb={6}
           fontSize="4xl"
           color="#171717"
           opacity={0.68}
@@ -25,8 +25,8 @@ const About = () => {
           <Text as="span" color="#FAD02C">
             Halalanft
           </Text>
-        </Heading>
-        <Text color="#171717" opacity={0.68}>
+        </Text>
+        <Text mr={['0', '4']} color="#171717" opacity={0.68}>
           Halalanft is a <strong>community NFT collection</strong> of halal Web3
           enthusiasts, which will bring halal perspective as the main foundation
           for NFT and DeFi protocols to be built in the ecosystem. Halalanft is
@@ -38,7 +38,7 @@ const About = () => {
         </Text>
       </Box>
       <Box mt={[8, 8, 0]} alignSelf={['auto', 'auto', 'end']}>
-        <Image src={logo.src} width={400} alt="Logo" />
+        <Image src={logo.src} width={[200, 300]} alt="Logo" />
       </Box>
     </Flex>
   )

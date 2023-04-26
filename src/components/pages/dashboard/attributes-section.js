@@ -29,7 +29,7 @@ export default function AttributesSection({ selectedToken, setAttrLoaded }) {
   return (
     <Box p={4}>
       {/* Title */}
-      <Text fontSize="xl" fontWeight="bold">
+      <Text fontSize="xl" fontWeight="bold" color="#171717">
         Attributes
       </Text>
       <Box bg="white" w="100%" h="2px" my={4}></Box>
@@ -37,18 +37,16 @@ export default function AttributesSection({ selectedToken, setAttrLoaded }) {
       <Stack>
         {dataAttributes.map(({ trait_type, value }) => (
           <Box bg="white" shadow="md" borderRadius="lg" p={4} key={trait_type}>
-            <Flex direction="row" align="center" justify="space-between">
-              <Flex direction="row" align="center" gap={2}>
-                <Image
-                  src={logo.src}
-                  alt="Sample"
-                  w={16}
-                  h={12}
-                  borderRadius="sm"
-                />
+            <Flex
+              direction={['row', 'column']}
+              align="center"
+              justify="space-between"
+              gap={4}
+            >
+              <Image src={logo.src} alt="Sample" w={16} borderRadius="sm" />
+
+              <Flex direction="column" align="center" gap={2}>
                 <Text>{trait_type}</Text>
-              </Flex>
-              <Flex direction="row" align="center" gap={2}>
                 <Text>{value}</Text>
               </Flex>
             </Flex>

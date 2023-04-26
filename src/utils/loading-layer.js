@@ -27,7 +27,6 @@ export const LoadingLayer = ({
         className="rotate"
         layout="fill"
         borderRadius="sm"
-        height={240}
         width={320}
       />
     </Center>

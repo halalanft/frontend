@@ -10,9 +10,9 @@ export default function ControllerPage() {
   const { address, isConnected } = useAccount()
 
   return (
-    <VStack w="full" spacing="8" borderRadius="md" bg="#FAD02C" p="4">
+    <VStack w="full" spacing="8" borderRadius="md" bg="white" p="4" shadow="xl">
       {/* Title */}
-      <Heading fontSize="2xl" fontWeight="bold" color="#0D0D0D">
+      <Heading fontSize="3xl" fontWeight="bold" color="#0D0D0D">
         Controller
       </Heading>
       {/* Form */}

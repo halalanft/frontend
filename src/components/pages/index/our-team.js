@@ -46,15 +46,15 @@ const OurTeam = () => {
   ]
   return (
     <Box id="team" bg="white" px={8} py={16} minH="100vh" w="full">
-      <Heading
-        className="font-impact"
+      <Text
         mb={8}
         textAlign="center"
         fontSize="4xl"
         color="rgba(23, 23, 23, 0.68)"
+        fontFamily="Impact"
       >
         Our Team
-      </Heading>
+      </Text>
       <Text
         mx="auto"
         mb={16}

@@ -16,7 +16,7 @@ const Moto = () => {
         direction={['column', 'column', 'row']}
       >
         <Box>
-          <Heading
+          <Text
             as="h1"
             fontFamily="impact"
             mb={8}
@@ -26,7 +26,7 @@ const Moto = () => {
             maxW={['full', 'full', '30rem']}
           >
             We bring very high-quality NFTs to your collection
-          </Heading>
+          </Text>
           <Text
             mb={16}
             color="#171717"
@@ -41,9 +41,9 @@ const Moto = () => {
           position="absolute"
           left={['auto', 'auto', '42rem']}
           zIndex={-10}
-          display={['none', 'none', 'block']}
+          display={{ base: 'none', md: 'none', lg: 'block' }}
         >
-          <Image src={motto} alt="Motto" width={500} className="opacity-40" />
+          <Image src={motto} alt="Motto" width={500} />
         </Box>
       </Flex>
     </Box>

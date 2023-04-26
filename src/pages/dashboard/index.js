@@ -1,8 +1,9 @@
-import { Box, Button, Flex, GridItem, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, GridItem, Text, Stack } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractRead, useNetwork } from 'wagmi'
+import DashboardLayout from '~/components/layout/dashboard'
 import DeFiLayout from '~/components/layout/defi'
 import {
   AttributesSection,
@@ -15,7 +16,7 @@ import { Halalanft } from '~/utils/contract-address'
 import { useDebounce } from '~/utils/debounce'
 import { LoadingLayer } from '~/utils/loading-layer'
 
-export default function Dapps() {
+export default function Dashboard() {
   const [tokens, setTokens] = useState([])
   const [dynamicArgs, setDynamicArgs] = useState([])
   const [imagesLoaded, setImagesLoaded] = useState({})
@@ -135,7 +136,7 @@ export default function Dapps() {
       ) : totalNFT > 0 ? (
         <>
           <Box px={4} maxWidth={'100%'} bg="white" display="block">
-            <GridItem borderRadius="lg" bg="#FAD02C">
+            <GridItem borderRadius="lg" bg="yellow.200">
               <MyCollectionSection
                 tokens={tokens}
                 setSelectedToken={setSelectedToken}
@@ -144,20 +145,21 @@ export default function Dapps() {
               />
             </GridItem>
 
-            <VStack
+            <Stack
+              direction={['column', 'row']}
               alignItems="stretch"
               justifyContent="space-between"
               my={4}
               spacing={{ base: 4, md: 4 }}
             >
-              <Box borderRadius="lg" bg="#FAD02C">
+              <Box borderRadius="lg" bg="yellow.200">
                 {tokens.length > 0 && selectedToken ? (
                   <FeatureSection selectedToken={selectedToken} />
                 ) : (
                   <></>
                 )}
               </Box>
-              <Box borderRadius="lg" bg="#FAD02C">
+              <Box borderRadius="lg" bg="yellow.200">
                 {tokens.length > 0 && selectedToken ? (
                   <AttributesSection
                     selectedToken={selectedToken}
@@ -167,7 +169,7 @@ export default function Dapps() {
                   <></>
                 )}
               </Box>
-            </VStack>
+            </Stack>
           </Box>
           {!attrLoaded && <LoadingLayer />}
         </>
@@ -202,6 +204,6 @@ export default function Dapps() {
   )
 }
 
-Dapps.getLayout = function getLayout(page) {
-  return <DeFiLayout>{page}</DeFiLayout>
+Dashboard.getLayout = function getLayout(page) {
+  return <DashboardLayout>{page}</DashboardLayout>
 }

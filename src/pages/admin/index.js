@@ -15,7 +15,7 @@ export default function AdminAllUnits() {
         mx="auto"
       >
         <GridItem colSpan={4}>
-          <Box bg="rgba(146, 210, 183, 0.2)" borderRadius="md" p="4">
+          <Box bg="yellow.200" borderRadius="md" p="4">
             <AllUnitsContent
               allAttrLoaded={allAttrLoaded}
               setAllAttrLoaded={setAllAttrLoaded}

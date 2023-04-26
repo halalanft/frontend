@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const JoinCommunity = () => {
   return (
     <Box id="community" px={8} py={16} bg="#F2F2F2" w="full">
-      <Heading
+      <Text
         as="h1"
         fontSize="4xl"
         fontFamily="impact"
@@ -19,7 +19,7 @@ const JoinCommunity = () => {
         opacity={0.68}
       >
         Join with Community
-      </Heading>
+      </Text>
       <Text
         mb={16}
         textAlign="center"
@@ -42,8 +42,7 @@ const JoinCommunity = () => {
         <Link href="https://discord.com/invite/be5fnEqrZQ" isExternal>
           <Button
             w={['full', 'full', 'auto']}
-            px={4}
-            py={2}
+            p={6}
             gap={2}
             bg="#374C8C"
             _hover={{ bg: '#283765' }}
@@ -62,8 +61,7 @@ const JoinCommunity = () => {
         <Link href="https://twitter.com/halalanft" isExternal>
           <Button
             w={['full', 'full', 'auto']}
-            px={4}
-            py={2}
+            p={6}
             gap={2}
             bg="#374C8C"
             _hover={{ bg: '#283765' }}
@@ -81,8 +79,7 @@ const JoinCommunity = () => {
         <Link href="#" isExternal>
           <Button
             w={['full', 'full', 'auto']}
-            px={4}
-            py={2}
+            p={6}
             gap={2}
             bg="#374C8C"
             _hover={{ bg: '#283765' }}

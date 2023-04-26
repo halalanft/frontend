@@ -104,7 +104,7 @@ export default function UpdatePriceSection({ isConnected }) {
         name="price"
         id="price"
         disabled={!write || isLoading || isWriteLoading}
-        borderColor="#5BD3C7"
+        borderColor="#374C8C"
         borderRadius="md"
         p="2"
         paddingRight="2"

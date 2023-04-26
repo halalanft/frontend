@@ -6,7 +6,7 @@ import {
   Box,
   Button,
 } from '@chakra-ui/react'
-import { UilTimes } from '@iconscout/react-unicons'
+import { FaTimes } from 'react-icons/fa'
 import { useRef } from 'react'
 
 export default function ErrorPopup({ children, title, isOpen, onClose }) {
@@ -72,7 +72,7 @@ export default function ErrorPopup({ children, title, isOpen, onClose }) {
           </Box>
           <Box position="absolute" top="2" right="2">
             <Button variant="unstyled" onClick={onClose} ref={cancelRef}>
-              <UilTimes />
+              <FaTimes />
             </Button>
           </Box>
         </Box>

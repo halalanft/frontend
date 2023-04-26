@@ -11,7 +11,7 @@ export default function MyCollectionSection({
     <Box p={4}>
       {/* Title */}
       <Flex align="center" justify="space-between">
-        <Text fontSize="lg" fontWeight="bold">
+        <Text fontSize="lg" fontWeight="bold" color="#171717">
           My Collection
         </Text>
       </Flex>
