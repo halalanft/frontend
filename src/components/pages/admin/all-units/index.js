@@ -59,13 +59,16 @@ export default function AllUnitsContent({ allAttrLoaded, setAllAttrLoaded }) {
 
   return (
     <Box>
-      <Grid templateColumns="repeat(6, 1fr)" gap={4}>
-        <GridItem colSpan={6}>
+      <Grid
+        templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(6, 1fr)' }}
+        gap={4}
+      >
+        <GridItem colSpan={{ md: 6 }}>
           <Text fontSize="2xl" fontWeight="bold" color="#363755">
             All Units
           </Text>
         </GridItem>
-        <GridItem colSpan={6}>
+        <GridItem colSpan={{ md: 6 }}>
           <Select
             defaultValue={sort}
             onChange={({ target }) => onSort(target.value)}
@@ -82,7 +85,10 @@ export default function AllUnitsContent({ allAttrLoaded, setAllAttrLoaded }) {
         </Box>
       )}
       <Box display={!allAttrLoaded ? 'none' : 'block'}>
-        <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+        <Grid
+          templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
+          gap={4}
+        >
           {!allAttrLoaded
             ? range(0, 36).map((id) => <Skeleton key={id} minHeight="320px" />)
             : data.map((nft, index) => (

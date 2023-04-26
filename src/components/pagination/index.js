@@ -1,4 +1,4 @@
-import { UilAngleLeft, UilAngleRight } from '@iconscout/react-unicons'
+import { FaAngleRight, FaAlignLeft } from 'react-icons/fa'
 import ReactPaginate from 'react-paginate'
 
 export default function Pagination({
@@ -26,14 +26,14 @@ export default function Pagination({
         breakLabel={'...'}
         previousLabel={
           <div className="page">
-            <UilAngleLeft />
+            <FaAlignLeft />
             <span>Previous</span>
           </div>
         }
         nextLabel={
           <div className="page">
             <span>Next</span>
-            <UilAngleRight />
+            <FaAngleRight />
           </div>
         }
       />

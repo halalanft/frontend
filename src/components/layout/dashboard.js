@@ -13,16 +13,15 @@ export default function DashboardLayout({ children }) {
         <Grid
           templateColumns={{
             base: 'repeat(1, 1fr)',
-            md: 'repeat(1, 1fr)',
-            lg: 'repeat(6, 1fr)',
+            md: 'repeat(5, 1fr)',
           }}
           gap={{ base: '2', lg: '8' }}
           height={'full'}
         >
-          <GridItem colSpan={1}>
+          <GridItem colSpan={{ md: 1 }}>
             <Sidebar />
           </GridItem>
-          <GridItem colSpan={5}>{children}</GridItem>
+          <GridItem colSpan={{ md: 4 }}>{children}</GridItem>
         </Grid>
       </Flex>
       <DashboardFooter />

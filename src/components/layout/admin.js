@@ -1,8 +1,8 @@
 import { Box, Button, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useAccount } from 'wagmi'
-import { DeFiFooter } from '~/components/footer'
-import { DeFiHeader } from '~/components/header'
+import { DashboardFooter } from '~/components/footer'
+import { DashboardHeader } from '~/components/header'
 import { Sidebar } from '~/components/pages/dashboard'
 import { useIsMounted } from '~/hooks/useIsMounted'
 
@@ -20,20 +20,20 @@ export default function AdminLayout({ children }) {
       <div
         style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
       >
-        <DeFiHeader />
+        <DashboardHeader />
         <Flex direction="column" flex="1">
           <Grid
-            templateColumns="repeat(6, 1fr)"
+            templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(5, 1fr)' }}
             gap={{ base: '4', lg: '8' }}
             height={'full'}
           >
-            <GridItem colSpan={1}>
+            <GridItem colSpan={{ md: 1 }}>
               <Sidebar />
             </GridItem>
-            <GridItem colSpan={5}>{children}</GridItem>
+            <GridItem colSpan={{ md: 4 }}>{children}</GridItem>
           </Grid>
         </Flex>
-        <DeFiFooter />
+        <DashboardFooter />
       </div>
     ) : (
       <Box textAlign="center" mt={8}>

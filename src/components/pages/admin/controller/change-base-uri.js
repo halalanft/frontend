@@ -54,7 +54,7 @@ export default function ChangeBaseURISection({ isConnected, address }) {
         type="text"
         name="treasury-wallet"
         id="treasury-wallet"
-        borderColor="#5BD3C7"
+        borderColor="#374C8C"
         textAlign="right"
         placeholder="https://nft..com"
         value={value}
