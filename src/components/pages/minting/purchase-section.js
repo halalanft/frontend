@@ -115,10 +115,10 @@ export default function PurchaseSection() {
   const debouncedAllowance = useDebounce(usdcAllowance || 0, 500)
   return (
     <Box
-      h="100vh"
-      w="100%"
-      bgColor="#FAD02C"
-      p={6}
+      bg="white"
+      borderRadius="md"
+      shadow="xl"
+      py={8}
       borderTopRadius={{ md: '3xl' }}
     >
       <Flex
@@ -176,7 +176,7 @@ export default function PurchaseSection() {
             </Box>
             <Flex align="center" gap={8} my={4}>
               <Checkbox
-                colorScheme="green"
+                colorScheme="facebook"
                 onChange={(e) => setCheckedItems(e.target.checked)}
               >
                 <Link href="https://halalanft-ecosystem.gitbook.io/halalanft-whitepaper-bahasa/">
@@ -236,18 +236,16 @@ export default function PurchaseSection() {
                 my={{ base: '4', md: '0' }}
               >
                 <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon color="#374C8C" />
-                  <Text color="#808080">3,000 Halalanft</Text>
+                  <CheckIcon />
+                  <Text>3,000 Halalanft</Text>
                 </Box>
                 <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon color="#374C8C" />
-                  <Text color="#808080">
-                    Specialized content in Discord server
-                  </Text>
+                  <CheckIcon />
+                  <Text>Specialized content in Discord server</Text>
                 </Box>
                 <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon color="#374C8C" />
-                  <Text color="#808080">Access to future airdrops</Text>
+                  <CheckIcon />
+                  <Text>Access to future airdrops</Text>
                 </Box>
               </Box>
             </Flex>
@@ -345,7 +343,7 @@ const PresaleHeader = ({
     <>
       <Box>
         {/* Title */}
-        <Text textColor="#374C8C" align="center" mb={4}>
+        <Text textColor="#FAD02C" align="center" mb={4} fontSize="xl">
           SELECT QUANTITY
         </Text>
         {/* Amount */}
@@ -395,10 +393,10 @@ const PresaleHeader = ({
             </SliderMark>
           ))}
 
-          <SliderTrack bg="white" borderWidth={1} borderColor="#009D4A">
-            <SliderFilledTrack bg="#009D4A" />
+          <SliderTrack bg="white" borderWidth={1} borderColor="#374C8C">
+            <SliderFilledTrack bg="#374C8C" />
           </SliderTrack>
-          <SliderThumb boxSize={4} bg="#009D4A" />
+          <SliderThumb boxSize={4} bg="#374C8C" />
         </Slider>
         <Text color="#292929" my={4}>
           Quantity [max : {presaleAmount} per transaction]
@@ -504,7 +502,7 @@ const PublicHeader = ({
     <>
       <Box>
         {/* Title */}
-        <Text textColor="#374C8C" align="center" mb={4}>
+        <Text textColor="#FAD02C" align="center" mb={4} fontSize="xl">
           SELECT QUANTITY
         </Text>
         {/* Amount */}
@@ -560,10 +558,10 @@ const PublicHeader = ({
           <SliderMark value={10} mt="1" ml="-2.5" fontSize="sm">
             10
           </SliderMark>
-          <SliderTrack bg="white" borderWidth={1} borderColor="#009D4A">
-            <SliderFilledTrack bg="#009D4A" />
+          <SliderTrack bg="white" borderWidth={1} borderColor="#374C8C">
+            <SliderFilledTrack bg="#374C8C" />
           </SliderTrack>
-          <SliderThumb boxSize={4} bg="#009D4A" />
+          <SliderThumb boxSize={4} bg="#374C8C" />
         </Slider>
         <Text color="#292929" my={4}>
           Quantity [max : 10 per transaction]

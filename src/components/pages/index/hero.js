@@ -17,22 +17,21 @@ const Hero = () => {
           justifyContent="space-between"
         >
           <VStack
-            spacing={6}
             alignItems={['center', 'center', 'start']}
             textAlign={['center', 'center', 'left']}
+            mb={{ base: '8', md: '0' }}
           >
             <Text
-              as="h1"
               fontFamily="impact"
-              mt={[4, 4, 0]}
               fontSize={['5xl', '5xl', '7xl']}
+              lineHeight="shorter"
               color="#171717"
               opacity={0.68}
+              width={{ md: '24rem', lg: '32rem' }}
             >
-              The First Halal <br />
-              NFTs Collection
+              The First Halal NFTs Collection
             </Text>
-            <Text py={6} fontWeight="semibold" color="#171717" opacity={0.68}>
+            <Text pb={6} fontWeight="semibold" color="#171717" opacity={0.68}>
               That Brings Sharia Based DeFi Ecosystem.
             </Text>
             <Flex direction={['column', 'column', 'row']} gap={6}>
@@ -54,7 +53,7 @@ const Hero = () => {
                 _hover={{
                   borderColor: 'transparent',
                   bg: '#374C8C',
-                  color: '#374C8C',
+                  color: 'white',
                 }}
               >
                 Download Whitepaper
@@ -74,7 +73,7 @@ const Hero = () => {
                     borderWidth: '4',
                     borderColor: '#374C8C',
                     bg: 'transparent',
-                    color: 'white',
+                    color: '#374C8C',
                   }}
                 >
                   Enter App
@@ -85,9 +84,7 @@ const Hero = () => {
           <Image
             src={hero.src}
             alt="Hero"
-            width={384}
-            height={384}
-            className="rounded-lg opacity-50"
+            width={{ base: '20rem', md: '20rem', lg: '24rem' }}
           />
         </Flex>
       </Box>

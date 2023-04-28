@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Stack,
   Tab,
@@ -7,6 +8,7 @@ import {
   TabPanels,
   Tabs,
   Text,
+  Show,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractEvent } from 'wagmi'
@@ -53,7 +55,12 @@ export default function MintingPage() {
   })
 
   return (
-    <div>
+    <Box
+      style={{
+        height: '100%',
+        background: 'linear-gradient(180deg, #fff 30%, #fad02c 70%)',
+      }}
+    >
       {!isMounted ? <LoadingLayer /> : <></>}
       <Tabs
         index={activeTab - 1}
@@ -61,6 +68,7 @@ export default function MintingPage() {
         isLazy
         lazyBehavior="keepMounted"
         display={isMounted ? 'block' : 'none'}
+        p={8}
       >
         <TabList>
           <Flex justifyContent="space-around" w="full">
@@ -82,7 +90,7 @@ export default function MintingPage() {
                 >
                   1
                 </Flex>
-                <Stack direction="column" spacing={0}>
+                <Stack direction="column" spacing={0} textAlign="left">
                   <Text fontWeight="semibold">CONNECT</Text>
                   <Text>wallet and check network</Text>
                 </Stack>
@@ -106,7 +114,7 @@ export default function MintingPage() {
                 >
                   2
                 </Flex>
-                <Stack direction="column" spacing={0}>
+                <Stack direction="column" spacing={0} textAlign="left">
                   <Text fontWeight="semibold">CHECKOUT</Text>
                   <Text>quantity and mint</Text>
                 </Stack>
@@ -130,7 +138,7 @@ export default function MintingPage() {
                 >
                   3
                 </Flex>
-                <Stack direction="column" spacing={0}>
+                <Stack direction="column" spacing={0} textAlign="left">
                   <Text fontWeight="semibold">REVIEW</Text>
                   <Text>receipt</Text>
                 </Stack>
@@ -151,7 +159,7 @@ export default function MintingPage() {
           </TabPanel>
         </TabPanels>
       </Tabs>
-    </div>
+    </Box>
   )
 }
 

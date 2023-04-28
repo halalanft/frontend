@@ -75,7 +75,7 @@ export default function Whitelist() {
       <Input
         type="text"
         id="wl-to"
-        borderColor="#5BD3C7"
+        borderColor="#374C8C"
         textAlign="right"
         placeholder="0x0000000000000000000000000000000000000000"
         value={wlTo}

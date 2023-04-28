@@ -42,10 +42,10 @@ const WhatMakes = () => {
 
   return (
     <Box id="why us" px={8} py={16} bg="#F2F2F2" minH="full" w="100%">
-      <Heading
+      <Text
         as="h1"
         fontSize="4xl"
-        fontWeight="bold"
+        fontFamily="Impact"
         mb={8}
         color="#171717"
         opacity="0.68"
@@ -55,7 +55,7 @@ const WhatMakes = () => {
           Halalanft{' '}
         </Text>
         special
-      </Heading>
+      </Text>
       <Text fontStyle="italic" mb={16} color="#374C8C" w={{ lg: '1/2' }}>
         We focus on 5 things that will be the long-term fundamentals of this
         project, and we call them : House of Halalanft Strategy. Halalanft will

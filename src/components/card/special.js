@@ -7,12 +7,12 @@ const CardSpecial = ({ icon, title, description }) => {
       bgColor="white"
       boxShadow="xl"
       borderRadius="md"
-      p={4}
+      p={6}
       w="100%"
       maxW="md"
     >
       <VStack alignItems="start" spacing={4}>
-        <Box>
+        <Box display="inline-flex" alignItems="center" gap={4}>
           <Box
             display="inline-flex"
             h={10}
@@ -26,7 +26,7 @@ const CardSpecial = ({ icon, title, description }) => {
           >
             <Image src={icon.src} alt={icon} width={20} />
           </Box>
-          <Text fontWeight="bold" color="#171717">
+          <Text fontSize="lg" fontWeight="bold" color="#171717" opacity="0.68">
             {title}
           </Text>
         </Box>

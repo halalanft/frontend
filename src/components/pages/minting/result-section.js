@@ -67,17 +67,13 @@ export default function ResultSection({ tokenBought, handleTab }) {
 
   return (
     <>
-      <Box
-        px={{ base: '6', lg: '12' }}
-        py={6}
-        bgColor={{ base: '#FAD02C', md: 'white' }}
-        borderTopRadius={{ md: '3xl' }}
-      >
+      <Box bg="white" px={{ base: '6', lg: '12' }} py={6} borderRadius="3xl">
         <Text
           fontWeight="bold"
           align={'center'}
           fontSize="3xl"
-          color="#FAD02C"
+          color="#171717"
+          opacity="0.68"
           mb={6}
         >
           Your Purchases
@@ -130,8 +126,8 @@ const DetailsNFTSelected = ({ data }) => {
       {/* NFT */}
       <Flex
         direction={{ base: 'column', md: 'row' }}
-        align="start"
-        justify="start"
+        align={['center', 'start']}
+        justify={['center', 'start']}
         gap={{ md: '6', lg: '0' }}
       >
         <Box>
@@ -143,10 +139,16 @@ const DetailsNFTSelected = ({ data }) => {
             p={8}
           />
         </Box>
-        <Flex direction="column" justify="left" p={8}>
+        <Flex direction="column" justify="space-between" p={8}>
           {/* Title */}
           <Box>
-            <Text fontWeight="bold" fontSize="3xl" color="#FAD02C">
+            <Text
+              fontWeight="bold"
+              fontSize="2xl"
+              color="#171717"
+              opacity="0.68"
+              mb={4}
+            >
               Halalanft #{edition}
             </Text>
           </Box>
@@ -154,10 +156,10 @@ const DetailsNFTSelected = ({ data }) => {
 
           {/* Table Traits */}
           <Hide above="sm">
-            <Box maxWidth="75%">
+            <Box width="full">
               <TableContainer>
                 <Table variant="simple" size="sm">
-                  <Thead bgGradient="#374C8C">
+                  <Thead bgColor="#374C8C">
                     <Tr>
                       <Th colSpan={3} p={4} borderTopRadius="lg">
                         <Flex direction="row" align="center" gap={2}>
