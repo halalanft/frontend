@@ -104,10 +104,10 @@ export default function Dashboard() {
   }, [tokens, selectedToken])
 
   useEffect(() => {
-    if (address) {
+    if (tokens.length > 0 && address) {
       setSelectedToken(tokens[0])
     }
-  }, [address])
+  }, [tokens, address])
 
   const { chains, chain } = useNetwork()
   // Check if the user is in the correct network
@@ -158,6 +158,7 @@ export default function Dashboard() {
               justifyContent="space-between"
               my={4}
               spacing={{ base: 4, md: 4 }}
+              display={!attrLoaded ? 'none' : 'block'}
             >
               <Box w="full" borderRadius="lg" bg="yellow.200">
                 {tokens.length > 0 && selectedToken ? (
