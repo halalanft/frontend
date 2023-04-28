@@ -1,10 +1,9 @@
-import { Box, Button, Flex, GridItem, Text, Stack } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractRead, useNetwork } from 'wagmi'
 import DashboardLayout from '~/components/layout/dashboard'
-import DeFiLayout from '~/components/layout/defi'
 import {
   AttributesSection,
   FeatureSection,
@@ -96,13 +95,19 @@ export default function Dashboard() {
     }
   }, [address])
 
-  const [selectedToken, setSelectedToken] = useState(0)
+  const [selectedToken, setSelectedToken] = useState(null)
   const [attrLoaded, setAttrLoaded] = useState(false)
   useEffect(() => {
-    if (tokens.length > 0 && (selectedToken === 0 || address)) {
+    if (tokens.length > 0 && selectedToken === null) {
       setSelectedToken(tokens[0])
     }
-  }, [tokens, selectedToken, address])
+  }, [tokens, selectedToken])
+
+  useEffect(() => {
+    if (address) {
+      setSelectedToken(tokens[0])
+    }
+  }, [address])
 
   const { chains, chain } = useNetwork()
   // Check if the user is in the correct network
