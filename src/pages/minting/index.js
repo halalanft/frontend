@@ -60,105 +60,110 @@ export default function MintingPage() {
         height: '100%',
         background: 'linear-gradient(180deg, #fff 30%, #fad02c 70%)',
       }}
+      p={{ md: 6 }}
     >
       {!isMounted ? <LoadingLayer /> : <></>}
-      <Tabs
-        index={activeTab - 1}
-        onChange={(index) => setActiveTab(index + 1)}
-        isLazy
-        lazyBehavior="keepMounted"
-        display={isMounted ? 'block' : 'none'}
-        p={8}
+      <Flex
+        direction={['column', 'row']}
+        align={['left', 'center']}
+        justify={['center', 'space-around']}
+        p={6}
+        gap={6}
       >
-        <TabList>
-          <Flex justifyContent="space-around" w="full">
-            <Tab isDisabled={activeTab !== 1}>
-              <Stack
-                direction="row"
-                align="center"
-                spacing={4}
-                cursor="default"
-              >
-                <Flex
-                  bg="#374C8C"
-                  w={8}
-                  h={8}
-                  textColor="white"
-                  justify="center"
-                  align="center"
-                  borderRadius="lg"
-                >
-                  1
-                </Flex>
-                <Stack direction="column" spacing={0} textAlign="left">
-                  <Text fontWeight="semibold">CONNECT</Text>
-                  <Text>wallet and check network</Text>
-                </Stack>
-              </Stack>
-            </Tab>
-            <Tab isDisabled={activeTab !== 2}>
-              <Stack
-                direction="row"
-                align="center"
-                spacing={4}
-                cursor="default"
-              >
-                <Flex
-                  bg="#374C8C"
-                  w={8}
-                  h={8}
-                  textColor="white"
-                  justify="center"
-                  align="center"
-                  borderRadius="lg"
-                >
-                  2
-                </Flex>
-                <Stack direction="column" spacing={0} textAlign="left">
-                  <Text fontWeight="semibold">CHECKOUT</Text>
-                  <Text>quantity and mint</Text>
-                </Stack>
-              </Stack>
-            </Tab>
-            <Tab isDisabled={activeTab !== 3}>
-              <Stack
-                direction="row"
-                align="center"
-                spacing={4}
-                cursor="default"
-              >
-                <Flex
-                  bg="#374C8C"
-                  w={8}
-                  h={8}
-                  textColor="white"
-                  justify="center"
-                  align="center"
-                  borderRadius="lg"
-                >
-                  3
-                </Flex>
-                <Stack direction="column" spacing={0} textAlign="left">
-                  <Text fontWeight="semibold">REVIEW</Text>
-                  <Text>receipt</Text>
-                </Stack>
-              </Stack>
-            </Tab>
+        <Stack
+          direction="row"
+          align="center"
+          spacing={4}
+          borderBottom={['2px', '0px']}
+          borderColor="gray.100"
+          cursor="default"
+        >
+          <Flex
+            bgColor="#374CBC"
+            w={8}
+            h={8}
+            textColor="white"
+            justify="center"
+            align="center"
+            borderRadius="lg"
+          >
+            1
           </Flex>
-        </TabList>
+          <Stack direction="column" spacing={0}>
+            <Text fontWeight="semibold">CONNECT</Text>
+            <Text>wallet and check network</Text>
+            {activeTab === 1 ? (
+              <Box h="1px" w="full" bgColor="#374CBC"></Box>
+            ) : null}
+          </Stack>
+        </Stack>
 
-        <TabPanels>
-          <TabPanel>{isMounted && activeTab === 1 && <HeroSection />}</TabPanel>
-          <TabPanel>
-            {isMounted && activeTab === 2 && <PurchaseSection />}
-          </TabPanel>
-          <TabPanel>
-            {isMounted && activeTab === 3 && tokenBought.length > 0 && (
-              <ResultSection tokenBought={tokenBought} />
-            )}
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+        <Stack
+          direction="row"
+          align="center"
+          spacing={4}
+          borderBottom={['2px', '0px']}
+          borderColor="gray.100"
+          cursor="default"
+        >
+          <Flex
+            bgColor="#374CBC"
+            w={8}
+            h={8}
+            textColor="white"
+            justify="center"
+            align="center"
+            borderRadius="lg"
+          >
+            2
+          </Flex>
+          <Stack direction="column" spacing={0}>
+            <Text fontWeight="semibold">CHECKOUT</Text>
+            <Text>quantity and mint</Text>
+            {activeTab === 2 ? (
+              <Box h="1px" w="full" bgColor="#374CBC"></Box>
+            ) : null}
+          </Stack>
+        </Stack>
+        <Stack
+          direction="row"
+          align="center"
+          spacing={4}
+          borderBottom={['2px', '0px']}
+          borderColor="gray.100"
+          cursor="default"
+        >
+          <Flex
+            bgColor="#374CBC"
+            w={8}
+            h={8}
+            textColor="white"
+            justify="center"
+            align="center"
+            borderRadius="lg"
+          >
+            3
+          </Flex>
+          <Stack direction="column" spacing={0}>
+            <Text fontWeight="semibold">REVIEW</Text>
+            <Text>receipt</Text>
+            {activeTab === 3 ? (
+              <Box h="1px" w="full" bgColor="#374CBC"></Box>
+            ) : null}
+          </Stack>
+        </Stack>
+      </Flex>
+      <Show above="sm">
+        <Box h="1px" w="full" bgColor="gray.100"></Box>
+      </Show>
+
+      {isMounted && activeTab === 1 && <HeroSection />}
+
+      {isMounted && activeTab === 2 && <PurchaseSection />}
+
+      {isMounted && activeTab === 3 && tokenBought.length > 0 && (
+        <ResultSection tokenBought={tokenBought} />
+      )}
     </Box>
   )
 }

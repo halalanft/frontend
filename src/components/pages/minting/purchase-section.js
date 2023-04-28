@@ -120,6 +120,8 @@ export default function PurchaseSection() {
       shadow="xl"
       py={8}
       borderTopRadius={{ md: '3xl' }}
+      p={6}
+      w="full"
     >
       <Flex
         direction={{ base: 'column', md: 'column' }}

@@ -2,7 +2,7 @@ import { Box, Button, Flex, Image, Text, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
 import hero from '~/assets/images/concept_art_2.png'
 
-const Hero = () => {
+export default function Hero() {
   return (
     <Box bg="white">
       <Box
@@ -91,5 +91,3 @@ const Hero = () => {
     </Box>
   )
 }
-
-export default Hero

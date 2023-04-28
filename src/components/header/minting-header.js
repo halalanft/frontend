@@ -44,7 +44,7 @@ export default function MintingHeader() {
         alignItems="center"
         justifyContent="space-between"
         bg="white"
-        px={8}
+        px={{ base: 6, md: 8 }}
         py={6}
         position={['static', 'static', 'sticky']}
         top={0}
@@ -57,7 +57,7 @@ export default function MintingHeader() {
             href="/"
             _hover={{ textDecoration: 'none' }}
           >
-            <Image src={logo.src} alt="Logo" width={60} />
+            <Image src={logo.src} alt="Logo" width={180} />
           </Link>
         </Flex>
         <Show above="sm">

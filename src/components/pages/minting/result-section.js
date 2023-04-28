@@ -127,7 +127,7 @@ const DetailsNFTSelected = ({ data }) => {
       <Flex
         direction={{ base: 'column', md: 'row' }}
         align={['center', 'start']}
-        justify={['center', 'start']}
+        justify="space-evenly"
         gap={{ md: '6', lg: '0' }}
       >
         <Box>
@@ -158,7 +158,7 @@ const DetailsNFTSelected = ({ data }) => {
           <Hide above="sm">
             <Box width="full">
               <TableContainer>
-                <Table variant="simple" size="sm">
+                <Table variant="simple" size="sm" width="full">
                   <Thead bgColor="#374C8C">
                     <Tr>
                       <Th colSpan={3} p={4} borderTopRadius="lg">
@@ -192,8 +192,8 @@ const DetailsNFTSelected = ({ data }) => {
 
           {/* Table Desktop */}
           <Show above="md">
-            <TableContainer maxWidth="100%">
-              <Table>
+            <TableContainer width="full" maxWidth="100%">
+              <Table width="full" size="lg">
                 <Thead bg="#374C8C">
                   <Tr>
                     <Th colSpan={4} p={4} borderTopRadius="lg">
