@@ -38,7 +38,7 @@ export default function AttributesSection({ selectedToken, setAttrLoaded }) {
         {dataAttributes.map(({ trait_type, value }) => (
           <Box bg="white" shadow="md" borderRadius="lg" p={4} key={trait_type}>
             <Flex
-              direction="row"
+              direction={{ base: 'row', md: 'column', lg: 'row' }}
               align="center"
               justify="space-between"
               gap={4}

@@ -139,12 +139,12 @@ export default function Dashboard() {
               overflowX="auto"
               whiteSpace="nowrap"
             >
-              {/* <MyCollectionSection
+              <MyCollectionSection
                 tokens={tokens}
                 setSelectedToken={setSelectedToken}
                 imagesLoaded={imagesLoaded}
                 setImagesLoaded={setImagesLoaded}
-              /> */}
+              />
             </Flex>
 
             <Stack

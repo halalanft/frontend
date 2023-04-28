@@ -25,7 +25,7 @@ export default function MyCollectionSection({
         overflowY="hidden"
         maxWidth="100%"
         whiteSpace="nowrap"
-        w="60%"
+        w="100%"
       >
         {tokens.map((tokenId, index) => (
           <Box
