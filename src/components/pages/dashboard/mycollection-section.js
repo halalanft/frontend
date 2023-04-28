@@ -18,7 +18,6 @@ export default function MyCollectionSection({
       <Box bg="white" w="100%" h="2px" my={4}></Box>
       {/* Image */}
       <Flex
-        className="my-collection"
         direction="row"
         align="center"
         gap={6}
@@ -26,6 +25,7 @@ export default function MyCollectionSection({
         overflowY="hidden"
         maxWidth="100%"
         whiteSpace="nowrap"
+        w="60%"
       >
         {tokens.map((tokenId, index) => (
           <Box

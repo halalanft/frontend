@@ -5,9 +5,7 @@ import { Sidebar } from '../pages/dashboard'
 
 export default function DashboardLayout({ children }) {
   return (
-    <div
-      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
-    >
+    <div>
       <DashboardHeader />
       <Flex direction="column" flex="1">
         <Grid

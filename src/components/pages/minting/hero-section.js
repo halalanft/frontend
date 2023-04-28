@@ -38,7 +38,7 @@ export default function HeroSection() {
       </Text>
 
       {!!isWrongNetwork && isMounted ? (
-        <Text align="center" mb={8}>
+        <Text align="center" px={6} mb={8}>
           Connect your Metamask wallet and make sure you are in the right
           network
         </Text>

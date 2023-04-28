@@ -1,8 +1,8 @@
 import {
   Box,
-  Link as ChakraLink,
   Collapse,
   Flex,
+  Link as ChakraLink,
   HStack,
   VStack,
   useDisclosure,
@@ -14,11 +14,6 @@ import { Link as ScrollLink } from 'react-scroll'
 import logo from '~/assets/images/fix.png'
 
 export default function LandingHeader() {
-  const menuItemProps = {
-    color: 'rgba(23, 23, 23, 0.68)',
-    _hover: { color: '#FAD02C' },
-  }
-
   const { isOpen, onToggle } = useDisclosure()
 
   return (
@@ -34,41 +29,67 @@ export default function LandingHeader() {
       top={0}
     >
       <Box>
-        <Image src={logo} alt="Logo" width={200} />
+        <Image src={logo} alt="Logo" width="180" />
       </Box>
       {/* menu */}
       <HStack spacing={8} display={{ base: 'none', md: 'none', lg: 'flex' }}>
-        <ScrollLink to="about" smooth={true} duration={500}>
-          <ChakraLink {...menuItemProps}>About</ChakraLink>
-        </ScrollLink>
-
-        <ScrollLink to="why us" smooth={true} duration={500}>
-          <ChakraLink {...menuItemProps}>Why Us</ChakraLink>
-        </ScrollLink>
-
-        <ScrollLink to="concept art" smooth={true} duration={500}>
-          <ChakraLink {...menuItemProps}>Concept Art</ChakraLink>
-        </ScrollLink>
-
-        <ScrollLink to="team" smooth={true} duration={500}>
-          <ChakraLink {...menuItemProps}>Team</ChakraLink>
-        </ScrollLink>
-
-        <ScrollLink to="roadmap" smooth={true} duration={500}>
-          <ChakraLink {...menuItemProps}>Roadmap</ChakraLink>
-        </ScrollLink>
-
-        <ScrollLink to="community" smooth={true} duration={500}>
-          <ChakraLink {...menuItemProps}>Community</ChakraLink>
-        </ScrollLink>
-
         <ScrollLink
-          to="https://halalanft-ecosystem.gitbook.io/"
+          className="nav-item"
+          to="about"
           smooth={true}
           duration={500}
         >
-          <ChakraLink {...menuItemProps}>Gitbook</ChakraLink>
+          About
         </ScrollLink>
+
+        <ScrollLink
+          className="nav-item"
+          to="why us"
+          smooth={true}
+          duration={500}
+        >
+          Why Us
+        </ScrollLink>
+
+        <ScrollLink
+          className="nav-item"
+          to="concept art"
+          smooth={true}
+          duration={500}
+        >
+          Concept Art
+        </ScrollLink>
+
+        <ScrollLink className="nav-item" to="team" smooth={true} duration={500}>
+          Team
+        </ScrollLink>
+
+        <ScrollLink
+          className="nav-item"
+          to="roadmap"
+          smooth={true}
+          duration={500}
+        >
+          Roadmap
+        </ScrollLink>
+
+        <ScrollLink
+          className="nav-item"
+          to="community"
+          smooth={true}
+          duration={500}
+        >
+          Community
+        </ScrollLink>
+
+        <ChakraLink
+          isExternal
+          className="nav-item"
+          href="https://halalanft-ecosystem.gitbook.io/"
+          _hover={{ textDecoration: 'none' }}
+        >
+          Gitbook
+        </ChakraLink>
         {/* Add other ScrollLink components here */}
       </HStack>
 
@@ -101,31 +122,62 @@ export default function LandingHeader() {
           color="white"
           p={6}
         >
-          <ScrollLink to="about" smooth={true} duration={500}>
-            <ChakraLink _hover={{ color: '#374C8C' }}>About</ChakraLink>
-          </ScrollLink>
-          <ScrollLink to="why us" smooth={true} duration={500}>
-            <ChakraLink _hover={{ color: '#374C8C' }}>Why Us</ChakraLink>
-          </ScrollLink>
-          <ScrollLink to="concept art" smooth={true} duration={500}>
-            <ChakraLink _hover={{ color: '#374C8C' }}>Concept Art</ChakraLink>
-          </ScrollLink>
-          <ScrollLink to="team" smooth={true} duration={500}>
-            <ChakraLink _hover={{ color: '#374C8C' }}>Team</ChakraLink>
-          </ScrollLink>
-          <ScrollLink to="roadmap" smooth={true} duration={500}>
-            <ChakraLink _hover={{ color: '#374C8C' }}>Roadmap</ChakraLink>
-          </ScrollLink>
-          <ScrollLink to="community" smooth={true} duration={500}>
-            <ChakraLink _hover={{ color: '#374C8C' }}>Community</ChakraLink>
-          </ScrollLink>
           <ScrollLink
-            to="https://halalanft-ecosystem.gitbook.io/"
+            className="nav-item"
+            to="about"
             smooth={true}
             duration={500}
           >
-            <ChakraLink _hover={{ color: '#374C8C' }}>Gitbook</ChakraLink>
+            About
           </ScrollLink>
+          <ScrollLink
+            className="nav-item"
+            to="why us"
+            smooth={true}
+            duration={500}
+          >
+            Why Us
+          </ScrollLink>
+          <ScrollLink
+            className="nav-item"
+            to="concept art"
+            smooth={true}
+            duration={500}
+          >
+            Concept Art
+          </ScrollLink>
+          <ScrollLink
+            className="nav-item"
+            to="team"
+            smooth={true}
+            duration={500}
+          >
+            Team
+          </ScrollLink>
+          <ScrollLink
+            className="nav-item"
+            to="roadmap"
+            smooth={true}
+            duration={500}
+          >
+            Roadmap
+          </ScrollLink>
+          <ScrollLink
+            className="nav-item"
+            to="community"
+            smooth={true}
+            duration={500}
+          >
+            Community
+          </ScrollLink>
+          <ChakraLink
+            isExternal
+            className="nav-item"
+            href="https://halalanft-ecosystem.gitbook.io/"
+            _hover={{ textDecoration: 'none' }}
+          >
+            Gitbook
+          </ChakraLink>
         </VStack>
       </Collapse>
     </Flex>
