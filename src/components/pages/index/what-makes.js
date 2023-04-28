@@ -6,7 +6,7 @@ import security from '~/assets/images/security.svg'
 import stream from '~/assets/images/stream.svg'
 import { CardSpecial } from '~/components/card'
 
-const WhatMakes = () => {
+export default function WhatMakes() {
   const SpecialCard = [
     {
       icon: halal,
@@ -52,8 +52,8 @@ const WhatMakes = () => {
       >
         What makes{' '}
         <Text as="span" color="#FAD02C">
-          Halalanft{' '}
-        </Text>
+          Halalanft
+        </Text>{' '}
         special
       </Text>
       <Text fontStyle="italic" mb={16} color="#374C8C" w={{ lg: '1/2' }}>
@@ -85,5 +85,3 @@ const WhatMakes = () => {
     </Box>
   )
 }
-
-export default WhatMakes

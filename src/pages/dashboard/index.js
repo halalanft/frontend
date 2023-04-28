@@ -120,13 +120,8 @@ export default function Dashboard() {
         <LoadingLayer />
       ) : !isConnected ? (
         <>
-          <Flex
-            direction="column"
-            mt={8}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text fontSize="lg" fontWeight="bold" mb={4}>
+          <Flex direction="column" mt={8} justify="center" align="center" p={6}>
+            <Text fontSize="lg" fontWeight="bold" mb={4} align="center">
               Connect your Metamask wallet and make sure you are in the right
               network
             </Text>
@@ -135,36 +130,43 @@ export default function Dashboard() {
         </>
       ) : totalNFT > 0 ? (
         <>
-          <Box px={4} maxWidth={'100%'} bg="white" display="block">
-            <GridItem borderRadius="lg" bg="yellow.200">
+          <Box p={4} maxWidth={'100%'} bg="white">
+            <Flex
+              bg="yellow.200"
+              borderRadius="lg"
+              direction="row"
+              maxWidth="100%"
+              overflowX="auto"
+              whiteSpace="nowrap"
+            >
               <MyCollectionSection
                 tokens={tokens}
                 setSelectedToken={setSelectedToken}
                 imagesLoaded={imagesLoaded}
                 setImagesLoaded={setImagesLoaded}
               />
-            </GridItem>
+            </Flex>
 
             <Stack
-              direction={['column', 'row']}
+              direction={['column-reverse', 'row']}
               alignItems="stretch"
               justifyContent="space-between"
               my={4}
               spacing={{ base: 4, md: 4 }}
             >
-              <Box borderRadius="lg" bg="yellow.200">
+              <Box w="full" borderRadius="lg" bg="yellow.200">
                 {tokens.length > 0 && selectedToken ? (
-                  <FeatureSection selectedToken={selectedToken} />
+                  <AttributesSection
+                    selectedToken={selectedToken}
+                    setAttrLoaded={setAttrLoaded}
+                  />
                 ) : (
                   <></>
                 )}
               </Box>
               <Box borderRadius="lg" bg="yellow.200">
                 {tokens.length > 0 && selectedToken ? (
-                  <AttributesSection
-                    selectedToken={selectedToken}
-                    setAttrLoaded={setAttrLoaded}
-                  />
+                  <FeatureSection selectedToken={selectedToken} />
                 ) : (
                   <></>
                 )}

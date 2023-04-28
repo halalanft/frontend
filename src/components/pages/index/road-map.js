@@ -12,7 +12,7 @@ import {
 import divide from '~/assets/images/divide.png'
 import roadmapBg from '~/assets/images/roadmap.png'
 
-const RoadMap = () => {
+export default function RoadMap() {
   return (
     <Box
       id="roadmap"
@@ -160,5 +160,3 @@ const RoadMap = () => {
     </Box>
   )
 }
-
-export default RoadMap

@@ -6,7 +6,7 @@ import mirzam from '~/assets/images/mirzam.png'
 import rama from '~/assets/images/rama.png'
 import { CardTeam } from '~/components/card'
 
-const OurTeam = () => {
+export default function OurTeam() {
   const ourTeam = [
     {
       image: fida,
@@ -87,5 +87,3 @@ const OurTeam = () => {
     </Box>
   )
 }
-
-export default OurTeam

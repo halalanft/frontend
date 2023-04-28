@@ -8,6 +8,7 @@ export default function FeatureSection({ selectedToken }) {
         src={ipfsImageLoader(`${selectedToken}.png`)}
         alt={`Token ${selectedToken}`}
         borderRadius="lg"
+        w={{ base: '100%', md: '28rem' }}
       />
     </Box>
   )
