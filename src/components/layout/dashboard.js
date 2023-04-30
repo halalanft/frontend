@@ -13,7 +13,6 @@ export default function DashboardLayout({ children }) {
             base: 'repeat(1, 1fr)',
             md: 'repeat(5, 1fr)',
           }}
-          gap={{ base: '2', lg: '8' }}
           height={'full'}
         >
           <GridItem colSpan={{ base: 4, md: 1 }}>

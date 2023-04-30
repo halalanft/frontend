@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack, Text, Grid } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -143,6 +143,7 @@ export default function Dashboard() {
               maxWidth="100%"
               overflowX="auto"
               whiteSpace="nowrap"
+              mb={4}
             >
               <MyCollectionSection
                 tokens={tokens}
@@ -151,16 +152,11 @@ export default function Dashboard() {
                 setImagesLoaded={setImagesLoaded}
               />
             </Flex>
-
-            <Stack
-              direction={['column-reverse', 'row']}
-              alignItems="stretch"
-              justifyContent="space-between"
-              my={4}
-              spacing={{ base: 4, md: 4 }}
-              display={!attrLoaded ? 'none' : 'block'}
+            <Grid
+              gap={4}
+              templateColumns={{ md: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }}
             >
-              <Box w="full" borderRadius="lg" bg="yellow.200">
+              <Box borderRadius="lg" bg="yellow.200">
                 {tokens.length > 0 && selectedToken ? (
                   <AttributesSection
                     selectedToken={selectedToken}
@@ -177,7 +173,7 @@ export default function Dashboard() {
                   <></>
                 )}
               </Box>
-            </Stack>
+            </Grid>
           </Box>
           {!attrLoaded && <LoadingLayer />}
         </>
