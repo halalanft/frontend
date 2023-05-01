@@ -1,33 +1,14 @@
-import { Center, Image, Text } from '@chakra-ui/react'
-import logo from '~/assets/images/fix.png'
+import { Center, Image, Text, Spinner } from '@chakra-ui/react'
 
-export const LoadingLayer = ({
-  text = 'Loading...',
-  spinnerSize = 'lg',
-  spinnerColor = 'blue.500',
-  zIndex = 1,
-  display = 'flex',
-  ...props
-}) => {
+export const LoadingLayer = () => {
   return (
-    <Center
-      minHeight="80vh"
-      flexDirection="column"
-      zIndex={zIndex}
-      display={display}
-      {...props}
-    >
-      <Text fontSize="lg" fontWeight="bold" mt={4}>
-        {text}
-      </Text>
-      <Image
-        src={logo.src}
-        alt="Loading..."
-        boxSize={spinnerSize}
-        className="rotate"
-        layout="fill"
-        borderRadius="sm"
-        width={320}
+    <Center minHeight="80vh" display="flex" flexDirection="column">
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="#374C8C"
+        size="xl"
       />
     </Center>
   )
