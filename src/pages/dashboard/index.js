@@ -1,10 +1,9 @@
-import { Box, Button, Flex, GridItem, Text, Stack } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack, Text, Grid } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractRead, useNetwork } from 'wagmi'
 import DashboardLayout from '~/components/layout/dashboard'
-import DeFiLayout from '~/components/layout/defi'
 import {
   AttributesSection,
   FeatureSection,
@@ -96,13 +95,19 @@ export default function Dashboard() {
     }
   }, [address])
 
-  const [selectedToken, setSelectedToken] = useState(0)
+  const [selectedToken, setSelectedToken] = useState(null)
   const [attrLoaded, setAttrLoaded] = useState(false)
   useEffect(() => {
-    if (tokens.length > 0 && (selectedToken === 0 || address)) {
+    if (tokens.length > 0 && selectedToken === null) {
       setSelectedToken(tokens[0])
     }
-  }, [tokens, selectedToken, address])
+  }, [tokens, selectedToken])
+
+  useEffect(() => {
+    if (tokens.length > 0 && address) {
+      setSelectedToken(tokens[0])
+    }
+  }, [tokens, address])
 
   const { chains, chain } = useNetwork()
   // Check if the user is in the correct network
@@ -138,6 +143,7 @@ export default function Dashboard() {
               maxWidth="100%"
               overflowX="auto"
               whiteSpace="nowrap"
+              mb={4}
             >
               <MyCollectionSection
                 tokens={tokens}
@@ -146,15 +152,11 @@ export default function Dashboard() {
                 setImagesLoaded={setImagesLoaded}
               />
             </Flex>
-
-            <Stack
-              direction={['column-reverse', 'row']}
-              alignItems="stretch"
-              justifyContent="space-between"
-              my={4}
-              spacing={{ base: 4, md: 4 }}
+            <Grid
+              gap={4}
+              templateColumns={{ md: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }}
             >
-              <Box w="full" borderRadius="lg" bg="yellow.200">
+              <Box borderRadius="lg" bg="yellow.200">
                 {tokens.length > 0 && selectedToken ? (
                   <AttributesSection
                     selectedToken={selectedToken}
@@ -171,7 +173,7 @@ export default function Dashboard() {
                   <></>
                 )}
               </Box>
-            </Stack>
+            </Grid>
           </Box>
           {!attrLoaded && <LoadingLayer />}
         </>

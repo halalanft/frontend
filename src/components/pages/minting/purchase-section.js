@@ -14,6 +14,16 @@ import {
   SliderThumb,
   SliderTrack,
   Text,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  OrderedList,
+  ListItem,
 } from '@chakra-ui/react'
 import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
@@ -25,7 +35,7 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from 'wagmi'
-import { ErrorPopup } from '~/components/modal'
+import { ErrorPopup, TermCondition } from '~/components/modal'
 import HalalanftABI from '~/contracts/Halalanft.json'
 import ERC20ABI from '~/contracts/erc20ABI.json'
 import { useIsMounted } from '~/hooks/useIsMounted'
@@ -39,6 +49,7 @@ export default function PurchaseSection() {
   const [checkedItems, setCheckedItems] = useState(false)
   const isMounted = useIsMounted()
   const { address, isConnected } = useAccount()
+  const [isModalOpened, setIsModalOpened] = useState(false)
 
   const { data: currentPrice } = useContractRead({
     address: Halalanft,
@@ -112,8 +123,7 @@ export default function PurchaseSection() {
           : setApproved(false)
       },
     })
-  const debouncedAllowance = useDebounce(usdcAllowance, 500)
-
+  const debouncedAllowance = useDebounce(usdcAllowance || 0, 500)
   return (
     <Box
       bg="white"
@@ -182,7 +192,7 @@ export default function PurchaseSection() {
                 colorScheme="facebook"
                 onChange={(e) => setCheckedItems(e.target.checked)}
               >
-                <Link href="https://halalanft-ecosystem.gitbook.io/halalanft-whitepaper-bahasa/">
+                <Link onClick={() => setIsModalOpened(true)}>
                   Agree to terms and conditions.
                 </Link>
               </Checkbox>
@@ -228,29 +238,11 @@ export default function PurchaseSection() {
                   </Text>
                 </Box>
               )}
-              {/* Benefit */}
-              <Box
-                borderRadius="md"
-                p={{ md: '6' }}
-                bgColor={{ md: '#FAD02C' }}
-                display="grid"
-                justifyContent="center"
-                gap={4}
-                my={{ base: '4', md: '0' }}
-              >
-                <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon />
-                  <Text>3,000 Halalanft</Text>
-                </Box>
-                <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon />
-                  <Text>Specialized content in Discord server</Text>
-                </Box>
-                <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon />
-                  <Text>Access to future airdrops</Text>
-                </Box>
-              </Box>
+              {/* Term and Conditions */}
+              <TermCondition
+                isOpen={isModalOpened}
+                onClose={() => setIsModalOpened(false)}
+              />
             </Flex>
           </Box>
         </Box>
