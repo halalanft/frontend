@@ -1,0 +1,89 @@
+name: Develop - Halalanft
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+    tags:
+      - '*'
+  pull_request:
+  
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Check (deny warning, fmt, clippy)
+    runs-on: ubuntu-latest
+    env:
+      RUSTFLAGS: -D warnings
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+          components: rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: check
+          args: --all --manifest-path frontend/apps/Cargo.toml
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all --manifest-path frontend/apps/Cargo.toml -- --check
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v1
+      - name: make nightly the default
+        run: rustup default nightly
+      - name: add wasm to cargo
+        run: rustup target add wasm32-unknown-unknown
+      - name: install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install Vercel CLI
+        run: npm install --location=global vercel@28.0.0
+      - name: install npm deps
+        run: npm ci
+        working-directory: "frontend/apps"
+      - name: build frontend
+        run: npm run build
+        working-directory: "frontend/apps"
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: develop
+          path: frontend/apps/devhtml
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: develop
+          path: frontend/apps/devhtml
+      - name: Deploy static content to Vercel
+        run: |
+          productionFlag="--prod"
+          if [[ ${GITHUB_REF} == "refs/heads/master" ]]; then
+            export VERCEL_PROJECT_ID=${PRODUCTION_PROJECT_ID} 
+          fi
+          if [[ ${GITHUB_REF} == "refs/heads/develop" ]]; then
+            export VERCEL_PROJECT_ID=${DEVELOP_PROJECT_ID} 
+          fi
+          ls devhtml/js
+          vercel devhtml --token ${VERCEL_TOKEN} ${productionFlag}
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          PRODUCTION_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          DEVELOP_PROJECT_ID: ${{ secrets.DEVELOP_VERCEL_PROJECT_ID }}
+        working-directory: "frontend/apps"
