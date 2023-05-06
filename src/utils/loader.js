@@ -3,5 +3,5 @@ export const ipfsImageLoader = (src) => {
 }
 
 export const ipfsDetailsLoader = (selected) => {
-  return `https://bafybeift6cn45b2zkinj7rgku7pa724b2swvc2g2s5qk4puwkamytwfu7y.ipfs.nftstorage.link/${selected}.json`
+  return `https://bafybeiecprfgyddv2o4ro2fxgyrsd6iuizroratl3gi27etgmtr636ouay.ipfs.nftstorage.link/${selected}.json`
 }
