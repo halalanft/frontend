@@ -1,17 +1,13 @@
-<<<<<<< HEAD
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
-=======
-import { Box, Button, Flex, Stack, Text, Grid } from '@chakra-ui/react'
->>>>>>> a58f1f2a303e8f402973d7bc38350b5a1e8a1cae
+import { Box, Button, Flex, Grid, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractRead, useNetwork } from 'wagmi'
 import DashboardLayout from '~/components/layout/dashboard'
 import {
-    AttributesSection,
-    FeatureSection,
-    MyCollectionSection,
+  AttributesSection,
+  FeatureSection,
+  MyCollectionSection,
 } from '~/components/pages/dashboard'
 import HalalanftABI from '~/contracts/Halalanft.json'
 import { useIsMounted } from '~/hooks/useIsMounted'
