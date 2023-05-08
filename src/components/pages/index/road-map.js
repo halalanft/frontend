@@ -87,7 +87,6 @@ export default function RoadMap() {
         >
           <GridItem textAlign="end">
             <List styleType="decimal" pl={4} textAlign="start">
-              <ListItem>NFT Market Place</ListItem>
               <ListItem>DAO</ListItem>
               <ListItem>Halalan Academy (Bahasa)</ListItem>
               <ListItem>Blockchain Validator: Avalanche</ListItem>

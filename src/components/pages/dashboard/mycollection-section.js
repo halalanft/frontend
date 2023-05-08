@@ -35,6 +35,10 @@ export default function MyCollectionSection({
             key={`Halalanft #${tokenId}`}
             onClick={() => setSelectedToken(tokenId)}
             cursor="pointer"
+            transition="all 0.2s"
+            _hover={{
+              shadow: 'xl',
+            }}
           >
             <Skeleton isLoaded={imagesLoaded[tokenId]}>
               <Image

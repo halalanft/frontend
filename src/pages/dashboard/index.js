@@ -179,13 +179,14 @@ export default function Dashboard() {
         </>
       ) : (
         <Box textAlign="center" mt={8}>
-          <Text fontSize="lg" fontWeight="bold" mb={4}>
+          <Text fontSize="lg" fontWeight="bold" px={6} py={4} mb={4}>
             You do not have any NFTs, please purchase in the minting section
             below
           </Text>
           <Button
-            bg="#FAD02C"
+            bg="#374C8C"
             textColor="white"
+            w="100%"
             borderWidth={2}
             borderRadius="lg"
             borderColor="#374C8C"
@@ -200,7 +201,7 @@ export default function Dashboard() {
             }}
             onClick={handleMintingRedirect}
           >
-            Mint Now!!
+            Mint Now!
           </Button>
         </Box>
       )}
