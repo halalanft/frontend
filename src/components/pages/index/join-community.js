@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const JoinCommunity = () => {
+export default function JoinCommunity() {
   return (
     <Box id="community" px={8} py={16} bg="#F2F2F2" w="full">
       <Text
@@ -98,5 +98,3 @@ const JoinCommunity = () => {
     </Box>
   )
 }
-
-export default JoinCommunity

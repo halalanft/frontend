@@ -1,6 +1,13 @@
 import AdminLayout from './admin'
+import DashboardLayout from './dashboard'
 import DeFiLayout from './defi'
-import MintingLayout from './minting'
 import LandingLayout from './landing'
+import MintingLayout from './minting'
 
-export { AdminLayout, MintingLayout, DeFiLayout, LandingLayout }
+export {
+  AdminLayout,
+  DashboardLayout,
+  DeFiLayout,
+  LandingLayout,
+  MintingLayout,
+}

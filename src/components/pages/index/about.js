@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Image, Text } from '@chakra-ui/react'
 import logo from '~/assets/images/fix.png'
 
-const About = () => {
+export default function About() {
   return (
     <Flex
       id="about"
@@ -21,7 +21,7 @@ const About = () => {
           color="#171717"
           opacity={0.68}
         >
-          {'About '}
+          About{' '}
           <Text as="span" color="#FAD02C">
             Halalanft
           </Text>
@@ -43,5 +43,3 @@ const About = () => {
     </Flex>
   )
 }
-
-export default About

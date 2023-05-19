@@ -103,3 +103,9 @@ body {
   color: white;
   border: 1px solid var(--chakra-colors-blue-500);
 }
+
+.nav-item:hover {
+  cursor: pointer;
+  color: #fad02c;
+  text-decoration: none;
+}

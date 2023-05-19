@@ -29,6 +29,21 @@ export default function Sidebar() {
   ]
   const navAdmin = [
     {
+      icon: <FaHome />,
+      label: 'Home',
+      route: '/',
+    },
+    {
+      icon: <FaCube />,
+      label: 'My NFT',
+      route: '/dashboard',
+    },
+    {
+      icon: <FaTag />,
+      label: 'Buy NFT',
+      route: '/minting',
+    },
+    {
       icon: <VscLock />,
       label: 'All Units',
       route: '/admin',
@@ -50,41 +65,39 @@ export default function Sidebar() {
       maxHeight="full"
     >
       <Stack p={4} spacing={8}>
-        {navItem.map(({ icon, label, route }) => (
-          <Link href={route} key={icon}>
-            <Flex
-              direction="row"
-              align="center"
-              gap={4}
-              key={label}
-              color="#171717"
-            >
-              {icon}
-              <Text fontSize="md" fontWeight="semibold" color="#171717">
-                {label}
-              </Text>
-            </Flex>
-          </Link>
-        ))}
-        {isMounted &&
-          isConnected &&
-          address === adminAddress &&
-          navAdmin.map(({ icon, label, route }) => (
-            <Link href={route} key={icon}>
-              <Flex
-                direction="row"
-                align="center"
-                gap={4}
-                key={label}
-                color="#171717"
-              >
-                {icon}
-                <Text fontSize="md" fontWeight="semibold" color="#171717">
-                  {label}
-                </Text>
-              </Flex>
-            </Link>
-          ))}
+        {isMounted && isConnected && address === adminAddress
+          ? navAdmin.map(({ icon, label, route }) => (
+              <Link href={route} key={icon}>
+                <Flex
+                  direction="row"
+                  align="center"
+                  gap={4}
+                  key={label}
+                  color="#171717"
+                >
+                  {icon}
+                  <Text fontSize="md" fontWeight="semibold" color="#171717">
+                    {label}
+                  </Text>
+                </Flex>
+              </Link>
+            ))
+          : navItem.map(({ icon, label, route }) => (
+              <Link href={route} key={icon}>
+                <Flex
+                  direction="row"
+                  align="center"
+                  gap={4}
+                  key={label}
+                  color="#171717"
+                >
+                  {icon}
+                  <Text fontSize="md" fontWeight="semibold" color="#171717">
+                    {label}
+                  </Text>
+                </Flex>
+              </Link>
+            ))}
       </Stack>
     </Box>
   )
