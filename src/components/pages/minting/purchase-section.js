@@ -1,4 +1,3 @@
-import { CheckIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
@@ -15,7 +14,6 @@ import {
   SliderTrack,
   Text,
 } from '@chakra-ui/react'
-import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import {
   useAccount,
@@ -25,7 +23,7 @@ import {
   usePrepareContractWrite,
   useWaitForTransaction,
 } from 'wagmi'
-import { ErrorPopup } from '~/components/modal'
+import { ErrorPopup, TermCondition } from '~/components/modal'
 import HalalanftABI from '~/contracts/Halalanft.json'
 import ERC20ABI from '~/contracts/erc20ABI.json'
 import { useIsMounted } from '~/hooks/useIsMounted'
@@ -39,6 +37,7 @@ export default function PurchaseSection() {
   const [checkedItems, setCheckedItems] = useState(false)
   const isMounted = useIsMounted()
   const { address, isConnected } = useAccount()
+  const [isModalOpened, setIsModalOpened] = useState(false)
 
   const { data: currentPrice } = useContractRead({
     address: Halalanft,
@@ -65,16 +64,6 @@ export default function PurchaseSection() {
     watch: true,
   })
   const debouncedMinting = useDebounce(publicMinting, 500)
-
-  const { data: presaleAmount } = useContractRead({
-    address: Halalanft,
-    abi: HalalanftABI.abi,
-    enabled: !!isConnected,
-    functionName: 'getAux',
-    args: [address],
-    watch: true,
-  })
-  const debouncedPresaleAmount = useDebounce(presaleAmount?.toNumber(), 500)
 
   const [approved, setApproved] = useState(false)
 
@@ -113,7 +102,6 @@ export default function PurchaseSection() {
       },
     })
   const debouncedAllowance = useDebounce(usdcAllowance, 500)
-
   return (
     <Box
       bg="white"
@@ -121,6 +109,8 @@ export default function PurchaseSection() {
       shadow="xl"
       py={8}
       borderTopRadius={{ md: '3xl' }}
+      p={6}
+      w="full"
     >
       <Flex
         direction={{ base: 'column', md: 'column' }}
@@ -129,15 +119,7 @@ export default function PurchaseSection() {
         px={{ base: '0', md: '8', lg: '16' }}
       >
         <Box flex="1">
-          {debouncedPresaleAmount > 0 ? (
-            <PresaleHeader
-              isConnected
-              isChecked={Boolean(checkedItems)}
-              presaleAmount={debouncedPresaleAmount}
-              setSliderValue={setSliderValue}
-              setSliderFinalValue={setSliderFinalValue}
-            />
-          ) : (
+          {
             <PublicHeader
               isConnected
               debouncedMinting={debouncedMinting}
@@ -146,7 +128,7 @@ export default function PurchaseSection() {
               setSliderValue={setSliderValue}
               setSliderFinalValue={setSliderFinalValue}
             />
-          )}
+          }
           {/* Description */}
           <Box display="grid" gap={3}>
             <Divider />
@@ -180,7 +162,7 @@ export default function PurchaseSection() {
                 colorScheme="facebook"
                 onChange={(e) => setCheckedItems(e.target.checked)}
               >
-                <Link href="https://halalanft-ecosystem.gitbook.io/halalanft-whitepaper-bahasa/">
+                <Link onClick={() => setIsModalOpened(true)}>
                   Agree to terms and conditions.
                 </Link>
               </Checkbox>
@@ -196,25 +178,12 @@ export default function PurchaseSection() {
                   onErrorClose={() => setIsErrorOpened(false)}
                   refetchUsdcAllowance={refetchUsdcAllowance}
                 />
-              ) : debouncedPresaleAmount > 0 ? (
-                <PresaleButton
-                  finalAmount={sliderFinalValue}
-                  ether={ethers.utils.parseEther(
-                    (sliderFinalValue * itemPrice).toString()
-                  )}
-                  isConnected
-                  isChecked={Boolean(checkedItems)}
-                  isMounted={isMounted}
-                />
               ) : (
                 <PublicMintButton
                   isConnected
                   debouncedMinting={debouncedMinting}
                   isChecked={Boolean(checkedItems)}
                   finalAmount={sliderFinalValue}
-                  ether={ethers.utils.parseEther(
-                    (sliderFinalValue * itemPrice).toString()
-                  )}
                   isMounted={isMounted}
                 />
               )}
@@ -226,184 +195,16 @@ export default function PurchaseSection() {
                   </Text>
                 </Box>
               )}
-              {/* Benefit */}
-              <Box
-                borderRadius="md"
-                p={{ md: '6' }}
-                bgColor={{ md: '#FAD02C' }}
-                display="grid"
-                justifyContent="center"
-                gap={4}
-                my={{ base: '4', md: '0' }}
-              >
-                <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon />
-                  <Text>3,000 Halalanft</Text>
-                </Box>
-                <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon />
-                  <Text>Specialized content in Discord server</Text>
-                </Box>
-                <Box display="flex" alignItems="center" gap={4}>
-                  <CheckIcon />
-                  <Text>Access to future airdrops</Text>
-                </Box>
-              </Box>
+              {/* Term and Conditions */}
+              <TermCondition
+                isOpen={isModalOpened}
+                onClose={() => setIsModalOpened(false)}
+              />
             </Flex>
           </Box>
         </Box>
       </Flex>
     </Box>
-  )
-}
-
-const PresaleButton = ({ isMounted, isChecked, isConnected, finalAmount }) => {
-  const { address } = useAccount()
-
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    address: Halalanft,
-    abi: HalalanftABI.abi,
-    functionName: 'presale',
-    enabled: isMounted && !!isConnected && isChecked && finalAmount > 0,
-    args: [finalAmount],
-  })
-  const {
-    data: writeData,
-    error: writeError,
-    isError: isWriteError,
-    isLoading: isWriteLoading,
-    write: mintNFT,
-  } = useContractWrite(config)
-  const { error, isLoading, isError } = useWaitForTransaction({
-    hash: writeData?.hash,
-  })
-  return (
-    <>
-      <Hide above="sm">
-        <Box my={4}>
-          <Button
-            bg="#374C8C"
-            textColor="white"
-            w="100%"
-            px={4}
-            py={2}
-            borderRadius="lg"
-            my={4}
-            isDisabled={!(isChecked && isConnected)}
-            onClick={async () => mintNFT()}
-            _hover={{
-              background: 'white',
-              color: 'teal.500',
-              textColor: 'teal.500',
-              border: '1px',
-              borderColor: '#374C8C',
-            }}
-          >
-            Presale
-          </Button>
-        </Box>
-      </Hide>
-
-      <Show above="sm">
-        <Box my={8} display="flex" justifyContent="center" gap={6}>
-          <Button
-            bg="#374C8C"
-            textColor="white"
-            w="full"
-            px={4}
-            py={2}
-            isDisabled={!(isChecked && isConnected)}
-            onClick={async () => mintNFT()}
-            borderRadius="lg"
-            _hover={{
-              background: 'white',
-              color: '#FAD02C',
-              border: '1px',
-              borderColor: '#374C8C',
-            }}
-          >
-            Presale
-          </Button>
-        </Box>
-      </Show>
-    </>
-  )
-}
-
-const PresaleHeader = ({
-  sliderValue,
-  presaleAmount,
-  setSliderValue,
-  setSliderFinalValue,
-}) => {
-  return (
-    <>
-      <Box>
-        {/* Title */}
-        <Text textColor="#FAD02C" align="center" mb={4} fontSize="xl">
-          SELECT QUANTITY
-        </Text>
-        {/* Amount */}
-        <Text
-          textColor="#292929"
-          fontWeight="bold"
-          fontSize="3xl"
-          align="center"
-        >
-          Your Presale Amount
-        </Text>
-        <Text
-          my={2}
-          textColor="#292929"
-          fontWeight="bold"
-          fontSize="6xl"
-          align="center"
-        >
-          {presaleAmount}
-        </Text>
-      </Box>
-      {/* Slider */}
-      <Flex direction={{ base: 'column', md: 'column' }} align="center" gap={6}>
-        <Slider
-          flex={{ md: 'auto', lg: '1' }}
-          aria-label="slider-purchase"
-          defaultValue={0}
-          step={1}
-          min={0}
-          max={presaleAmount}
-          onChange={(value) => {
-            setSliderValue(value)
-          }}
-          onChangeEnd={(value) => {
-            setSliderFinalValue(value)
-          }}
-        >
-          {[...Array(presaleAmount)].map((x, i) => (
-            <SliderMark
-              key={i + 1}
-              value={i + 1}
-              mt="1"
-              ml="-2.5"
-              fontSize="sm"
-            >
-              {i + 1}
-            </SliderMark>
-          ))}
-
-          <SliderTrack bg="white" borderWidth={1} borderColor="#374C8C">
-            <SliderFilledTrack bg="#374C8C" />
-          </SliderTrack>
-          <SliderThumb boxSize={4} bg="#374C8C" />
-        </Slider>
-        <Text color="#292929" my={4}>
-          Quantity [max : {presaleAmount} per transaction]
-        </Text>
-      </Flex>
-    </>
   )
 }
 
@@ -414,7 +215,6 @@ const PublicMintButton = ({
   sliderValue,
   finalAmount,
   isMounted,
-  ether,
 }) => {
   const {
     config,
@@ -424,10 +224,7 @@ const PublicMintButton = ({
     address: Halalanft,
     abi: HalalanftABI.abi,
     functionName: 'publicMint',
-    enabled: ether > 0 && isMounted && !!isConnected && debouncedMinting,
-    overrides: {
-      value: ether,
-    },
+    enabled: true,
     args: [finalAmount],
   })
   const {
@@ -435,7 +232,7 @@ const PublicMintButton = ({
     error: writeError,
     isError: isWriteError,
     isLoading: isWriteLoading,
-    write: mintNFT,
+    write,
   } = useContractWrite(config)
   const { error, isLoading, isError } = useWaitForTransaction({
     hash: writeData?.hash,
@@ -453,8 +250,15 @@ const PublicMintButton = ({
             py={2}
             borderRadius="lg"
             my={4}
-            isDisabled={!(isChecked && isConnected && debouncedMinting)}
-            onClick={async () => mintNFT()}
+            isDisabled={
+              !write ||
+              isLoading ||
+              isWriteLoading ||
+              !isChecked ||
+              !isConnected ||
+              !debouncedMinting
+            }
+            onClick={async () => write()}
             _hover={{
               background: 'white',
               color: '#374C8C',
@@ -475,8 +279,15 @@ const PublicMintButton = ({
             w="full"
             px={4}
             py={2}
-            isDisabled={!(isChecked && isConnected && debouncedMinting)}
-            onClick={async () => mintNFT()}
+            isDisabled={
+              !write ||
+              isLoading ||
+              isWriteLoading ||
+              !isChecked ||
+              !isConnected ||
+              !debouncedMinting
+            }
+            onClick={async () => write()}
             borderRadius="lg"
             _hover={{
               background: 'white',

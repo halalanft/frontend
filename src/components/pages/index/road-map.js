@@ -12,7 +12,7 @@ import {
 import divide from '~/assets/images/divide.png'
 import roadmapBg from '~/assets/images/roadmap.png'
 
-const RoadMap = () => {
+export default function RoadMap() {
   return (
     <Box
       id="roadmap"
@@ -87,7 +87,6 @@ const RoadMap = () => {
         >
           <GridItem textAlign="end">
             <List styleType="decimal" pl={4} textAlign="start">
-              <ListItem>NFT Market Place</ListItem>
               <ListItem>DAO</ListItem>
               <ListItem>Halalan Academy (Bahasa)</ListItem>
               <ListItem>Blockchain Validator: Avalanche</ListItem>
@@ -160,5 +159,3 @@ const RoadMap = () => {
     </Box>
   )
 }
-
-export default RoadMap
