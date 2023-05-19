@@ -76,7 +76,7 @@ export default function JoinCommunity() {
             <strong>TWITTER</strong>
           </Button>
         </Link>
-        <Link href="#" isExternal>
+        <Link href="https://medium.com/@halalanft" isExternal>
           <Button
             w={['full', 'full', 'auto']}
             p={6}
