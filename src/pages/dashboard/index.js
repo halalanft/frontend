@@ -1,10 +1,9 @@
-import { Box, Button, Flex, GridItem, Text, Stack } from '@chakra-ui/react'
+import { Box, Button, Flex, Grid, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractRead, useNetwork } from 'wagmi'
-import DashboardLayout from '~/components/layout/dashboard'
-import DeFiLayout from '~/components/layout/defi'
+import { DashboardLayout } from '~/components/layout'
 import {
   AttributesSection,
   FeatureSection,
@@ -96,13 +95,19 @@ export default function Dashboard() {
     }
   }, [address])
 
-  const [selectedToken, setSelectedToken] = useState(0)
+  const [selectedToken, setSelectedToken] = useState(null)
   const [attrLoaded, setAttrLoaded] = useState(false)
   useEffect(() => {
-    if (tokens.length > 0 && (selectedToken === 0 || address)) {
+    if (tokens.length > 0 && selectedToken === null) {
       setSelectedToken(tokens[0])
     }
-  }, [tokens, selectedToken, address])
+  }, [tokens, selectedToken])
+
+  useEffect(() => {
+    if (tokens.length > 0 && address) {
+      setSelectedToken(tokens[0])
+    }
+  }, [tokens, address])
 
   const { chains, chain } = useNetwork()
   // Check if the user is in the correct network
@@ -120,13 +125,8 @@ export default function Dashboard() {
         <LoadingLayer />
       ) : !isConnected ? (
         <>
-          <Flex
-            direction="column"
-            mt={8}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text fontSize="lg" fontWeight="bold" mb={4}>
+          <Flex direction="column" mt={8} justify="center" align="center" p={6}>
+            <Text fontSize="lg" fontWeight="bold" mb={4} align="center">
               Connect your Metamask wallet and make sure you are in the right
               network
             </Text>
@@ -135,30 +135,27 @@ export default function Dashboard() {
         </>
       ) : totalNFT > 0 ? (
         <>
-          <Box px={4} maxWidth={'100%'} bg="white" display="block">
-            <GridItem borderRadius="lg" bg="yellow.200">
+          <Box p={4} maxWidth={'100%'} bg="white">
+            <Flex
+              bg="yellow.200"
+              borderRadius="lg"
+              direction="row"
+              maxWidth="100%"
+              overflowX="auto"
+              whiteSpace="nowrap"
+              mb={4}
+            >
               <MyCollectionSection
                 tokens={tokens}
                 setSelectedToken={setSelectedToken}
                 imagesLoaded={imagesLoaded}
                 setImagesLoaded={setImagesLoaded}
               />
-            </GridItem>
-
-            <Stack
-              direction={['column', 'row']}
-              alignItems="stretch"
-              justifyContent="space-between"
-              my={4}
-              spacing={{ base: 4, md: 4 }}
+            </Flex>
+            <Grid
+              gap={4}
+              templateColumns={{ md: 'repeat(1, 1fr)', lg: 'repeat(2, 1fr)' }}
             >
-              <Box borderRadius="lg" bg="yellow.200">
-                {tokens.length > 0 && selectedToken ? (
-                  <FeatureSection selectedToken={selectedToken} />
-                ) : (
-                  <></>
-                )}
-              </Box>
               <Box borderRadius="lg" bg="yellow.200">
                 {tokens.length > 0 && selectedToken ? (
                   <AttributesSection
@@ -169,18 +166,25 @@ export default function Dashboard() {
                   <></>
                 )}
               </Box>
-            </Stack>
+              <Box borderRadius="lg" bg="yellow.200">
+                {tokens.length > 0 && selectedToken ? (
+                  <FeatureSection selectedToken={selectedToken} />
+                ) : (
+                  <></>
+                )}
+              </Box>
+            </Grid>
           </Box>
           {!attrLoaded && <LoadingLayer />}
         </>
       ) : (
         <Box textAlign="center" mt={8}>
-          <Text fontSize="lg" fontWeight="bold" mb={4}>
+          <Text fontSize="lg" fontWeight="bold" px={6} py={4} mb={4}>
             You do not have any NFTs, please purchase in the minting section
             below
           </Text>
           <Button
-            bg="#FAD02C"
+            bg="#374C8C"
             textColor="white"
             borderWidth={2}
             borderRadius="lg"
@@ -196,7 +200,7 @@ export default function Dashboard() {
             }}
             onClick={handleMintingRedirect}
           >
-            Mint Now!!
+            Mint Now!
           </Button>
         </Box>
       )}

@@ -2,7 +2,7 @@ import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 import motto from '~/assets/images/motto.png'
 
-const Moto = () => {
+export default function Moto() {
   return (
     <Box position="relative" zIndex={-20} bg="white">
       <Flex
@@ -49,5 +49,3 @@ const Moto = () => {
     </Box>
   )
 }
-
-export default Moto

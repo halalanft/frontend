@@ -67,6 +67,7 @@ export default function MintingFooter() {
               fontWeight="semibold"
               color="#363755"
               justify="space-between"
+              flexWrap="wrap"
             >
               <Link href="/" _hover={{ textDecoration: 'none' }}>
                 Home

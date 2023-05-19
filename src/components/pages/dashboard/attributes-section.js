@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Flex, Image, Stack, Text, Grid } from '@chakra-ui/react'
 
 import { useEffect, useState } from 'react'
 import logo from '~/assets/images/fix.png'
@@ -34,25 +34,30 @@ export default function AttributesSection({ selectedToken, setAttrLoaded }) {
       </Text>
       <Box bg="white" w="100%" h="2px" my={4}></Box>
       {/* Card Attributes */}
-      <Stack>
+      <Grid
+        templateColumns={{ md: 'repeat(2, 1fr)', lg: 'repeat(2, 1fr)' }}
+        gap={4}
+      >
         {dataAttributes.map(({ trait_type, value }) => (
-          <Box bg="white" shadow="md" borderRadius="lg" p={4} key={trait_type}>
+          <Box
+            bg="white"
+            shadow="md"
+            borderRadius="lg"
+            p={{ base: 4, md: 2 }}
+            key={trait_type}
+          >
             <Flex
-              direction={['row', 'column']}
+              direction={{ base: 'row', md: 'column' }}
               align="center"
               justify="space-between"
-              gap={4}
+              gap={{ base: 4, md: 2 }}
             >
-              <Image src={logo.src} alt="Sample" w={16} borderRadius="sm" />
-
-              <Flex direction="column" align="center" gap={2}>
-                <Text>{trait_type}</Text>
-                <Text>{value}</Text>
-              </Flex>
+              <Text>{trait_type}</Text>
+              <Text>{value}</Text>
             </Flex>
           </Box>
         ))}
-      </Stack>
+      </Grid>
     </Box>
   )
 }

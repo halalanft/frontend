@@ -5,9 +5,7 @@ import { Sidebar } from '../pages/dashboard'
 
 export default function DashboardLayout({ children }) {
   return (
-    <div
-      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}
-    >
+    <div>
       <DashboardHeader />
       <Flex direction="column" flex="1">
         <Grid
@@ -18,10 +16,10 @@ export default function DashboardLayout({ children }) {
           gap={{ base: '2', lg: '8' }}
           height={'full'}
         >
-          <GridItem colSpan={{ md: 1 }}>
+          <GridItem colSpan={{ base: 4, md: 1 }}>
             <Sidebar />
           </GridItem>
-          <GridItem colSpan={{ md: 4 }}>{children}</GridItem>
+          <GridItem colSpan={{ base: 4, md: 4 }}>{children}</GridItem>
         </Grid>
       </Flex>
       <DashboardFooter />
