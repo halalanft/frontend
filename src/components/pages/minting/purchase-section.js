@@ -264,7 +264,7 @@ const PublicMintButton = ({
               isLoading ||
               isWriteLoading
             }
-            onClick={async () => mintNFT()}
+            onClick={async () => write()}
             _hover={{
               background: 'white',
               color: '#374C8C',
@@ -293,9 +293,9 @@ const PublicMintButton = ({
               !isConnected ||
               isLoading ||
               isWriteLoading ||
-              !mintNFT
+              !write
             }
-            onClick={async () => mintNFT()}
+            onClick={async () => write()}
             borderRadius="lg"
             _hover={{
               background: 'white',
