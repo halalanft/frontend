@@ -15,7 +15,6 @@ import {
   SliderTrack,
   Text,
 } from '@chakra-ui/react'
-import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import {
   useAccount,
@@ -65,16 +64,6 @@ export default function PurchaseSection() {
     watch: true,
   })
   const debouncedMinting = useDebounce(publicMinting, 500)
-
-  const { data: presaleAmount } = useContractRead({
-    address: Halalanft,
-    abi: HalalanftABI.abi,
-    enabled: !!isConnected,
-    functionName: 'getAux',
-    args: [address],
-    watch: true,
-  })
-  const debouncedPresaleAmount = useDebounce(presaleAmount?.toNumber(), 500)
 
   const [approved, setApproved] = useState(false)
 
@@ -129,24 +118,14 @@ export default function PurchaseSection() {
         px={{ base: '0', md: '8', lg: '16' }}
       >
         <Box flex="1">
-          {debouncedPresaleAmount > 0 ? (
-            <PresaleHeader
-              isConnected
-              isChecked={Boolean(checkedItems)}
-              presaleAmount={debouncedPresaleAmount}
-              setSliderValue={setSliderValue}
-              setSliderFinalValue={setSliderFinalValue}
-            />
-          ) : (
-            <PublicHeader
-              isConnected
-              debouncedMinting={debouncedMinting}
-              isChecked={Boolean(checkedItems)}
-              sliderValue={sliderValue}
-              setSliderValue={setSliderValue}
-              setSliderFinalValue={setSliderFinalValue}
-            />
-          )}
+          <PublicHeader
+            isConnected
+            debouncedMinting={debouncedMinting}
+            isChecked={Boolean(checkedItems)}
+            sliderValue={sliderValue}
+            setSliderValue={setSliderValue}
+            setSliderFinalValue={setSliderFinalValue}
+          />
           {/* Description */}
           <Box display="grid" gap={3}>
             <Divider />
@@ -196,27 +175,21 @@ export default function PurchaseSection() {
                   onErrorClose={() => setIsErrorOpened(false)}
                   refetchUsdcAllowance={refetchUsdcAllowance}
                 />
-              ) : debouncedPresaleAmount > 0 ? (
-                <PresaleButton
-                  finalAmount={sliderFinalValue}
-                  ether={ethers.utils.parseEther(
-                    (sliderFinalValue * itemPrice).toString()
-                  )}
-                  isConnected
-                  isChecked={Boolean(checkedItems)}
-                  isMounted={isMounted}
-                />
               ) : (
                 <PublicMintButton
                   isConnected
                   debouncedMinting={debouncedMinting}
                   isChecked={Boolean(checkedItems)}
                   finalAmount={sliderFinalValue}
-                  ether={ethers.utils.parseEther(
-                    (sliderFinalValue * itemPrice).toString()
-                  )}
                   isMounted={isMounted}
                 />
+              )}
+              {sliderFinalValue > 0 ? null : (
+                <Box>
+                  <Text color="red">
+                    Please set the minting amount greater than 1.
+                  </Text>
+                </Box>
               )}
               {checkedItems ? null : (
                 <Box>
@@ -257,156 +230,6 @@ export default function PurchaseSection() {
   )
 }
 
-const PresaleButton = ({ isMounted, isChecked, isConnected, finalAmount }) => {
-  const { address } = useAccount()
-
-  const {
-    config,
-    error: prepareError,
-    isError: isPrepareError,
-  } = usePrepareContractWrite({
-    address: Halalanft,
-    abi: HalalanftABI.abi,
-    functionName: 'presale',
-    enabled: isMounted && !!isConnected && isChecked && finalAmount > 0,
-    args: [finalAmount],
-  })
-  const {
-    data: writeData,
-    error: writeError,
-    isError: isWriteError,
-    isLoading: isWriteLoading,
-    write: mintNFT,
-  } = useContractWrite(config)
-  const { error, isLoading, isError } = useWaitForTransaction({
-    hash: writeData?.hash,
-  })
-  return (
-    <>
-      <Hide above="sm">
-        <Box my={4}>
-          <Button
-            bg="#374C8C"
-            textColor="white"
-            w="100%"
-            px={4}
-            py={2}
-            borderRadius="lg"
-            my={4}
-            isDisabled={!(isChecked && isConnected)}
-            onClick={async () => mintNFT()}
-            _hover={{
-              background: 'white',
-              color: 'teal.500',
-              textColor: 'teal.500',
-              border: '1px',
-              borderColor: '#374C8C',
-            }}
-          >
-            Presale
-          </Button>
-        </Box>
-      </Hide>
-
-      <Show above="sm">
-        <Box my={8} display="flex" justifyContent="center" gap={6}>
-          <Button
-            bg="#374C8C"
-            textColor="white"
-            w="full"
-            px={4}
-            py={2}
-            isDisabled={!(isChecked && isConnected)}
-            onClick={async () => mintNFT()}
-            borderRadius="lg"
-            _hover={{
-              background: 'white',
-              color: '#FAD02C',
-              border: '1px',
-              borderColor: '#374C8C',
-            }}
-          >
-            Presale
-          </Button>
-        </Box>
-      </Show>
-    </>
-  )
-}
-
-const PresaleHeader = ({
-  sliderValue,
-  presaleAmount,
-  setSliderValue,
-  setSliderFinalValue,
-}) => {
-  return (
-    <>
-      <Box>
-        {/* Title */}
-        <Text textColor="#FAD02C" align="center" mb={4} fontSize="xl">
-          SELECT QUANTITY
-        </Text>
-        {/* Amount */}
-        <Text
-          textColor="#292929"
-          fontWeight="bold"
-          fontSize="3xl"
-          align="center"
-        >
-          Your Presale Amount
-        </Text>
-        <Text
-          my={2}
-          textColor="#292929"
-          fontWeight="bold"
-          fontSize="6xl"
-          align="center"
-        >
-          {presaleAmount}
-        </Text>
-      </Box>
-      {/* Slider */}
-      <Flex direction={{ base: 'column', md: 'column' }} align="center" gap={6}>
-        <Slider
-          flex={{ md: 'auto', lg: '1' }}
-          aria-label="slider-purchase"
-          defaultValue={0}
-          step={1}
-          min={0}
-          max={presaleAmount}
-          onChange={(value) => {
-            setSliderValue(value)
-          }}
-          onChangeEnd={(value) => {
-            setSliderFinalValue(value)
-          }}
-        >
-          {[...Array(presaleAmount)].map((x, i) => (
-            <SliderMark
-              key={i + 1}
-              value={i + 1}
-              mt="1"
-              ml="-2.5"
-              fontSize="sm"
-            >
-              {i + 1}
-            </SliderMark>
-          ))}
-
-          <SliderTrack bg="white" borderWidth={1} borderColor="#374C8C">
-            <SliderFilledTrack bg="#374C8C" />
-          </SliderTrack>
-          <SliderThumb boxSize={4} bg="#374C8C" />
-        </Slider>
-        <Text color="#292929" my={4}>
-          Quantity [max : {presaleAmount} per transaction]
-        </Text>
-      </Flex>
-    </>
-  )
-}
-
 const PublicMintButton = ({
   isChecked,
   debouncedMinting,
@@ -414,7 +237,6 @@ const PublicMintButton = ({
   sliderValue,
   finalAmount,
   isMounted,
-  ether,
 }) => {
   const {
     config,
@@ -424,10 +246,7 @@ const PublicMintButton = ({
     address: Halalanft,
     abi: HalalanftABI.abi,
     functionName: 'publicMint',
-    enabled: ether > 0 && isMounted && !!isConnected && debouncedMinting,
-    overrides: {
-      value: ether,
-    },
+    enabled: finalAmount > 0 && isMounted && !!isConnected && debouncedMinting,
     args: [finalAmount],
   })
   const {
@@ -453,7 +272,15 @@ const PublicMintButton = ({
             py={2}
             borderRadius="lg"
             my={4}
-            isDisabled={!(isChecked && isConnected && debouncedMinting)}
+            isDisabled={
+              finalAmount < 1 ||
+              !isChecked ||
+              !debouncedMinting ||
+              !isMounted ||
+              !isConnected ||
+              isLoading ||
+              isWriteLoading
+            }
             onClick={async () => mintNFT()}
             _hover={{
               background: 'white',
@@ -475,7 +302,16 @@ const PublicMintButton = ({
             w="full"
             px={4}
             py={2}
-            isDisabled={!(isChecked && isConnected && debouncedMinting)}
+            isDisabled={
+              finalAmount < 1 ||
+              !isChecked ||
+              !debouncedMinting ||
+              !isMounted ||
+              !isConnected ||
+              isLoading ||
+              isWriteLoading ||
+              !mintNFT
+            }
             onClick={async () => mintNFT()}
             borderRadius="lg"
             _hover={{
@@ -533,7 +369,7 @@ const PublicHeader = ({
           defaultValue={0}
           step={1}
           min={0}
-          max={10}
+          max={5}
           onChange={(value) => {
             setSliderValue(value)
           }}
@@ -544,20 +380,20 @@ const PublicHeader = ({
           <SliderMark value={0} mt="1" ml="-2.5" fontSize="sm">
             0
           </SliderMark>
+          <SliderMark value={1} mt="1" ml="-2.5" fontSize="sm">
+            1
+          </SliderMark>
           <SliderMark value={2} mt="1" ml="-2.5" fontSize="sm">
             2
+          </SliderMark>
+          <SliderMark value={3} mt="1" ml="-2.5" fontSize="sm">
+            3
           </SliderMark>
           <SliderMark value={4} mt="1" ml="-2.5" fontSize="sm">
             4
           </SliderMark>
-          <SliderMark value={6} mt="1" ml="-2.5" fontSize="sm">
-            6
-          </SliderMark>
-          <SliderMark value={8} mt="1" ml="-2.5" fontSize="sm">
-            8
-          </SliderMark>
-          <SliderMark value={10} mt="1" ml="-2.5" fontSize="sm">
-            10
+          <SliderMark value={5} mt="1" ml="-2.5" fontSize="sm">
+            5
           </SliderMark>
           <SliderTrack bg="white" borderWidth={1} borderColor="#374C8C">
             <SliderFilledTrack bg="#374C8C" />
@@ -565,7 +401,7 @@ const PublicHeader = ({
           <SliderThumb boxSize={4} bg="#374C8C" />
         </Slider>
         <Text color="#292929" my={4}>
-          Quantity [max : 10 per transaction]
+          Quantity [max : 5 per transaction]
         </Text>
       </Flex>
     </>

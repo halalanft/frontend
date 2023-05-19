@@ -1,15 +1,13 @@
+import { LandingLayout } from '~/components/layout'
 import {
   About,
-  Footer,
   Hero,
   JoinCommunity,
   Moto,
-  Navbar,
   OurTeam,
   RoadMap,
   WhatMakes,
 } from '~/components/pages/index'
-import { LandingLayout } from '~/components/layout'
 import { useIsMounted } from '~/hooks/useIsMounted'
 
 import Head from 'next/head'

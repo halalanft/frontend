@@ -1,12 +1,16 @@
-import { LandingHeader } from '../header'
+import { useIsMounted } from '~/hooks/useIsMounted'
 import { LandingFooter } from '../footer'
+import { LandingHeader } from '../header'
 
 export default function LandingLayout({ children }) {
+  const isMounted = useIsMounted()
   return (
-    <>
-      <LandingHeader />
-      <main>{children}</main>
-      <LandingFooter />
-    </>
+    isMounted && (
+      <>
+        <LandingHeader />
+        <main>{children}</main>
+        <LandingFooter />
+      </>
+    )
   )
 }
