@@ -94,6 +94,30 @@ export default function ResultSection({ tokenBought, handleTab }) {
           />
         </Box>
         <Flex justify="center" my={6}>
+          <Link as={NextLink} href="/minting">
+            <Button
+              borderRadius="lg"
+              borderWidth={2}
+              borderColor="#374C8C"
+              bg="transparent"
+              w={'100%'}
+              fontSize="md"
+              fontWeight="medium"
+              color="#374C8C"
+              transition="all 0.2s"
+              my={4}
+              px={8}
+              py={6}
+              _hover={{
+                borderColor: 'transparent',
+                bg: '#374C8C',
+                color: 'white',
+                border: '1px',
+              }}
+            >
+              Buy Again
+            </Button>
+          </Link>
           <Link as={NextLink} href="/dashboard">
             <Button
               bg="#374C8C"
