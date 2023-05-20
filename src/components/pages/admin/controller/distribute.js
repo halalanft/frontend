@@ -234,9 +234,7 @@ export default function DistributeSection({ isConnected }) {
           walletBalance.halalanft <= 0
         }
         onClick={async () => write()}
-        borderRadius="lg"
         _hover={{
-          borderWidth: '4',
           borderColor: '#374C8C',
           bg: 'transparent',
           color: '#374C8C',
