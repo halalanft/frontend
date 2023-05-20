@@ -1,9 +1,10 @@
-import { Box, Grid, GridItem, Select, Skeleton, Text } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Select, Text } from '@chakra-ui/react'
 import { NFTCard } from '~/components/card'
 import Pagination from '~/components/pagination'
 
 import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
+import testJson from '~/assets/dummy/test.json'
 import { useIsMounted } from '~/hooks/useIsMounted'
 import { ipfsDetailsLoader } from '~/utils/loader'
 import { LoadingLayer } from '~/utils/loading-layer'
@@ -41,12 +42,16 @@ export default function AllUnitsContent({ allAttrLoaded, setAllAttrLoaded }) {
       const fetchedData = []
       await Promise.all(
         nftIds.map(async (id) => {
-          try {
-            const response = await fetch(ipfsDetailsLoader(id))
-            const newData = await response.json()
-            fetchedData.push(newData)
-          } catch (error) {
-            console.error('Error fetching data:', error)
+          if (process.env.NEXT_PUBLIC_CHAIN === 'fuji') {
+            fetchedData.push(testJson)
+          } else {
+            try {
+              const response = await fetch(ipfsDetailsLoader(id))
+              const newData = await response.json()
+              fetchedData.push(newData)
+            } catch (error) {
+              console.error('Error fetching data:', error)
+            }
           }
         })
       )
@@ -84,16 +89,20 @@ export default function AllUnitsContent({ allAttrLoaded, setAllAttrLoaded }) {
           <LoadingLayer />
         </Box>
       )}
-      <Box display={!allAttrLoaded ? 'none' : 'block'}>
+      <Box display="block">
+        {/* //{!allAttrLoaded ? 'none' : 'block'} */}
         <Grid
           templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
           gap={4}
         >
-          {!allAttrLoaded
+          {data.map((nft, index) => (
+            <NFTCardItem index={index} nft={nft} key={index} />
+          ))}
+          {/* {!allAttrLoaded
             ? range(0, 36).map((id) => <Skeleton key={id} minHeight="320px" />)
             : data.map((nft, index) => (
                 <NFTCardItem index={index} nft={nft} key={index} />
-              ))}
+              ))} */}
         </Grid>
       </Box>
       <Grid templateColumns="repeat(6, 1fr)" gap={4}>
