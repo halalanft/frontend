@@ -3,6 +3,7 @@ import { useAccount } from 'wagmi'
 import AdminLayout from '~/components/layout/admin'
 import Airdrop from '~/components/pages/admin/controller/airdrop'
 import ChangeBaseURISection from '~/components/pages/admin/controller/change-base-uri'
+import DistributeSection from '~/components/pages/admin/controller/distribute'
 import EnableDisableMintingSection from '~/components/pages/admin/controller/enable-disable-minting'
 import UpdatePriceSection from '~/components/pages/admin/controller/update-price'
 import Whitelist from '~/components/pages/admin/controller/whitelist'
@@ -20,6 +21,10 @@ export default function ControllerPage() {
         {/* Update Price */}
         <VStack spacing="4">
           <UpdatePriceSection isConnected={isConnected} />
+        </VStack>
+        {/* Distribute Income */}
+        <VStack spacing="4">
+          <DistributeSection isConnected={isConnected} />
         </VStack>
         {/* Enable/Disable Minting*/}
         <VStack spacing="4">

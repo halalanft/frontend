@@ -51,7 +51,9 @@ export default function PurchaseSection() {
   useEffect(() => {
     const getItemPrice = async () => {
       const pc = await currentPrice
-      isConnected && pc && setItemPrice(Number(currentPrice))
+      isConnected &&
+        pc &&
+        setItemPrice(Number(BigInt(currentPrice) / BigInt(10 ** 6)))
     }
     getItemPrice()
   }, [isConnected, currentPrice])
@@ -410,7 +412,7 @@ const ApproveButton = ({
     abi: ERC20ABI,
     functionName: 'approve',
     enabled: !!isConnected && Boolean(value),
-    args: [Halalanft, parseInt(value) * 12 * 10 ** 6],
+    args: [Halalanft, parseInt(value) * 5 * 10 ** 6],
     onError(error) {
       onErrorOpen(true)
     },

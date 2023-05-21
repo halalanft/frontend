@@ -20,6 +20,7 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useEffect, useState } from 'react'
+import testJson from '~/assets/dummy/test.json'
 import { ipfsDetailsLoader, ipfsImageLoader } from '~/utils/loader'
 import { LoadingLayer } from '~/utils/loading-layer'
 
@@ -33,14 +34,16 @@ export default function ResultSection({ tokenBought, handleTab }) {
   const [data, setData] = useState({})
   useEffect(() => {
     async function getNFTs() {
-      try {
-        const response = await fetch(ipfsDetailsLoader(selected))
-
-        const newData = await response.json()
-        return newData
-      } catch (error) {
-        console.error('Error fetching data:', error)
-        return {}
+      if (process.env.NEXT_PUBLIC_CHAIN === 'fuji') {
+        return testJson
+      } else {
+        try {
+          const response = await fetch(ipfsDetailsLoader(id))
+          const newData = await response.json()
+          return newData
+        } catch (error) {
+          console.error('Error fetching data:', error)
+        }
       }
     }
 
@@ -93,13 +96,13 @@ export default function ResultSection({ tokenBought, handleTab }) {
             setImagesLoaded={setImagesLoaded}
           />
         </Box>
-        <Flex justify="center" my={6}>
-          <Link as={NextLink} href="/dashboard">
+        <Flex direction="row" justify="center" my={6} gap={6}>
+          <Link as={NextLink} href="/minting">
             <Button
               bg="#374C8C"
               textColor="white"
-              w="100%"
               borderRadius="lg"
+              w="100%"
               my={4}
               px={8}
               py={6}
@@ -108,6 +111,29 @@ export default function ResultSection({ tokenBought, handleTab }) {
                 color: '#374C8C',
                 border: '1px',
                 borderColor: '#374C8C',
+              }}
+              onClick={() => handleTab(2)}
+            >
+              Buy Again
+            </Button>
+          </Link>
+          <Link as={NextLink} href="/dashboard">
+            <Button
+              borderRadius="lg"
+              border="1px"
+              borderColor="#374C8C"
+              bg="transparent"
+              color="#374C8C"
+              w="100%"
+              transition="all 0.2s"
+              my={4}
+              px={8}
+              py={6}
+              _hover={{
+                borderColor: 'transparent',
+                bg: '#374C8C',
+                color: 'white',
+                border: '1px',
               }}
             >
               Dashboard

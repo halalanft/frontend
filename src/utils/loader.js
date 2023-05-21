@@ -1,5 +1,11 @@
+import hero from '~/assets/images/concept_art_2.jpg'
+
 export const ipfsImageLoader = (src) => {
-  return `https://bafybeibh75j55znjxogziaj6q4733shwmscjudhwtmrxnmn34vgxhwtdti.ipfs.nftstorage.link/${src}`
+  let uri =
+    process.env.NEXT_PUBLIC_CHAIN === 'fuji'
+      ? hero.src
+      : `https://bafybeibh75j55znjxogziaj6q4733shwmscjudhwtmrxnmn34vgxhwtdti.ipfs.nftstorage.link/${src}`
+  return uri
 }
 
 export const ipfsDetailsLoader = (selected) => {
