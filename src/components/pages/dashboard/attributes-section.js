@@ -1,6 +1,7 @@
 import { Box, Flex, Grid, Text } from '@chakra-ui/react'
 
 import { useEffect, useState } from 'react'
+import testJson from '~/assets/dummy/test.json'
 import { ipfsDetailsLoader } from '~/utils/loader'
 
 export default function AttributesSection({ selectedToken, setAttrLoaded }) {
