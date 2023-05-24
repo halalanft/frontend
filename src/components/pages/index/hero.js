@@ -77,7 +77,7 @@ export default function Hero() {
                 >
                   <ChakraLink
                     isExternal
-                    href="https://drive.google.com/file/d/1qIdNO7X_LwrF6ljgeH9H7s_Me_Ie6w3z/view?usp=share_link"
+                    href="https://drive.google.com/file/d/1ekOESBiqG3hXqlngknBglSw32KVZvInx/view?usp=drive_link"
                     className="nav-item"
                     _hover={{ textDecoration: 'none' }}
                   >
@@ -85,7 +85,7 @@ export default function Hero() {
                   </ChakraLink>
                   <ChakraLink
                     isExternal
-                    href="https://drive.google.com/file/d/15SddVujVeyquwL4XRCXNG81CwQhi2aTb/view?usp=share_link"
+                    href="https://drive.google.com/file/d/18jI1JgzzKhsiC-qt1YSRsbcan9MDOq5v/view?usp=drive_link"
                     className="nav-item"
                     _hover={{ textDecoration: 'none' }}
                   >
