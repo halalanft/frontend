@@ -190,7 +190,7 @@ export default function PurchaseSection() {
               {sliderFinalValue > 0 ? null : (
                 <Box>
                   <Text color="red">
-                    Please set the minting amount greater than 1.
+                    Please set the minting amount greater than or equal to 1.
                   </Text>
                 </Box>
               )}
