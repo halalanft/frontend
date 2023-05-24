@@ -62,7 +62,7 @@ export default function Hero() {
                     color: 'white',
                   }}
                 >
-                  Download Whitepaper
+                  Download Litepaper
                 </Button>
                 <VStack
                   bgColor="white"
