@@ -10,7 +10,8 @@ export default function AttributesSection({ selectedToken, setAttrLoaded }) {
   useEffect(() => {
     async function getNFTs() {
       if (process.env.NEXT_PUBLIC_CHAIN === 'fuji') {
-        return testJson
+        setDataAttributes(testJson.attributes)
+        setAttrLoaded(true)
       } else {
         try {
           setAttrLoaded(false)
