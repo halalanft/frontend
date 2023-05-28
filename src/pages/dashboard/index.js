@@ -12,18 +12,19 @@ import {
 import HalalanftABI from '~/contracts/Halalanft.json'
 import { useIsMounted } from '~/hooks/useIsMounted'
 import { Halalanft } from '~/utils/contract-address'
-import { useDebounce } from '~/utils/debounce'
 import { LoadingLayer } from '~/utils/loading-layer'
 
 export default function Dashboard() {
+  const { address, isConnected } = useAccount()
   const [tokens, setTokens] = useState([])
-  const [dynamicArgs, setDynamicArgs] = useState([])
+  const [iterationArgs, setIterationArgs] = useState([address, 0, 100]) // Initial values
   const [imagesLoaded, setImagesLoaded] = useState({})
+  const [isTokensFetched, setIsTokensFetched] = useState(false)
 
   const router = useRouter()
-  const { address, isConnected } = useAccount()
+
   const isMounted = useIsMounted()
-  const { data: dataBalanceNFT } = useContractRead({
+  const { data: dataBalanceNFT, refetch: refetchBalance } = useContractRead({
     abi: HalalanftABI.abi,
     address: Halalanft,
     enabled: isMounted && isConnected,
@@ -34,57 +35,56 @@ export default function Dashboard() {
 
   const [totalNFT, setTotalNFT] = useState(0)
   useEffect(() => {
-    if (dataBalanceNFT) {
-      setTotalNFT(dataBalanceNFT)
+    if (dataBalanceNFT !== totalNFT) {
+      setTotalNFT(dataBalanceNFT.toNumber())
     }
-  }, [dataBalanceNFT])
+  }, [dataBalanceNFT, totalNFT])
 
-  const debouncedDynamicArgs = useDebounce(dynamicArgs, 300)
-
-  const { data: tokensOfOwnerData } = useContractRead({
+  const { data: tokensOfOwnerData, refetch } = useContractRead({
     abi: HalalanftABI.abi,
     address: Halalanft,
-    enabled: isMounted && debouncedDynamicArgs.length > 0,
+    enabled: isConnected && address,
     functionName: 'tokensOfOwnerIn',
+    args: iterationArgs,
+    select: (data) => data.map((token) => token.toNumber()),
     watch: true,
-    args: debouncedDynamicArgs,
   })
+
+  const [isFetching, setIsFetching] = useState(false)
 
   useEffect(() => {
     async function fetchTokens() {
-      if (address && dataBalanceNFT) {
-        const balance = dataBalanceNFT.toNumber()
+      if (address) {
         const chunkSize = 100
         let fetchedTokens = []
 
-        for (let i = 0; i < Math.ceil(balance / chunkSize); i++) {
-          const start = i * chunkSize
-          const stop = start + chunkSize
-          setDynamicArgs([address, start, stop])
+        let start = 1
+        let stop = start + chunkSize
+        while (fetchedTokens.length < totalNFT && !isFetching) {
+          setIterationArgs([address, start, stop])
+          setIsFetching(true) // Start fetching
+          const refetchedData = await refetch()
+          setIsFetching(false) // Done fetching
 
-          await new Promise((resolve) => {
-            if (tokensOfOwnerData) {
-              resolve()
-            }
-          })
-
-          if (tokensOfOwnerData) {
-            const convertedTokens = tokensOfOwnerData.map((token) =>
-              token.toNumber()
+          if (refetchedData && refetchedData.data) {
+            const newTokens = refetchedData.data.filter(
+              (token) => !fetchedTokens.includes(token)
             )
-            fetchedTokens = [...fetchedTokens, ...convertedTokens]
-            if (fetchedTokens.length >= balance) {
-              break
-            }
+            fetchedTokens = [...fetchedTokens, ...newTokens]
+
+            // Prepare for the next iteration.
+            start += chunkSize
+            stop = start + chunkSize
           }
         }
 
-        setTokens(fetchedTokens.slice(0, balance))
+        setTokens(fetchedTokens)
+        setIsTokensFetched(true)
       }
     }
 
     fetchTokens()
-  }, [address, dataBalanceNFT, tokensOfOwnerData])
+  }, [address, totalNFT, refetch])
 
   const handleMintingRedirect = () => {
     router.push('/minting')
@@ -134,7 +134,7 @@ export default function Dashboard() {
             <ConnectButton />
           </Flex>
         </>
-      ) : totalNFT > 0 ? (
+      ) : isTokensFetched ? (
         <>
           <Box p={4} maxWidth={'100%'} bg="white">
             <Flex

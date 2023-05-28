@@ -146,7 +146,6 @@ export default function DistributeSection({ isConnected }) {
   const { error, isLoading, isError } = useWaitForTransaction({
     hash: writeData?.hash,
   })
-  console.log(walletBalance)
   return (
     <>
       <Text
