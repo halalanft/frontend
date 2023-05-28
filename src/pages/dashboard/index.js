@@ -28,6 +28,7 @@ export default function Dashboard() {
     address: Halalanft,
     enabled: isMounted && isConnected,
     functionName: 'balanceOf',
+    watch: true,
     args: [address],
   })
 
