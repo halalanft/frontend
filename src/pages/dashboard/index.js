@@ -29,14 +29,15 @@ export default function Dashboard() {
     address: Halalanft,
     enabled: isMounted && isConnected,
     functionName: 'balanceOf',
+    select: (data) => data.toNumber(),
     watch: true,
     args: [address],
   })
 
   const [totalNFT, setTotalNFT] = useState(0)
   useEffect(() => {
-    if (dataBalanceNFT !== totalNFT) {
-      setTotalNFT(dataBalanceNFT.toNumber())
+    if (dataBalanceNFT !== totalNFT && dataBalanceNFT) {
+      setTotalNFT(dataBalanceNFT)
     }
   }, [dataBalanceNFT, totalNFT])
 
