@@ -1,0 +1,51 @@
+{
+  "name": "Halalanft Season 1 #Dummy",
+  "description": "The First Halal NFTs Collection that Brings Sharia Based DeFi Ecosystem",
+  "image": "ipfs://dummy/1.png",
+  "dna": "2908b89b1e31f3f01e0b55fe1f1d51d131e8706c",
+  "edition": 1,
+  "date": 1680310886178,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "Wings",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "Leg",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "Right Arm",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "Left Arm",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "Expression",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "Hijayyah",
+      "value": "Dummy"
+    },
+    {
+      "trait_type": "TopHead",
+      "value": "Dummy"
+    }
+  ],
+  "compiler": "Datboi1337 Art Engine (Hashlips fork)"
+}

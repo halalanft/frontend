@@ -39,10 +39,10 @@ export default function DashboardFooter() {
                 <Link href="https://twitter.com/halalanft" isExternal>
                   <FaTwitter color="#374C8C" size={25} />
                 </Link>
-                <Link href="#" isExternal>
+                <Link href="https://www.instagram.com/halalanft/" isExternal>
                   <FaInstagram color="#374C8C" size={25} />
                 </Link>
-                <Link href="#" isExternal>
+                <Link href="https://medium.com/@halalanft" isExternal>
                   <FaMedium color="#374C8C" size={25} />
                 </Link>
                 <Link href="https://discord.com/invite/be5fnEqrZQ" isExternal>

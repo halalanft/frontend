@@ -1,15 +1,4 @@
-import {
-  Box,
-  Flex,
-  Stack,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-  Show,
-} from '@chakra-ui/react'
+import { Box, Flex, Show, Stack, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractEvent } from 'wagmi'
 import { MintingLayout } from '~/components/layout'
@@ -162,7 +151,7 @@ export default function MintingPage() {
       {isMounted && activeTab === 2 && <PurchaseSection />}
 
       {isMounted && activeTab === 3 && tokenBought.length > 0 && (
-        <ResultSection tokenBought={tokenBought} />
+        <ResultSection tokenBought={tokenBought} handleTab={setActiveTab} />
       )}
     </Box>
   )

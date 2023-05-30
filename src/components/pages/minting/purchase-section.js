@@ -51,7 +51,9 @@ export default function PurchaseSection() {
   useEffect(() => {
     const getItemPrice = async () => {
       const pc = await currentPrice
-      isConnected && pc && setItemPrice(Number(currentPrice))
+      isConnected &&
+        pc &&
+        setItemPrice(Number(BigInt(currentPrice) / BigInt(10 ** 6)))
     }
     getItemPrice()
   }, [isConnected, currentPrice])
@@ -188,7 +190,7 @@ export default function PurchaseSection() {
               {sliderFinalValue > 0 ? null : (
                 <Box>
                   <Text color="red">
-                    Please set the minting amount greater than 1.
+                    Please set the minting amount greater than or equal to 1.
                   </Text>
                 </Box>
               )}
@@ -264,7 +266,7 @@ const PublicMintButton = ({
               isLoading ||
               isWriteLoading
             }
-            onClick={async () => mintNFT()}
+            onClick={async () => write()}
             _hover={{
               background: 'white',
               color: '#374C8C',
@@ -293,9 +295,9 @@ const PublicMintButton = ({
               !isConnected ||
               isLoading ||
               isWriteLoading ||
-              !mintNFT
+              !write
             }
-            onClick={async () => mintNFT()}
+            onClick={async () => write()}
             borderRadius="lg"
             _hover={{
               background: 'white',
@@ -410,7 +412,7 @@ const ApproveButton = ({
     abi: ERC20ABI,
     functionName: 'approve',
     enabled: !!isConnected && Boolean(value),
-    args: [Halalanft, parseInt(value) * 12 * 10 ** 6],
+    args: [Halalanft, parseInt(value) * 5 * 10 ** 6],
     onError(error) {
       onErrorOpen(true)
     },

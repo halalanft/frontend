@@ -109,3 +109,7 @@ body {
   color: #fad02c;
   text-decoration: none;
 }
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}

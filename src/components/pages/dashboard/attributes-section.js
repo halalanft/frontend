@@ -1,7 +1,7 @@
-import { Box, Flex, Image, Stack, Text, Grid } from '@chakra-ui/react'
+import { Box, Flex, Grid, Text } from '@chakra-ui/react'
 
 import { useEffect, useState } from 'react'
-import logo from '~/assets/images/fix.png'
+import testJson from '~/assets/dummy/test.json'
 import { ipfsDetailsLoader } from '~/utils/loader'
 
 export default function AttributesSection({ selectedToken, setAttrLoaded }) {
@@ -9,15 +9,20 @@ export default function AttributesSection({ selectedToken, setAttrLoaded }) {
 
   useEffect(() => {
     async function getNFTs() {
-      try {
-        setAttrLoaded(false)
-        const response = await fetch(ipfsDetailsLoader(selectedToken))
-        const newData = await response.json()
-        setDataAttributes(newData.attributes)
+      if (process.env.NEXT_PUBLIC_CHAIN === 'fuji') {
+        setDataAttributes(testJson.attributes)
         setAttrLoaded(true)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-        setAttrLoaded(false)
+      } else {
+        try {
+          setAttrLoaded(false)
+          const response = await fetch(ipfsDetailsLoader(selectedToken))
+          const newData = await response.json()
+          setDataAttributes(newData.attributes)
+          setAttrLoaded(true)
+        } catch (error) {
+          console.error('Error fetching data:', error)
+          setAttrLoaded(false)
+        }
       }
     }
 

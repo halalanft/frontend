@@ -45,7 +45,7 @@ export default function UpdatePriceSection({ isConnected }) {
   useEffect(() => {
     const getCost = async () => {
       const total = await dataUSDC
-      total && setPriceUSDC(Number(total))
+      total && setPriceUSDC(Number(BigInt(total) / BigInt(10 ** 6)))
     }
     getCost()
   }, [isConnected, dataUSDC])

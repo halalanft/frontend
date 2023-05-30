@@ -2,7 +2,6 @@ import {
   Box,
   Collapse,
   Flex,
-  Heading,
   Image,
   Link,
   Show,
@@ -10,6 +9,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractRead } from 'wagmi'
 import logo from '~/assets/images/fix.png'
@@ -65,13 +65,7 @@ export default function DashboardHeader() {
             <Link href="/" _hover={{ color: '#FAD02C' }}>
               <Text>Home</Text>
             </Link>
-            {isMounted && isConnected && totalNFT > 0 ? (
-              <Link href="/dashboard" _hover={{ color: '#FAD02C' }}>
-                <Text>Dashboard</Text>
-              </Link>
-            ) : (
-              <></>
-            )}
+            <ConnectButton />
           </Flex>
         </Show>
       </Flex>
