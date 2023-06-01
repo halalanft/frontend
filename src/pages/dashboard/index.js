@@ -135,7 +135,35 @@ export default function Dashboard() {
             <ConnectButton />
           </Flex>
         </>
-      ) : isTokensFetched ? (
+      ) : totalNFT < 1 ? (
+        <Box textAlign="center" mt={8}>
+          <Text fontSize="lg" fontWeight="bold" px={6} py={4} mb={4}>
+            You do not have any NFTs, please purchase in the minting section
+            below
+          </Text>
+          <Button
+            bg="#374C8C"
+            textColor="white"
+            borderWidth={2}
+            borderRadius="lg"
+            borderColor="#374C8C"
+            fontSize="md"
+            fontWeight="medium"
+            transition="all 0.2s"
+            _hover={{
+              borderWidth: '4',
+              borderColor: '#374C8C',
+              bg: 'transparent',
+              color: '#374C8C',
+            }}
+            onClick={handleMintingRedirect}
+          >
+            Mint Now!
+          </Button>
+        </Box>
+      ) : !isTokensFetched ? (
+        <LoadingLayer />
+      ) : (
         <>
           <Box p={4} maxWidth={'100%'} bg="white">
             <Flex
@@ -179,32 +207,6 @@ export default function Dashboard() {
           </Box>
           {!attrLoaded && <LoadingLayer />}
         </>
-      ) : (
-        <Box textAlign="center" mt={8}>
-          <Text fontSize="lg" fontWeight="bold" px={6} py={4} mb={4}>
-            You do not have any NFTs, please purchase in the minting section
-            below
-          </Text>
-          <Button
-            bg="#374C8C"
-            textColor="white"
-            borderWidth={2}
-            borderRadius="lg"
-            borderColor="#374C8C"
-            fontSize="md"
-            fontWeight="medium"
-            transition="all 0.2s"
-            _hover={{
-              borderWidth: '4',
-              borderColor: '#374C8C',
-              bg: 'transparent',
-              color: '#374C8C',
-            }}
-            onClick={handleMintingRedirect}
-          >
-            Mint Now!
-          </Button>
-        </Box>
       )}
     </>
   )

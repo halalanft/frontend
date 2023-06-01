@@ -7,7 +7,6 @@ export default function MyCollectionSection({
   imagesLoaded,
   setImagesLoaded,
 }) {
-  console.log(tokens)
   return (
     <Box p={4}>
       {/* Title */}
