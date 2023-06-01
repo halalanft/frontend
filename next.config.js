@@ -10,8 +10,7 @@ module.exports = {
   async headers() {
     return [
       {
-        // matching all API routes
-        source: '/api/:path*',
+        source: '/etc/bc/C/rpc',
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
           { key: 'Access-Control-Allow-Origin', value: '*' },
