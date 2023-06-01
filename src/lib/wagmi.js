@@ -13,7 +13,6 @@ import {
 import { configureChains, createClient } from 'wagmi'
 import { avalanche, avalancheFuji } from 'wagmi/chains'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
-import { publicProvider } from 'wagmi/providers/public'
 
 const rpcNetwork =
   process.env.NEXT_PUBLIC_CHAIN === 'fuji' ? 'avalanche_fuji' : 'avalanche'
@@ -22,7 +21,6 @@ const urlRpc = `https://rpc.ankr.com/${rpcNetwork}`
 const { chains, provider } = configureChains(
   process.env.NEXT_PUBLIC_CHAIN === 'fuji' ? [avalancheFuji] : [avalanche],
   [
-    publicProvider(),
     jsonRpcProvider({
       rpc: () => ({
         http: urlRpc,
