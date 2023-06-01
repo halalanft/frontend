@@ -38,7 +38,7 @@ export default function ResultSection({ tokenBought, handleTab }) {
         return testJson
       } else {
         try {
-          const response = await fetch(ipfsDetailsLoader(id))
+          const response = await fetch(ipfsDetailsLoader(selected))
           const newData = await response.json()
           return newData
         } catch (error) {
