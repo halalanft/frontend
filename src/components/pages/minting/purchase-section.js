@@ -17,7 +17,6 @@ import {
 import { useEffect, useState } from 'react'
 import {
   useAccount,
-  useContractEvent,
   useContractRead,
   useContractWrite,
   usePrepareContractWrite,
@@ -69,19 +68,6 @@ export default function PurchaseSection() {
 
   const [approved, setApproved] = useState(false)
 
-  useContractEvent({
-    address: USDC,
-    abi: ERC20ABI,
-    enabled: !!isConnected,
-    eventName: 'Approval',
-    watch: true,
-    listener: (owner, spender, value) => {
-      parseInt(value) >= parseInt(itemPrice)
-        ? setApproved(true)
-        : setApproved(false)
-    },
-  })
-
   const { data: usdcAllowance, refetch: refetchUsdcAllowance } =
     useContractRead({
       address: USDC,
@@ -89,10 +75,13 @@ export default function PurchaseSection() {
       enabled: !!isConnected,
       functionName: 'allowance',
       args: [address, Halalanft],
+      watch: true,
+      select: (data) => Number(BigInt(data) / BigInt(10 ** 6)),
       onError(error) {
         setIsErrorOpened(true)
       },
     })
+  console.log(usdcAllowance)
   const debouncedAllowance = useDebounce(usdcAllowance, 500)
   return (
     <Box
@@ -158,7 +147,7 @@ export default function PurchaseSection() {
               </Checkbox>
             </Flex>
             <Flex align="center" direction={{ base: 'column' }}>
-              {!approved && debouncedAllowance < 0 ? (
+              {debouncedAllowance < itemPrice * 5 ? (
                 <ApproveButton
                   isConnected={isConnected}
                   value={itemPrice}
@@ -174,6 +163,7 @@ export default function PurchaseSection() {
                   debouncedMinting={debouncedMinting}
                   isChecked={Boolean(checkedItems)}
                   finalAmount={sliderFinalValue}
+                  usdcAllowance={debouncedAllowance}
                   isMounted={isMounted}
                 />
               )}
@@ -212,6 +202,7 @@ const PublicMintButton = ({
   sliderValue,
   finalAmount,
   isMounted,
+  usdcAllowance,
 }) => {
   const {
     config,
@@ -221,7 +212,11 @@ const PublicMintButton = ({
     address: Halalanft,
     abi: HalalanftABI.abi,
     functionName: 'publicMint',
-    enabled: finalAmount > 0 && isMounted && !!isConnected && debouncedMinting,
+    enabled:
+      usdcAllowance >= finalAmount > 0 &&
+      isMounted &&
+      !!isConnected &&
+      debouncedMinting,
     args: [finalAmount],
   })
   const {
