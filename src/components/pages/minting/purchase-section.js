@@ -81,8 +81,19 @@ export default function PurchaseSection() {
         setIsErrorOpened(true)
       },
     })
-  console.log(usdcAllowance)
   const debouncedAllowance = useDebounce(usdcAllowance, 500)
+  const { data: usdcBalance } = useContractRead({
+    address: USDC,
+    abi: ERC20ABI,
+    enabled: !!isConnected,
+    functionName: 'balanceOf',
+    args: [address],
+    watch: true,
+    select: (data) => Number(BigInt(data) / BigInt(10 ** 6)),
+    onError(error) {
+      setIsErrorOpened(true)
+    },
+  })
   return (
     <Box
       bg="white"
@@ -161,11 +172,20 @@ export default function PurchaseSection() {
                 <PublicMintButton
                   isConnected
                   debouncedMinting={debouncedMinting}
+                  itemPrice={itemPrice}
                   isChecked={Boolean(checkedItems)}
                   finalAmount={sliderFinalValue}
                   usdcAllowance={debouncedAllowance}
                   isMounted={isMounted}
                 />
+              )}
+              {usdcBalance > itemPrice * sliderFinalValue ? null : (
+                <Box>
+                  <Text color="red">
+                    You don't have any balance to purchase {sliderFinalValue}{' '}
+                    NFT.
+                  </Text>
+                </Box>
               )}
               {sliderFinalValue > 0 ? null : (
                 <Box>
@@ -203,6 +223,7 @@ const PublicMintButton = ({
   finalAmount,
   isMounted,
   usdcAllowance,
+  itemPrice,
 }) => {
   const {
     config,
@@ -213,7 +234,7 @@ const PublicMintButton = ({
     abi: HalalanftABI.abi,
     functionName: 'publicMint',
     enabled:
-      usdcAllowance >= finalAmount > 0 &&
+      usdcAllowance >= finalAmount * itemPrice &&
       isMounted &&
       !!isConnected &&
       debouncedMinting,
