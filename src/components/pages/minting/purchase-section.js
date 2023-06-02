@@ -92,16 +92,6 @@ export default function PurchaseSection() {
       onError(error) {
         setIsErrorOpened(true)
       },
-      onSuccess(data) {
-        parseInt(data) >= parseInt(itemPrice)
-          ? setApproved(true)
-          : setApproved(false)
-      },
-      onSettled(data, error) {
-        parseInt(data) >= parseInt(itemPrice)
-          ? setApproved(true)
-          : setApproved(false)
-      },
     })
   const debouncedAllowance = useDebounce(usdcAllowance, 500)
   return (
