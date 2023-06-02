@@ -182,8 +182,7 @@ export default function PurchaseSection() {
               {usdcBalance > itemPrice * sliderFinalValue ? null : (
                 <Box>
                   <Text color="red">
-                    You don't have any balance to purchase {sliderFinalValue}{' '}
-                    NFT.
+                    Not enough balance to purchase {sliderFinalValue} NFT.
                   </Text>
                 </Box>
               )}
