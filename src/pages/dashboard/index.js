@@ -85,7 +85,7 @@ export default function Dashboard() {
     }
 
     fetchTokens()
-  }, [address, totalNFT, refetch, isFetching])
+  }, [address, refetch, isFetching])
 
   const handleMintingRedirect = () => {
     router.push('/minting')
