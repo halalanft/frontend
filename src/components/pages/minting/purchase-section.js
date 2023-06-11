@@ -158,7 +158,7 @@ export default function PurchaseSection() {
               </Checkbox>
             </Flex>
             <Flex align="center" direction={{ base: 'column' }}>
-              {debouncedAllowance < itemPrice * 5 ? (
+              {debouncedAllowance < itemPrice ? (
                 <ApproveButton
                   isConnected={isConnected}
                   value={itemPrice}
