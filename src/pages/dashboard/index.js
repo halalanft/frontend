@@ -36,7 +36,7 @@ export default function Dashboard() {
   const [totalNFT, setTotalNFT] = useState(0)
   useEffect(() => {
     if (dataBalanceNFT !== totalNFT) {
-      setTotalNFT(dataBalanceNFT.toNumber())
+      setTotalNFT(dataBalanceNFT)
     }
   }, [dataBalanceNFT, totalNFT])
 
