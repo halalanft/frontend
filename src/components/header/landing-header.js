@@ -1,6 +1,5 @@
 import {
   Box,
-  Collapse,
   Flex,
   Link as ChakraLink,
   HStack,
@@ -9,7 +8,7 @@ import {
   useDisclosure,
   Hide,
   Center,
-  Fade,
+  Collapse,
   Show,
 } from '@chakra-ui/react'
 import Image from 'next/image'
@@ -156,124 +155,123 @@ export default function LandingHeader() {
         </Hide>
 
         {/* mobile menu */}
-        <Hide above="lg">
-          <Fade in={isOpen}>
-            <VStack
-              position="absolute"
-              top={0}
-              left={0}
-              zIndex={20}
-              h="100vh"
-              w="full"
-              alignItems="center"
-              justifyContent="center"
-              bg="#374C8C"
-              spacing={8}
-              fontSize="lg"
-              color="white"
-              p={6}
+
+        <Collapse in={isOpen}>
+          <VStack
+            position="absolute"
+            top={0}
+            left={0}
+            zIndex={20}
+            h="42rem"
+            w="full"
+            alignItems="center"
+            justifyContent="center"
+            bg="#374C8C"
+            spacing={8}
+            fontSize="lg"
+            color="white"
+            p={6}
+          >
+            <ScrollLink
+              className="nav-item"
+              to="about"
+              smooth={true}
+              duration={500}
+              onClick={onToggle}
             >
-              <ScrollLink
+              About
+            </ScrollLink>
+            <ScrollLink
+              className="nav-item"
+              to="why us"
+              smooth={true}
+              onClick={onToggle}
+            >
+              Why Us
+            </ScrollLink>
+            <ScrollLink
+              className="nav-item"
+              to="concept art"
+              smooth={true}
+              onClick={onToggle}
+            >
+              Concept Art
+            </ScrollLink>
+            <ScrollLink
+              className="nav-item"
+              to="team"
+              smooth={true}
+              onClick={onToggle}
+            >
+              Team
+            </ScrollLink>
+            <ScrollLink
+              className="nav-item"
+              to="roadmap"
+              smooth={true}
+              onClick={onToggle}
+            >
+              Roadmap
+            </ScrollLink>
+            <ScrollLink
+              className="nav-item"
+              to="community"
+              smooth={true}
+              onClick={onToggle}
+            >
+              Community
+            </ScrollLink>
+            <Box>
+              <Text
                 className="nav-item"
-                to="about"
-                smooth={true}
-                duration={500}
-                onClick={onToggle}
-              >
-                About
-              </ScrollLink>
-              <ScrollLink
-                className="nav-item"
-                to="why us"
-                smooth={true}
-                onClick={onToggle}
-              >
-                Why Us
-              </ScrollLink>
-              <ScrollLink
-                className="nav-item"
-                to="concept art"
-                smooth={true}
-                onClick={onToggle}
-              >
-                Concept Art
-              </ScrollLink>
-              <ScrollLink
-                className="nav-item"
-                to="team"
-                smooth={true}
-                onClick={onToggle}
-              >
-                Team
-              </ScrollLink>
-              <ScrollLink
-                className="nav-item"
-                to="roadmap"
-                smooth={true}
-                onClick={onToggle}
-              >
-                Roadmap
-              </ScrollLink>
-              <ScrollLink
-                className="nav-item"
-                to="community"
-                smooth={true}
-                onClick={onToggle}
-              >
-                Community
-              </ScrollLink>
-              <Box>
-                <Text
-                  className="nav-item"
-                  onClick={() => setOpenDoc(!openDoc)}
-                  _hover={{ textDecoration: 'none' }}
-                  transition="ease-in-out "
-                >
-                  Documents
-                </Text>
-                {openDoc ? (
-                  <VStack
-                    bgColor="white"
-                    shadow="lg"
-                    borderRadius="lg"
-                    p={6}
-                    position="absolute"
-                    zIndex="popover"
-                    onClick={onToggle}
-                  >
-                    <ChakraLink
-                      isExternal
-                      href="https://halalanft-ecosystem.gitbook.io/halalanft-whitepaper-english/"
-                      className="nav-item"
-                      _hover={{ textDecoration: 'none' }}
-                      textColor="rgba(23, 23, 23, 68%)"
-                    >
-                      English
-                    </ChakraLink>
-                    <ChakraLink
-                      isExternal
-                      href="https://halalanft-ecosystem.gitbook.io/halalanft-whitepaper-bahasa/"
-                      className="nav-item"
-                      _hover={{ textDecoration: 'none' }}
-                      textColor="rgba(23, 23, 23, 68%)"
-                    >
-                      Bahasa
-                    </ChakraLink>
-                  </VStack>
-                ) : (
-                  <></>
-                )}
-              </Box>
-              <ChakraLink
-                className="nav-item"
+                onClick={() => setOpenDoc(!openDoc)}
                 _hover={{ textDecoration: 'none' }}
-                href="/halalan.finance"
+                transition="ease-in-out "
               >
-                Halalan.finance
-              </ChakraLink>
-            </VStack>
-          </Fade>
-        </Hide>
+                Documents
+              </Text>
+              {openDoc ? (
+                <VStack
+                  bgColor="white"
+                  shadow="lg"
+                  borderRadius="lg"
+                  p={6}
+                  position="absolute"
+                  zIndex="popover"
+                  onClick={onToggle}
+                >
+                  <ChakraLink
+                    isExternal
+                    href="https://halalanft-ecosystem.gitbook.io/halalanft-whitepaper-english/"
+                    className="nav-item"
+                    _hover={{ textDecoration: 'none' }}
+                    textColor="rgba(23, 23, 23, 68%)"
+                  >
+                    English
+                  </ChakraLink>
+                  <ChakraLink
+                    isExternal
+                    href="https://halalanft-ecosystem.gitbook.io/halalanft-whitepaper-bahasa/"
+                    className="nav-item"
+                    _hover={{ textDecoration: 'none' }}
+                    textColor="rgba(23, 23, 23, 68%)"
+                  >
+                    Bahasa
+                  </ChakraLink>
+                </VStack>
+              ) : (
+                <></>
+              )}
+            </Box>
+            <ChakraLink
+              className="nav-item"
+              _hover={{ textDecoration: 'none' }}
+              href="/halalan.finance"
+            >
+              Halalan.finance
+            </ChakraLink>
+          </VStack>
+        </Collapse>
       </Flex>
     </>
   )
